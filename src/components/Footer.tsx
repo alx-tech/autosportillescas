@@ -117,18 +117,19 @@ const Footer = () => {
       title: "Política de Cookies",
       content: (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold">¿Qué son las cookies?</h3>
-          <p>Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita nuestro sitio web.</p>
+          <h3 className="text-lg font-semibold">3.1 ¿Qué son las cookies?</h3>
+          <p>Las cookies son archivos que se almacenan en su dispositivo cuando visita nuestro sitio web. Nos permiten mejorar su experiencia y ofrecer publicidad relevante.</p>
           
-          <h3 className="text-lg font-semibold">Tipos de cookies que utilizamos</h3>
+          <h3 className="text-lg font-semibold">3.2 Tipos de cookies que usamos</h3>
           <ul className="list-disc pl-6 space-y-1">
-            <li><strong>Cookies técnicas:</strong> Necesarias para el funcionamiento del sitio web.</li>
-            <li><strong>Cookies analíticas:</strong> Nos ayudan a entender cómo interactúa con nuestro sitio web.</li>
-            <li><strong>Cookies de marketing:</strong> Utilizadas para mostrar publicidad relevante.</li>
+            <li><strong>Estrictamente necesarias:</strong> Permiten el funcionamiento del sitio web.</li>
+            <li><strong>De personalización:</strong> Recuerdan sus preferencias.</li>
+            <li><strong>Analíticas:</strong> Nos ayudan a mejorar el sitio.</li>
+            <li><strong>Publicitarias:</strong> Muestran anuncios adaptados a sus intereses.</li>
           </ul>
           
-          <h3 className="text-lg font-semibold">Gestión de cookies</h3>
-          <p>Puede configurar su navegador para rechazar las cookies, aunque esto puede afectar la funcionalidad del sitio web.</p>
+          <h3 className="text-lg font-semibold">3.3 Gestión de cookies</h3>
+          <p>Puede aceptar, rechazar o configurar las cookies desde el banner de cookies o desde la configuración de su navegador.</p>
         </div>
       )
     }
