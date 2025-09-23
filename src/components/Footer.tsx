@@ -27,15 +27,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Phone size={16} className="text-primary" />
-                <span className="text-nav-muted">+34 123 456 789</span>
+                <span className="text-nav-muted">690715080</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail size={16} className="text-primary" />
-                <span className="text-nav-muted">info@aciertocars.com</span>
+                <span className="text-nav-muted">contacto@aciertocars.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin size={16} className="text-primary" />
-                <span className="text-nav-muted">Calle rio tormes 83, 28110, Algete, Madrid, España</span>
+                <span className="text-nav-muted">Calle Rio Tormes 83, 28110, Algete, Madrid, España</span>
               </div>
             </div>
           </div>
