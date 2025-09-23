@@ -35,7 +35,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin size={16} className="text-primary" />
-                <span className="text-nav-muted">Madrid, España</span>
+                <span className="text-nav-muted">Calle rio tormes 83, 28110, Algete, Madrid, España</span>
               </div>
             </div>
           </div>
@@ -74,7 +74,7 @@ const Footer = () => {
 
         <div className="border-t border-border/10 mt-8 pt-8 text-center">
           <p className="text-nav-muted">
-            © 2024 Acierto Cars. Todos los derechos reservados.
+            © 2025 Acierto Cars. Powered by INFINIT
           </p>
         </div>
       </div>
