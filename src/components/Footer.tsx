@@ -34,17 +34,32 @@ const Footer = () => {
       title: "Aviso Legal",
       content: (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold">Datos identificativos</h3>
-          <p><strong>Razón social:</strong> Acierto Cars S.L.</p>
-          <p><strong>Dirección:</strong> Calle Rio Tormes 83, 28110, Algete, Madrid, España</p>
-          <p><strong>Teléfono:</strong> 690715080</p>
-          <p><strong>Email:</strong> contacto@aciertocars.com</p>
+          <h3 className="text-lg font-semibold">1.1 Identificación del Titular</h3>
+          <p>En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSICE), se informa que el presente sitio web www.aciertocars.com es propiedad de:</p>
+          <div className="bg-muted/50 p-4 rounded-lg">
+            <p><strong>Titular:</strong> Acierto Cars Luxury S.L.U.</p>
+            <p><strong>CIF/NIF:</strong> B44976579</p>
+            <p><strong>Domicilio social:</strong> Calle Río Tormes, nº 83, 28110, Algete</p>
+            <p><strong>Teléfono:</strong> 690715080</p>
+            <p><strong>Correo electrónico:</strong> contacto@aciertocars.com</p>
+          </div>
           
-          <h3 className="text-lg font-semibold">Objeto</h3>
-          <p>El presente aviso legal regula el uso del sitio web www.aciertocars.com, del que es titular Acierto Cars S.L.</p>
+          <h3 className="text-lg font-semibold">1.2 Condiciones de Uso</h3>
+          <p>El acceso y uso del sitio web atribuyen la condición de usuario e implican la aceptación de las siguientes condiciones:</p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>El usuario se compromete a utilizar el sitio de forma lícita y conforme a la normativa vigente.</li>
+            <li>La empresa puede modificar en cualquier momento los contenidos y condiciones del sitio sin previo aviso.</li>
+            <li>No se garantiza la disponibilidad permanente del sitio ni la ausencia de errores.</li>
+          </ul>
           
-          <h3 className="text-lg font-semibold">Condiciones de uso</h3>
-          <p>El acceso y uso de este sitio web implica la aceptación plena de las presentes condiciones generales de uso.</p>
+          <h3 className="text-lg font-semibold">1.3 Propiedad Intelectual e Industrial</h3>
+          <p>Todos los contenidos del sitio web (textos, imágenes, logotipos, diseños, etc.) son propiedad de Acierto Cars Luxury S.L.U. o de terceros autorizados. Queda prohibida su reproducción, distribución o modificación sin autorización expresa.</p>
+          
+          <h3 className="text-lg font-semibold">1.4 Responsabilidad</h3>
+          <p>No nos hacemos responsables del uso indebido del sitio web ni de los enlaces de terceros que puedan aparecer en él.</p>
+          
+          <h3 className="text-lg font-semibold">1.5 Legislación y Jurisdicción</h3>
+          <p>Este aviso legal se rige por la legislación española. Para cualquier controversia, las partes se someten a los tribunales de Madrid.</p>
         </div>
       )
     },
