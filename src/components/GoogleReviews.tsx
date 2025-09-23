@@ -1,6 +1,7 @@
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import googleLogo from "@/assets/google-logo.jpeg";
 
 const GoogleReviews = () => {
   const reviews = [
@@ -37,11 +38,18 @@ const GoogleReviews = () => {
           {/* Google Rating Display */}
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="flex items-center gap-2">
-              <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" 
-                alt="Google"
-                className="w-6 h-6"
-              />
+              <a 
+                href="https://www.google.com/maps?cid=11476981079179398744"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img 
+                  src={googleLogo}
+                  alt="Google"
+                  className="w-6 h-6"
+                />
+              </a>
               <div className="w-px h-6 bg-border"></div>
               <div className="flex items-center gap-1">
                 <span className="text-2xl font-bold text-foreground">4.9</span>
@@ -103,22 +111,6 @@ const GoogleReviews = () => {
             <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 bg-background border-border shadow-md hover:bg-accent" />
             <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 bg-background border-border shadow-md hover:bg-accent" />
           </Carousel>
-        </div>
-
-        <div className="text-center mt-8">
-          <a
-            href="https://maps.google.com/?cid=11476981079179398744"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
-          >
-            <img 
-              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" 
-              alt="Google"
-              className="w-5 h-5"
-            />
-            Ver más reseñas en Google
-          </a>
         </div>
       </div>
     </section>
