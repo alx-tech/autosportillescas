@@ -4,6 +4,7 @@ import VehicleFilters from "@/components/VehicleFilters";
 import VehicleGallery from "@/components/VehicleGallery";
 import GoogleReviews from "@/components/GoogleReviews";
 import Services from "@/components/Services";
+import SocialMedia from "@/components/SocialMedia";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -15,6 +16,7 @@ const Index = () => {
       <VehicleGallery />
       <GoogleReviews />
       <Services />
+      <SocialMedia />
       <Footer />
     </div>
   );
