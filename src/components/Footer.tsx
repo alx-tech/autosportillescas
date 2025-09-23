@@ -16,17 +16,34 @@ const Footer = () => {
       title: "Política de Privacidad",
       content: (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold">1. Información que recopilamos</h3>
-          <p>En Acierto Cars recopilamos información personal cuando visita nuestro sitio web, se pone en contacto con nosotros o utiliza nuestros servicios.</p>
+          <h3 className="text-lg font-semibold">2.1 Responsable del Tratamiento de Datos</h3>
+          <div className="bg-muted/50 p-4 rounded-lg">
+            <p><strong>Nombre de la empresa:</strong> Acierto Cars Luxury S.L.U.</p>
+            <p><strong>Dirección:</strong> Calle Río Tormes, nº 83, 28110, Algete</p>
+            <p><strong>Correo electrónico:</strong> contacto@aciertocars.com</p>
+            <p><strong>Teléfono:</strong> 690715080</p>
+          </div>
           
-          <h3 className="text-lg font-semibold">2. Cómo utilizamos su información</h3>
-          <p>Utilizamos su información personal para proporcionarle nuestros servicios, responder a sus consultas y mejorar su experiencia en nuestro sitio web.</p>
+          <h3 className="text-lg font-semibold">2.2 Datos que Recopilamos</h3>
+          <p>Podemos recopilar los siguientes datos personales:</p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>Nombre y apellidos</li>
+            <li>CIF/NIF o número de identificación fiscal</li>
+            <li>Correo electrónico y teléfono</li>
+            <li>Dirección postal</li>
+            <li>Datos de navegación mediante cookies (ver nuestra Política de Cookies)</li>
+          </ul>
           
-          <h3 className="text-lg font-semibold">3. Protección de datos</h3>
-          <p>Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger su información personal contra el acceso no autorizado, alteración, divulgación o destrucción.</p>
+          <h3 className="text-lg font-semibold">2.3 Finalidad del Tratamiento</h3>
+          <p>Usamos sus datos para:</p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>Gestionar la compra y venta de vehículos</li>
+            <li>Gestionar garantías, seguros y financiación</li>
+            <li>Cumplir con obligaciones legales</li>
+          </ul>
           
-          <h3 className="text-lg font-semibold">4. Sus derechos</h3>
-          <p>Tiene derecho a acceder, rectificar, suprimir y portar sus datos personales, así como a limitar u oponerse a su tratamiento.</p>
+          <h3 className="text-lg font-semibold">2.4 Derechos del Usuario</h3>
+          <p>Tiene derecho a acceder, rectificar, suprimir o limitar el tratamiento de sus datos enviando un correo a: <strong>contacto@aciertocars.com</strong></p>
         </div>
       )
     },
