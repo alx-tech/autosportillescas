@@ -17,10 +17,10 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 9%;
 
-    /* Premium copper/orange theme */
-    --primary: 26 70% 41%;
+    /* Acierto Cars brand color #ff4001 */
+    --primary: 14 100% 50%;
     --primary-foreground: 0 0% 98%;
-    --primary-hover: 26 70% 35%;
+    --primary-hover: 14 100% 45%;
 
     --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 9%;
@@ -28,7 +28,7 @@ All colors MUST be HSL.
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 26 70% 41%;
+    --accent: 14 100% 50%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84% 60%;
@@ -36,15 +36,15 @@ All colors MUST be HSL.
 
     --border: 0 0% 91%;
     --input: 0 0% 91%;
-    --ring: 26 70% 41%;
+    --ring: 14 100% 50%;
 
     /* Navigation colors */
     --nav-background: 0 0% 9%;
     --nav-foreground: 0 0% 98%;
     --nav-muted: 0 0% 70%;
 
-    /* Premium gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(26 70% 45%));
+    /* Premium gradients with new brand color */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(14 100% 55%));
     --gradient-hero: linear-gradient(135deg, hsl(0 0% 9%), hsl(0 0% 15%));
     
     /* Shadows */
@@ -80,9 +80,9 @@ All colors MUST be HSL.
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 26 70% 45%;
+    --primary: 14 100% 55%;
     --primary-foreground: 0 0% 9%;
-    --primary-hover: 26 70% 50%;
+    --primary-hover: 14 100% 60%;
 
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 98%;
@@ -90,7 +90,7 @@ All colors MUST be HSL.
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 26 70% 45%;
+    --accent: 14 100% 55%;
     --accent-foreground: 0 0% 9%;
 
     --destructive: 0 75% 55%;
@@ -98,7 +98,7 @@ All colors MUST be HSL.
 
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 26 70% 45%;
+    --ring: 14 100% 55%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

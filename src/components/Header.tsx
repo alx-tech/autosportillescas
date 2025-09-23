@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
+import aciertoCarsLogo from "@/assets/acierto-cars-logo.png";
 
 const Header = () => {
   return (
@@ -7,13 +8,15 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">AC</span>
-            </div>
+          <div className="flex items-center space-x-3">
+            <img 
+              src={aciertoCarsLogo} 
+              alt="Acierto Cars Logo" 
+              className="w-12 h-12 object-contain"
+            />
             <div>
               <h1 className="text-xl font-bold">Acierto Cars</h1>
-              <p className="text-nav-muted text-xs">Premium Vehicles</p>
+              <p className="text-nav-muted text-xs">Luxury Vehicles</p>
             </div>
           </div>
 

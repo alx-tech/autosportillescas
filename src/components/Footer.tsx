@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import aciertoCarsLogo from "@/assets/acierto-cars-logo.png";
 
 const Footer = () => {
   return (
@@ -7,10 +8,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">AC</span>
-              </div>
+            <div className="flex items-center space-x-3 mb-4">
+              <img 
+                src={aciertoCarsLogo} 
+                alt="Acierto Cars Logo" 
+                className="w-10 h-10 object-contain"
+              />
               <span className="text-xl font-bold">Acierto Cars</span>
             </div>
             <p className="text-nav-muted mb-4">
