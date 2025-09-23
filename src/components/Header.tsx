@@ -26,12 +26,6 @@ const Header = () => {
               Vehículos de ocasión
             </a>
             <a href="#" className="text-nav-foreground hover:text-primary transition-colors">
-              Vende tu coche
-            </a>
-            <a href="#" className="text-nav-foreground hover:text-primary transition-colors">
-              Financiación
-            </a>
-            <a href="#" className="text-nav-foreground hover:text-primary transition-colors">
               Servicios
             </a>
             <a href="#" className="text-nav-foreground hover:text-primary transition-colors">
