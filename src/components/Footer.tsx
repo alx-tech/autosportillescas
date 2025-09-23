@@ -84,17 +84,32 @@ const Footer = () => {
       title: "Términos y Condiciones",
       content: (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold">1. Aceptación de términos</h3>
-          <p>Al acceder y utilizar este sitio web, usted acepta estar sujeto a estos términos y condiciones de uso.</p>
+          <h3 className="text-lg font-semibold">4.1 Servicios Ofrecidos</h3>
+          <p>A través de este sitio web, ofrecemos:</p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>Compra y venta de vehículos.</li>
+            <li>Servicios de financiación y garantías.</li>
+            <li>Asesoramiento en trámites administrativos.</li>
+          </ul>
           
-          <h3 className="text-lg font-semibold">2. Servicios</h3>
-          <p>Acierto Cars se dedica a la venta de vehículos de ocasión, financiación y servicios relacionados con el automóvil.</p>
+          <h3 className="text-lg font-semibold">4.2 Condiciones de Uso</h3>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>El usuario se compromete a utilizar el sitio de manera legal y responsable.</li>
+            <li>Nos reservamos el derecho a modificar contenido y condiciones sin previo aviso.</li>
+            <li>No garantizamos la exactitud o actualización permanente de la información.</li>
+          </ul>
           
-          <h3 className="text-lg font-semibold">3. Precios y disponibilidad</h3>
-          <p>Los precios mostrados están sujetos a cambios sin previo aviso. La disponibilidad de los vehículos se actualiza regularmente.</p>
+          <h3 className="text-lg font-semibold">4.3 Registro y Datos del Usuario</h3>
+          <p>Para acceder a ciertos servicios, el usuario puede necesitar registrarse y proporcionar datos personales. Estos datos se tratarán conforme a nuestra Política de Privacidad.</p>
           
-          <h3 className="text-lg font-semibold">4. Limitación de responsabilidad</h3>
-          <p>Acierto Cars no se hace responsable de los daños directos o indirectos que puedan derivarse del uso de este sitio web.</p>
+          <h3 className="text-lg font-semibold">4.4 Precios y Pagos</h3>
+          <p>Los precios de los vehículos y servicios mostrados en la web pueden estar sujetos a cambios y no constituyen una oferta vinculante.</p>
+          
+          <h3 className="text-lg font-semibold">4.5 Derecho de Desistimiento</h3>
+          <p>El usuario podrá ejercer su derecho de desistimiento dentro de los 14 días posteriores a la compra, conforme a la normativa vigente.</p>
+          
+          <h3 className="text-lg font-semibold">4.6 Legislación Aplicable y Jurisdicción</h3>
+          <p>Estos términos se rigen por la legislación española. Cualquier disputa será resuelta en los tribunales de Madrid.</p>
         </div>
       )
     },
