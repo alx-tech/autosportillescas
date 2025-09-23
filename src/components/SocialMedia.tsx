@@ -18,18 +18,15 @@ const SocialMedia = () => {
           <a 
             target="_blank" 
             href="https://www.tiktok.com/@aciertocars?refer=creator_embed"
-            className="block p-8 border border-border rounded-lg bg-background hover:bg-accent transition-all duration-300 hover:scale-105 shadow-lg"
+            className="block p-8 border border-border rounded-lg bg-background transition-all duration-300 hover:scale-105 shadow-lg"
           >
             <div className="text-center">
               <div className="flex items-center justify-center mb-4">
                 <img 
                   src={aciertoCarsLogo} 
                   alt="Acierto Cars Logo" 
-                  className="w-12 h-12 rounded-full mr-3"
+                  className="w-12 h-12 rounded-full"
                 />
-                <div className="w-8 h-8 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">📱</span>
-                </div>
               </div>
               <h3 className="text-xl font-bold text-foreground mb-2">@aciertocars</h3>
               <p className="text-muted-foreground mb-4">
@@ -59,18 +56,15 @@ const SocialMedia = () => {
           <a 
             target="_blank" 
             href="https://www.instagram.com/aciertocars/"
-            className="block p-8 border border-border rounded-lg bg-background hover:bg-accent transition-all duration-300 hover:scale-105 shadow-lg"
+            className="block p-8 border border-border rounded-lg bg-background transition-all duration-300 hover:scale-105 shadow-lg"
           >
             <div className="text-center">
               <div className="flex items-center justify-center mb-4">
                 <img 
                   src={aciertoCarsLogo} 
                   alt="Acierto Cars Logo" 
-                  className="w-12 h-12 rounded-full mr-3"
+                  className="w-12 h-12 rounded-full"
                 />
-                <div className="w-8 h-8 bg-gradient-to-tr from-purple-500 via-pink-500 to-orange-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">📷</span>
-                </div>
               </div>
               <h3 className="text-xl font-bold text-foreground mb-2">@aciertocars</h3>
               <p className="text-muted-foreground mb-4">
