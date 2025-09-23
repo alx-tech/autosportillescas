@@ -40,9 +40,11 @@ const Header = () => {
           </nav>
 
           {/* CTA Button */}
-          <Button variant="premium" className="hidden md:flex items-center gap-2">
-            <Phone size={16} />
-            Llama ahora
+          <Button variant="premium" className="hidden md:flex items-center gap-2" asChild>
+            <a href="tel:690715080">
+              <Phone size={16} />
+              Llama ahora
+            </a>
           </Button>
         </div>
       </div>
