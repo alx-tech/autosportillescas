@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import VehicleFilters from "@/components/VehicleFilters";
 import VehicleGallery from "@/components/VehicleGallery";
 import GoogleReviews from "@/components/GoogleReviews";
+import Services from "@/components/Services";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -13,6 +14,7 @@ const Index = () => {
       <VehicleFilters />
       <VehicleGallery />
       <GoogleReviews />
+      <Services />
       <Footer />
     </div>
   );
