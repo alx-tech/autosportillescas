@@ -50,15 +50,13 @@ export interface Vehicle {
   isNew?: boolean;
 }
 
-const API_URL = 'https://multipost-api.alx.test-cluster.alx.tech/api/voice-agent/dealer-info/company_05e6a332a26246d086c16810681f6f04';
-const AUTH_TOKEN = 'zJBlRMgBMlX1A0IGl8z6yfSUbiGXBAZ4qrCnJqoDE8DEm91C2riwuotnuTSGGpBRFWIBzFOVOfkhk2Aie0EfZmYT7cemBzpCOYuAIqKfB1AigU6LBn8oCiygy3h108cd';
+const API_URL = 'https://multipost-api.alx.dev-cluster.alx.tech/api/public/inventory/profiles/57c1ae42-95c6-47f8-aefb-6fc4be7c83e2';
 
 export const fetchCars = async (): Promise<CarsApiResponse> => {
   const response = await fetch(API_URL, {
     method: 'GET',
     headers: {
       'accept': 'application/json',
-      'authorization': `Bearer ${AUTH_TOKEN}`,
       'cache-control': 'no-cache',
     },
   });
