@@ -50,27 +50,15 @@ export interface Vehicle {
   isNew?: boolean;
 }
 
-const API_BASE_URL = 'https://multipost-api.alx.test-cluster.alx.tech/api';
+const API_URL = 'https://multipost-api.alx.test-cluster.alx.tech/api/voice-agent/dealer-info/company_05e6a332a26246d086c16810681f6f04';
+const AUTH_TOKEN = 'zJBlRMgBMlX1A0IGl8z6yfSUbiGXBAZ4qrCnJqoDE8DEm91C2riwuotnuTSGGpBRFWIBzFOVOfkhk2Aie0EfZmYT7cemBzpCOYuAIqKfB1AigU6LBn8oCiygy3h108cd';
 
-export const fetchCars = async (params: {
-  status?: string;
-  page?: number;
-  size?: number;
-  unlimited?: boolean;
-  order_by?: string;
-} = {}): Promise<CarsApiResponse> => {
-  const searchParams = new URLSearchParams({
-    status: params.status || 'Published',
-    page: params.page?.toString() || '1',
-    size: params.size?.toString() || '50',
-    unlimited: params.unlimited?.toString() || 'false',
-    order_by: params.order_by || '-days_in_stock'
-  });
-
-  const response = await fetch(`${API_BASE_URL}/inventory-cars/?${searchParams}`, {
+export const fetchCars = async (): Promise<CarsApiResponse> => {
+  const response = await fetch(API_URL, {
     method: 'GET',
     headers: {
       'accept': 'application/json',
+      'authorization': `Bearer ${AUTH_TOKEN}`,
       'cache-control': 'no-cache',
     },
   });

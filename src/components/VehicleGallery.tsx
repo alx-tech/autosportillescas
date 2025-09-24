@@ -13,8 +13,8 @@ const VehicleGallery = () => {
     isError, 
     error 
   } = useQuery({
-    queryKey: ['cars', { status: 'Published', page: 1, size: 50 }],
-    queryFn: () => fetchCars({ status: 'Published', page: 1, size: 50 }),
+    queryKey: ['cars'],
+    queryFn: () => fetchCars(),
     staleTime: 5 * 60 * 1000, // 5 minutes
     retry: 2
   });
