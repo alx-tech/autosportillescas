@@ -97,11 +97,11 @@ const Contact = () => {
           backgroundPosition: 'center center'
         }}
       >
-        <div className="px-4 lg:pt-24 pt-8 pb-72 lg:pb-80 mx-auto max-w-screen-sm text-center lg:px-6">
+        <div className="px-4 lg:pt-12 pt-6 pb-32 lg:pb-40 mx-auto max-w-screen-sm text-center lg:px-6">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-white">
             Contacta con nosotros
           </h2>
-          <p className="mb-16 font-light text-gray-400 sm:text-xl pb-5 md:pb-0">
+          <p className="mb-16 font-light text-white sm:text-xl pb-5 md:pb-0">
             Para cualquier información sobre nosotros o culquier vehículo no dude en contactarnos
           </p>
         </div>
@@ -109,8 +109,8 @@ const Contact = () => {
 
       {/* Contact Form Section */}
       <section className="py-16 px-4 bg-background">
-        <div className="container mx-auto max-w-lg">
-          <Card className="bg-white shadow-xl border-0 -mt-40 relative z-10">
+        <div className="container mx-auto max-w-2xl">
+          <Card className="bg-white shadow-xl border-0 -mt-20 relative z-10">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
