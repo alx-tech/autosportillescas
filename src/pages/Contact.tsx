@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -269,9 +269,9 @@ const Contact = () => {
       {/* Location Section */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             {/* Address Information */}
-            <div className="space-y-8">
+            <div className="lg:col-span-2 space-y-8">
               <h2 className="text-3xl font-bold text-foreground">
                 Nuestra ubicación
               </h2>
@@ -292,9 +292,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 flex items-center justify-center mt-1">
-                    <div className="w-3 h-3 rounded-full bg-primary"></div>
-                  </div>
+                  <Clock className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">
                       Horarios de atención
