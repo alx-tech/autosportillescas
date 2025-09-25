@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import contactBackground from "@/assets/contact-background.png";
+import contactBackground from "@/assets/contact.png";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
