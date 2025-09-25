@@ -16,7 +16,7 @@ const Header = () => {
             />
             <div>
               <h1 className="text-xl font-bold">Acierto Cars</h1>
-              <p className="text-nav-muted text-xs">Luxury Vehiculos</p>
+              <p className="text-nav-muted text-xs">Luxury Vehículos</p>
             </div>
           </a>
 
