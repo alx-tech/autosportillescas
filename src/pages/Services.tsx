@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/hero-banner.png";
-import sedanImage from "@/assets/sedan-black.jpg";
+import serviciosHero from "@/assets/servicios-hero.png";
 
 const Services = () => {
   const mainServices = [
@@ -41,46 +41,57 @@ const Services = () => {
             {/* Left Column - Content */}
             <div className="space-y-8">
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
                   Servicios en Acierto Cars Luxury
                 </h1>
-                <p className="text-lg text-muted-foreground mb-8">
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   Comercializamos e importamos vehículos premium a la carta, de ocasión, seminuevos y de KM 0 en Madrid.
                 </p>
               </div>
 
-              {/* Services List */}
-              <div className="space-y-6">
-                {mainServices.map((service, index) => {
-                  const IconComponent = service.icon;
-                  return (
-                    <div key={index} className="flex gap-4 items-start">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
-                        <IconComponent className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-foreground mb-2">
-                          {service.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {service.description}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+              {/* Service Items */}
+              <div className="space-y-8">
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-bold text-foreground">Servicio VIP</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Nos encargamos de todo: recogida, entrega, limpieza y otras gestiones que necesites. 
+                    Solo tendrás que preocuparte por ponerte al volante de tu nuevo vehículo.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-bold text-foreground">Garantía Plus hasta 3 años</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Tu vehículo de ocasión con garantía de 12 meses y hasta 3 años. Para vehículos de todo tipo como: 
+                    berlinas, coupés, descapotables, deportivos, SUV, 4×4, etc.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-bold text-foreground">Envío a toda España</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Si no puedes venir a recoger el vehículo, no te preocupes. Nos encargamos de todo lo necesario 
+                    para que lo recibas en la puerta de tu casa.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-bold text-foreground">Financiación disponible</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Trabajamos con los mejores bancos para ofrecerte opciones de financiación que se adapten a ti.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Right Column - Image */}
             <div className="relative">
-              <div className="relative overflow-hidden rounded-lg shadow-2xl">
+              <div className="relative overflow-hidden rounded-lg">
                 <img 
-                  src={sedanImage} 
-                  alt="Vehículo premium Acierto Cars" 
+                  src={serviciosHero} 
+                  alt="Vehículo BMW blanco con logo Acierto Cars Luxury" 
                   className="w-full h-[600px] object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
             </div>
           </div>
