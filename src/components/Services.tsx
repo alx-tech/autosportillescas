@@ -34,32 +34,30 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="flex overflow-x-auto gap-8 pb-4 scrollbar-hide">
-          <div className="flex gap-8 min-w-full">
-            {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <Card key={index} className="text-center border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 hover-scale flex-shrink-0 w-80">
-                  <CardContent className="p-8">
-                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
-                      <IconComponent className="w-8 h-8 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground mb-4">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      {service.description}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {services.map((service, index) => {
+            const IconComponent = service.icon;
+            return (
+              <Card key={index} className="text-center border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 hover-scale">
+                <CardContent className="p-8">
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+                    <IconComponent className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-4">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    {service.description}
+                  </p>
+                  {service.additionalInfo && (
+                    <p className="text-sm text-muted-foreground italic">
+                      {service.additionalInfo}
                     </p>
-                    {service.additionalInfo && (
-                      <p className="text-sm text-muted-foreground italic">
-                        {service.additionalInfo}
-                      </p>
-                    )}
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+                  )}
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
         <div className="text-center mt-12">
