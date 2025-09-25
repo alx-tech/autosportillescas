@@ -66,7 +66,7 @@ const VehicleCard = ({
 
   const currentImage = images[currentImageIndex] || '/placeholder.svg';
   return (
-    <Card className="group overflow-hidden hover:shadow-luxury transition-all duration-300 hover:scale-[1.02]">
+    <Card className="group overflow-hidden hover:shadow-luxury transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
       <div className="relative overflow-hidden">
         <img 
           src={currentImage} 
@@ -106,7 +106,7 @@ const VehicleCard = ({
         )}
       </div>
       
-      <CardContent className="p-4">
+      <CardContent className="p-4 flex flex-col flex-1">
         <div className="flex justify-between items-start mb-2">
           <div>
             <h3 className="font-bold text-lg text-foreground">{brand} {model}</h3>
@@ -117,14 +117,14 @@ const VehicleCard = ({
           </div>
         </div>
         
-        <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground mb-4">
+        <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground mb-4 flex-1">
           <div>📏 {mileage.toLocaleString()} km</div>
           <div>⛽ {fuel}</div>
           <div>⚙️ {transmission}</div>
           <div>📅 {year}</div>
         </div>
         
-        <Button className="w-full" variant="outline">
+        <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" variant="default">
           <Eye size={16} className="mr-2" />
           Ver detalles
         </Button>
