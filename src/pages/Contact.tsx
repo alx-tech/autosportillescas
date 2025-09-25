@@ -110,7 +110,7 @@ const Contact = () => {
       {/* Contact Form Section */}
       <section className="py-16 px-4 bg-background">
         <div className="container mx-auto max-w-2xl">
-          <Card className="bg-white shadow-xl border-0 -mt-20 relative z-10">
+          <Card className="bg-white shadow-xl border-0 -mt-48 relative z-10">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
