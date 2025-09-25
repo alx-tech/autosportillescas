@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/servicios-hero.png";
+import servicios2Image from "@/assets/servicios-2.png";
 
 const Services = () => {
   const mainServices = [
@@ -84,24 +85,35 @@ const Services = () => {
 
       {/* Sell Your Car Section */}
       <section className="py-16 px-4 bg-muted">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Vende tu coche sin problemas
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Asesoramos y acompañamos al cliente durante el proceso de compra/venta de su vehículo, 
-            informándolo del momento idóneo para cambiar antes de que se devalúe, elección de nuevo modelo, 
-            equipamiento y todo lo necesario para que su experiencia con nosotros sea un éxito.
-          </p>
-          <Button 
-            size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg"
-            asChild
-          >
-            <a href="tel:690715080">
-              Tasar mi coche
-            </a>
-          </Button>
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                Vende tu coche sin problemas
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                Asesoramos y acompañamos al cliente durante el proceso de compra/venta de su vehículo, 
+                informándolo del momento idóneo para cambiar antes de que se devalúe, elección de nuevo modelo, 
+                equipamiento y todo lo necesario para que su experiencia con nosotros sea un éxito.
+              </p>
+              <Button 
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg"
+                asChild
+              >
+                <a href="tel:690715080">
+                  Contáctanos para tasar tu vehículo
+                </a>
+              </Button>
+            </div>
+            <div className="flex justify-center">
+              <img 
+                src={servicios2Image} 
+                alt="Porsche deportivo gris en pista - Servicios de tasación de vehículos premium"
+                className="w-full max-w-lg h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
