@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/hero-banner.png";
+import sedanImage from "@/assets/sedan-black.jpg";
 
 const Services = () => {
   const mainServices = [
@@ -33,46 +34,55 @@ const Services = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="absolute inset-0 bg-black/50"></div>
-        </div>
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Servicios en Acierto Cars Luxury
-          </h1>
-          <p className="text-xl md:text-2xl mb-8">
-            Comercializamos e importamos vehículos premium a la carta, de ocasión, seminuevos y de KM 0 en Madrid.
-          </p>
-        </div>
-      </section>
-
-      {/* Main Services */}
+      {/* Hero Section with Two Columns */}
       <section className="py-16 px-4 bg-background">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {mainServices.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <Card key={index} className="text-center border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 hover-scale">
-                  <CardContent className="p-8">
-                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
-                      <IconComponent className="w-8 h-8 text-primary" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Content */}
+            <div className="space-y-8">
+              <div>
+                <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                  Servicios en Acierto Cars Luxury
+                </h1>
+                <p className="text-lg text-muted-foreground mb-8">
+                  Comercializamos e importamos vehículos premium a la carta, de ocasión, seminuevos y de KM 0 en Madrid.
+                </p>
+              </div>
+
+              {/* Services List */}
+              <div className="space-y-6">
+                {mainServices.map((service, index) => {
+                  const IconComponent = service.icon;
+                  return (
+                    <div key={index} className="flex gap-4 items-start">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <IconComponent className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-foreground mb-2">
+                          {service.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {service.description}
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-4">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {service.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right Column - Image */}
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-lg shadow-2xl">
+                <img 
+                  src={sedanImage} 
+                  alt="Vehículo premium Acierto Cars" 
+                  className="w-full h-[600px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
