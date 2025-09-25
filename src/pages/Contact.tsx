@@ -88,129 +88,129 @@ const Contact = () => {
       <Header />
       
       {/* Hero Section with Form */}
-      <section 
-        className="py-16 px-4 relative overflow-hidden min-h-screen flex items-center"
+      <div 
+        className="bg-gray-700 pt-24"
         style={{
           backgroundImage: `url(${contactBackground})`,
+          backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
+          backgroundPosition: 'center center'
         }}
       >
-        <div className="container mx-auto max-w-4xl relative z-10">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Contacta con nosotros
-            </h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Para cualquier información sobre nosotros o cualquier vehículo no dude en contactarnos
-            </p>
-          </div>
+        <div className="px-4 lg:pt-24 pt-8 pb-72 lg:pb-80 mx-auto max-w-screen-sm text-center lg:px-6">
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-white">
+            Contacta con nosotros
+          </h2>
+          <p className="mb-16 font-light text-gray-400 sm:text-xl pb-5 md:pb-0">
+            Para cualquier información sobre nosotros o culquier vehículo no dude en contactarnos
+          </p>
+        </div>
+      </div>
 
-          {/* Contact Form */}
-          <div className="max-w-lg mx-auto">
-            <Card className="bg-white shadow-xl border-0">
-              <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="nombre" className="text-gray-600">Nombre</Label>
-                      <Input
-                        id="nombre"
-                        name="nombre"
-                        value={formData.nombre}
-                        onChange={handleInputChange}
-                        required
-                        className="bg-gray-50 border-gray-200"
-                        placeholder="Carlos"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="apellido" className="text-gray-600">Apellido</Label>
-                      <Input
-                        id="apellido"
-                        name="apellido"
-                        value={formData.apellido}
-                        onChange={handleInputChange}
-                        required
-                        className="bg-gray-50 border-gray-200"
-                        placeholder="Jimenez"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-gray-600">Email</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className="bg-gray-50 border-gray-200"
-                        placeholder="carlos@gmail.com"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="telefono" className="text-gray-600">Teléfono</Label>
-                      <div className="flex">
-                        <div className="flex items-center px-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-md">
-                          <span className="text-sm text-red-600 font-semibold">🇪🇸</span>
-                        </div>
-                        <Input
-                          id="telefono"
-                          name="telefono"
-                          type="tel"
-                          value={formData.telefono}
-                          onChange={handleInputChange}
-                          required
-                          className="bg-gray-50 border-gray-200 rounded-l-none"
-                          placeholder="666 666 666"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
+      {/* Contact Form Section */}
+      <section className="py-16 px-4 bg-background">
+        <div className="container mx-auto max-w-lg">
+          <Card className="bg-white shadow-xl border-0 -mt-40 relative z-10">
+            <CardContent className="p-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="mensaje" className="text-gray-600">Mensaje</Label>
-                    <Textarea
-                      id="mensaje"
-                      name="mensaje"
-                      value={formData.mensaje}
+                    <Label htmlFor="nombre" className="text-gray-600">Nombre</Label>
+                    <Input
+                      id="nombre"
+                      name="nombre"
+                      value={formData.nombre}
                       onChange={handleInputChange}
                       required
-                      rows={5}
-                      className="bg-gray-50 border-gray-200 resize-none"
+                      className="bg-gray-50 border-gray-200"
+                      placeholder="Carlos"
                     />
                   </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="apellido" className="text-gray-600">Apellido</Label>
+                    <Input
+                      id="apellido"
+                      name="apellido"
+                      value={formData.apellido}
+                      onChange={handleInputChange}
+                      required
+                      className="bg-gray-50 border-gray-200"
+                      placeholder="Jimenez"
+                    />
+                  </div>
+                </div>
 
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-2">
-                      <Checkbox
-                        id="acceptMarketing"
-                        checked={formData.acceptMarketing}
-                        onCheckedChange={(checked) => 
-                          setFormData({ ...formData, acceptMarketing: checked as boolean })
-                        }
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-gray-600">Email</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="bg-gray-50 border-gray-200"
+                      placeholder="carlos@gmail.com"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="telefono" className="text-gray-600">Teléfono</Label>
+                    <div className="flex">
+                      <div className="flex items-center px-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-md">
+                        <span className="text-sm text-red-600 font-semibold">🇪🇸</span>
+                      </div>
+                      <Input
+                        id="telefono"
+                        name="telefono"
+                        type="tel"
+                        value={formData.telefono}
+                        onChange={handleInputChange}
+                        required
+                        className="bg-gray-50 border-gray-200 rounded-l-none"
+                        placeholder="666 666 666"
                       />
-                      <Label htmlFor="acceptMarketing" className="text-sm text-gray-600">
-                        Acepto las comunicaciones comerciales y de ofertas. Acepto la <a href="#" className="text-blue-600 hover:underline">política de privacidad</a>.
-                      </Label>
                     </div>
                   </div>
+                </div>
 
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-3"
-                  >
-                    Enviar
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
+                <div className="space-y-2">
+                  <Label htmlFor="mensaje" className="text-gray-600">Mensaje</Label>
+                  <Textarea
+                    id="mensaje"
+                    name="mensaje"
+                    value={formData.mensaje}
+                    onChange={handleInputChange}
+                    required
+                    rows={5}
+                    className="bg-gray-50 border-gray-200 resize-none"
+                  />
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-2">
+                    <Checkbox
+                      id="acceptMarketing"
+                      checked={formData.acceptMarketing}
+                      onCheckedChange={(checked) => 
+                        setFormData({ ...formData, acceptMarketing: checked as boolean })
+                      }
+                    />
+                    <Label htmlFor="acceptMarketing" className="text-sm text-gray-600">
+                      Acepto las comunicaciones comerciales y de ofertas. Acepto la <a href="#" className="text-blue-600 hover:underline">política de privacidad</a>.
+                    </Label>
+                  </div>
+                </div>
+
+                <Button 
+                  type="submit" 
+                  className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-3"
+                >
+                  Enviar
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
