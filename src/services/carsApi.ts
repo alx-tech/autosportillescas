@@ -50,7 +50,7 @@ export interface Vehicle {
   isNew?: boolean;
 }
 
-const API_URL = 'https://multipost-api.alx.dev-cluster.alx.tech/api/public/inventory/profiles/57c1ae42-95c6-47f8-aefb-6fc4be7c83e2';
+const API_URL = 'https://multipost-api.alx.dev-cluster.alx.tech/api/public/inventory/profiles/0379afc2-5bb2-4322-84d5-5a3df99b09a7';
 
 export const fetchCars = async (): Promise<CarsApiResponse> => {
   const response = await fetch(API_URL, {
