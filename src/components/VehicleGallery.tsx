@@ -57,7 +57,7 @@ const VehicleGallery = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {isLoading ? (
-            Array.from({ length: 6 }).map((_, index) => (
+            Array.from({ length: 3 }).map((_, index) => (
               <div key={index} className="space-y-3">
                 <Skeleton className="h-48 w-full rounded-lg" />
                 <div className="space-y-2">
@@ -68,11 +68,22 @@ const VehicleGallery = () => {
               </div>
             ))
           ) : (
-            vehicles.map((vehicle) => (
+            vehicles.slice(0, 3).map((vehicle) => (
               <VehicleCard key={vehicle.id} {...vehicle} />
             ))
           )}
         </div>
+        
+        {!isLoading && vehicles.length > 3 && (
+          <div className="text-center mt-8">
+            <a 
+              href="/stock" 
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            >
+              Ver coches
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );
