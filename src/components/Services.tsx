@@ -40,7 +40,7 @@ const Services = () => {
             return (
               <Card key={index} className="text-center bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover-scale overflow-hidden">
                 <CardContent className="p-0">
-                  <div className="bg-gray-100 p-6 h-32 flex flex-col justify-center">
+                  <div className="bg-gray-100 p-6 h-40 flex flex-col justify-center">
                     <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                       <IconComponent className="w-8 h-8 text-primary" />
                     </div>
