@@ -22,7 +22,7 @@ const Header = () => {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-nav-foreground hover:text-primary transition-colors">
+            <a href="/stock" className="text-nav-foreground hover:text-primary transition-colors">
               Vehículos de ocasión
             </a>
             <a href="#" className="text-nav-foreground hover:text-primary transition-colors">
