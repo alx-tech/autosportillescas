@@ -50,9 +50,14 @@ const VehicleCard = ({
       </div>
       
       <CardContent className="p-4">
-        <div className="mb-3">
-          <h3 className="font-bold text-lg text-foreground mb-1">{brand} {model}</h3>
-          <p className="text-muted-foreground text-sm">{year} • {type}</p>
+        <div className="flex justify-between items-start mb-2">
+          <div>
+            <h3 className="font-bold text-lg text-foreground">{brand} {model}</h3>
+            <p className="text-muted-foreground text-sm">{year} • {type}</p>
+          </div>
+          <div className="text-right">
+            <p className="text-2xl font-bold text-primary">€{price.toLocaleString()}</p>
+          </div>
         </div>
         
         <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground mb-4">
@@ -61,8 +66,6 @@ const VehicleCard = ({
           <div>⚙️ {transmission}</div>
           <div>📅 {year}</div>
         </div>
-        
-        <p className="text-2xl font-bold text-primary mb-4">€{price.toLocaleString()}</p>
         
         <Button className="w-full" variant="outline">
           <Eye size={16} className="mr-2" />
