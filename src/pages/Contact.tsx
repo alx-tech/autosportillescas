@@ -89,7 +89,7 @@ const Contact = () => {
       
       {/* Hero Section with Form */}
       <section 
-        className="py-16 px-4 bg-muted relative overflow-hidden min-h-[80vh] flex items-center"
+        className="py-16 px-4 relative overflow-hidden min-h-[80vh] flex items-center"
         style={{
           backgroundImage: `url(${contactBackground})`,
           backgroundSize: 'cover',
@@ -97,8 +97,6 @@ const Contact = () => {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        {/* Background overlay */}
-        <div className="absolute inset-0 bg-background/90 z-0"></div>
         
         <div className="container mx-auto max-w-4xl relative z-10">
           <div className="text-center mb-12">
