@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FAQ from "@/components/FAQ";
 import heroImage from "@/assets/servicios-hero.png";
 import servicios2Image from "@/assets/servicios-2.png";
 
@@ -117,47 +118,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Best Offers Section */}
-      <section className="py-16 px-4 bg-background">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Descubre nuestras mejores ofertas
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              El mejor precio y la mejor calidad van de la mano.
-            </p>
-          </div>
-          
-          <div className="text-center">
-            <p className="text-xl text-muted-foreground mb-8">
-              ¿Te interesa alguno de nuestros vehículos?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg"
-                asChild
-              >
-                <a href="/stock">
-                  Ver stock disponible
-                </a>
-              </Button>
-              <Button 
-                variant="outline"
-                size="lg"
-                className="px-8 py-3 text-lg"
-                asChild
-              >
-                <a href="tel:690715080">
-                  <HeadphonesIcon className="w-5 h-5 mr-2" />
-                  Contactar
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FAQ />
 
       <Footer />
     </div>
