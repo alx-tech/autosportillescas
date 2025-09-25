@@ -229,31 +229,35 @@ const Contact = () => {
       </section>
 
       {/* Contact Information */}
-      <section className="py-16 px-4 bg-background">
+      <section className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {contactInfo.map((info, index) => {
               const IconComponent = info.icon;
               return (
-                <Card key={index} className="text-center border border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-8">
-                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
-                      <IconComponent className="w-8 h-8 text-primary" />
+                <Card key={index} className="text-center bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="bg-gray-100 p-6">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                        <IconComponent className="w-8 h-8 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        {info.title}
+                      </h3>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-4">
-                      {info.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
-                      {info.description}
-                    </p>
-                    <a 
-                      href={info.href}
-                      className="text-primary hover:text-primary/80 font-medium transition-colors"
-                      target={info.icon === MapPin ? "_blank" : undefined}
-                      rel={info.icon === MapPin ? "noopener noreferrer" : undefined}
-                    >
-                      {info.contact}
-                    </a>
+                    <div className="p-6">
+                      <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                        {info.description}
+                      </p>
+                      <a 
+                        href={info.href}
+                        className="text-primary hover:text-primary/80 font-semibold transition-colors text-lg"
+                        target={info.icon === MapPin ? "_blank" : undefined}
+                        rel={info.icon === MapPin ? "noopener noreferrer" : undefined}
+                      >
+                        {info.contact}
+                      </a>
+                    </div>
                   </CardContent>
                 </Card>
               );
