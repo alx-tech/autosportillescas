@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import heroImage from "@/assets/hero-banner.png";
+import heroImage from "@/assets/servicios-hero.png";
 
 const Services = () => {
   const mainServices = [
@@ -34,20 +34,25 @@ const Services = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="absolute inset-0 bg-black/50"></div>
-        </div>
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Servicios en Acierto Cars Luxury
-          </h1>
-          <p className="text-xl md:text-2xl mb-8">
-            Comercializamos e importamos vehículos premium a la carta, de ocasión, seminuevos y de KM 0 en Madrid.
-          </p>
+      <section className="py-16 px-4 bg-background">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground">
+                Servicios en Acierto Cars Luxury
+              </h1>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Comercializamos e importamos vehículos premium a la carta, de ocasión, seminuevos y de KM 0 en Madrid.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img 
+                src={heroImage} 
+                alt="BMW blanco con logo de Acierto Cars Luxury"
+                className="w-full max-w-lg h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
