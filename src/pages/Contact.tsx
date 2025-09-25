@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FAQ from "@/components/FAQ";
 import contactBackground from "@/assets/contact.png";
 import { useToast } from "@/hooks/use-toast";
 
@@ -324,6 +325,8 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      <FAQ />
 
       <Footer />
 
