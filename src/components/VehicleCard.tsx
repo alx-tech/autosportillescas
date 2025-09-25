@@ -124,7 +124,7 @@ const VehicleCard = ({
           <div>📅 {year}</div>
         </div>
         
-        <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" variant="default">
+        <Button className="w-full" variant="secondary">
           <Eye size={16} className="mr-2" />
           Ver detalles
         </Button>
