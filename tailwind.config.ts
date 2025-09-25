@@ -60,12 +60,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        nav: {
-          DEFAULT: "hsl(var(--nav-background))",
-          background: "hsl(var(--nav-background))",
-          foreground: "hsl(var(--nav-foreground))",
-          muted: "hsl(var(--nav-muted))",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
