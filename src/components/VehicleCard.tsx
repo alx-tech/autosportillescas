@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Eye, Heart } from "lucide-react";
+import { Eye, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface VehicleCardProps {
   id: string;
@@ -42,9 +42,12 @@ const VehicleCard = ({
             Nuevo
           </Badge>
         )}
-        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button size="icon" variant="secondary" className="h-8 w-8">
-            <Heart size={16} />
+        <div className="absolute inset-x-2 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity">
+          <Button size="icon" variant="secondary" className="h-8 w-8 bg-white/80 hover:bg-white/90">
+            <ChevronLeft size={16} />
+          </Button>
+          <Button size="icon" variant="secondary" className="h-8 w-8 bg-white/80 hover:bg-white/90">
+            <ChevronRight size={16} />
           </Button>
         </div>
       </div>
