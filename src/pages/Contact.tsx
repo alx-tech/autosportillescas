@@ -115,7 +115,7 @@ const Contact = () => {
       </div>
 
       {/* Contact Form Section */}
-      <section className="py-16 px-4 bg-background">
+      <section className="py-8 px-4 bg-background">
         <div className="container mx-auto max-w-2xl">
           <Card className="bg-white shadow-xl border-0 -mt-48 relative z-10">
             <CardContent className="p-8">
