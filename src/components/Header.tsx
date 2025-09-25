@@ -25,7 +25,7 @@ const Header = () => {
             <a href="/stock" className="text-nav-foreground hover:text-primary transition-colors">
               Vehículos de ocasión
             </a>
-            <a href="#" className="text-nav-foreground hover:text-primary transition-colors">
+            <a href="/services" className="text-nav-foreground hover:text-primary transition-colors">
               Servicios
             </a>
             <a href="#" className="text-nav-foreground hover:text-primary transition-colors">
