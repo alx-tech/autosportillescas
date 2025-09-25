@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Eye, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface VehicleCardProps {
   id: string;
@@ -31,6 +31,30 @@ const VehicleCard = ({
   isNew = false 
 }: VehicleCardProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([]);
+  
+  // Preload all images
+  useEffect(() => {
+    if (images.length > 1) {
+      const loadPromises = images.map((src, index) => {
+        return new Promise<void>((resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            setImagesLoaded(prev => {
+              const newLoaded = [...prev];
+              newLoaded[index] = true;
+              return newLoaded;
+            });
+            resolve();
+          };
+          img.onerror = () => resolve(); // Still resolve on error to avoid hanging
+          img.src = src;
+        });
+      });
+      
+      Promise.all(loadPromises);
+    }
+  }, [images]);
   
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -48,6 +72,7 @@ const VehicleCard = ({
           src={currentImage} 
           alt={`${brand} ${model}`}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          style={{ imageRendering: 'auto' }}
         />
         {isNew && (
           <Badge className="absolute top-3 left-3 bg-primary">
