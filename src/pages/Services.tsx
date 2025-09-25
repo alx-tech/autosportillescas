@@ -65,17 +65,21 @@ const Services = () => {
             {mainServices.map((service, index) => {
               const IconComponent = service.icon;
               return (
-                <Card key={index} className="text-center border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 hover-scale">
-                  <CardContent className="p-8">
-                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
-                      <IconComponent className="w-8 h-8 text-primary" />
+                <Card key={index} className="text-center bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover-scale overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="bg-gray-100 p-6">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                        <IconComponent className="w-8 h-8 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        {service.title}
+                      </h3>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-4">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {service.description}
-                    </p>
+                    <div className="p-6">
+                      <p className="text-muted-foreground leading-relaxed text-sm">
+                        {service.description}
+                      </p>
+                    </div>
                   </CardContent>
                 </Card>
               );
