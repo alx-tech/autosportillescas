@@ -229,7 +229,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Information */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-background">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {contactInfo.map((info, index) => {
