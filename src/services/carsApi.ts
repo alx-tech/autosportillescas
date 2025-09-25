@@ -30,7 +30,7 @@ export type CarsApiResponse = CarApiResponse[];
 
 export interface Vehicle {
   id: string;
-  image: string;
+  images: string[];
   brand: string;
   model: string;
   year: number;
@@ -67,7 +67,7 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
     
   return {
     id: apiCar.id,
-    image: apiCar.photo_urls?.[0] || '/placeholder.svg',
+    images: apiCar.photo_urls?.length > 0 ? apiCar.photo_urls : ['/placeholder.svg'],
     brand: apiCar.make || 'Unknown',
     model: apiCar.model || 'Unknown',
     year: registrationYear,
