@@ -52,8 +52,7 @@ const VehicleCard = ({
       <CardContent className="p-4">
         <div className="mb-3">
           <h3 className="font-bold text-lg text-foreground mb-1">{brand} {model}</h3>
-          <p className="text-muted-foreground text-sm mb-2">{year} • {type}</p>
-          <p className="text-2xl font-bold text-primary text-center">€{price.toLocaleString()}</p>
+          <p className="text-muted-foreground text-sm">{year} • {type}</p>
         </div>
         
         <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground mb-4">
@@ -62,6 +61,8 @@ const VehicleCard = ({
           <div>⚙️ {transmission}</div>
           <div>📅 {year}</div>
         </div>
+        
+        <p className="text-2xl font-bold text-primary mb-4">€{price.toLocaleString()}</p>
         
         <Button className="w-full" variant="outline">
           <Eye size={16} className="mr-2" />
