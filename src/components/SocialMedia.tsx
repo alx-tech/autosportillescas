@@ -2,7 +2,7 @@ import aciertoCarsLogo from "@/assets/acierto-cars-logo.png";
 
 const SocialMedia = () => {
   return (
-    <section className="py-16 px-4 bg-muted/30">
+    <section className="py-16 px-4 bg-muted">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">

@@ -83,7 +83,7 @@ const Services = () => {
       </section>
 
       {/* Sell Your Car Section */}
-      <section className="py-16 px-4 bg-muted/30">
+      <section className="py-16 px-4 bg-muted">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
             Vende tu coche sin problemas
