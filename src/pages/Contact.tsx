@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import contactBackground from "@/assets/contact-background.png";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -87,9 +88,17 @@ const Contact = () => {
       <Header />
       
       {/* Hero Section with Form */}
-      <section className="py-16 px-4 bg-muted relative overflow-hidden">
+      <section 
+        className="py-16 px-4 bg-muted relative overflow-hidden min-h-[80vh] flex items-center"
+        style={{
+          backgroundImage: `url(${contactBackground})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
         {/* Background overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background/95 to-background/80 z-0"></div>
+        <div className="absolute inset-0 bg-background/90 z-0"></div>
         
         <div className="container mx-auto max-w-4xl relative z-10">
           <div className="text-center mb-12">
