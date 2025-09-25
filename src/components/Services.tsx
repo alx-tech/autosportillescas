@@ -65,7 +65,7 @@ const Services = () => {
             asChild
             className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg"
           >
-            <a href="#servicios">
+            <a href="/services">
               Más información
             </a>
           </Button>
