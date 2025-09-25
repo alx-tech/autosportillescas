@@ -123,7 +123,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="bg-gray-50 border-gray-200"
-                      placeholder="Carlos"
+                      placeholder="Nombre"
                     />
                   </div>
                   <div className="space-y-2">
@@ -135,7 +135,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="bg-gray-50 border-gray-200"
-                      placeholder="Jimenez"
+                      placeholder="Apellidos"
                     />
                   </div>
                 </div>
@@ -151,7 +151,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="bg-gray-50 border-gray-200"
-                      placeholder="carlos@gmail.com"
+                      placeholder="email@ejemplo.com"
                     />
                   </div>
                   <div className="space-y-2">
@@ -168,7 +168,7 @@ const Contact = () => {
                         onChange={handleInputChange}
                         required
                         className="bg-gray-50 border-gray-200 rounded-l-none"
-                        placeholder="666 666 666"
+                        placeholder="600 000 000"
                       />
                     </div>
                   </div>
@@ -183,7 +183,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     rows={5}
-                    className="bg-gray-50 border-gray-200 resize-none"
+                    placeholder="Escribe tu mensaje aquí..."
                   />
                 </div>
 
@@ -204,7 +204,7 @@ const Contact = () => {
 
                 <Button 
                   type="submit" 
-                  className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-3"
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3"
                 >
                   Enviar
                 </Button>
