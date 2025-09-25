@@ -102,7 +102,7 @@ const Services = () => {
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg"
                 asChild
               >
-                <a href="tel:690715080">
+                <a href="/contact">
                   Contáctanos para tasar tu vehículo
                 </a>
               </Button>
