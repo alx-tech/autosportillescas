@@ -266,6 +266,91 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* Location Section */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Address Information */}
+            <div className="space-y-6">
+              <h2 className="text-3xl font-bold text-foreground mb-6">
+                Nuestra ubicación
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <MapPin className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      Dirección
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      C. del Rio Tormes, 83<br />
+                      28110 Algete, Madrid<br />
+                      España
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <Phone className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      Teléfono
+                    </h3>
+                    <a 
+                      href="tel:690715080" 
+                      className="text-primary hover:text-primary/80 font-medium"
+                    >
+                      690715080
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <Mail className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      Email
+                    </h3>
+                    <a 
+                      href="mailto:contacto@aciertocars.com" 
+                      className="text-primary hover:text-primary/80 font-medium"
+                    >
+                      contacto@aciertocars.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6">
+                <h3 className="text-lg font-semibold text-foreground mb-3">
+                  Horarios de atención
+                </h3>
+                <div className="space-y-2 text-muted-foreground">
+                  <p>Lunes a Viernes: 10:00 - 14:00, 16:00 - 19:00</p>
+                  <p>Sábado y Domingo: Cerrado</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Google Map */}
+            <div className="w-full">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.8756789123456!2d-3.5123456789!3d40.6123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDM2JzQ0LjQiTiAzwrAzMCc0NC40Ilc!5e0!3m2!1ses!2ses!4v1234567890123!5m2!1ses!2ses&q=C.+del+Rio+Tormes,+83,+28110+Algete,+Madrid"
+                  width="100%"
+                  height="400"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Ubicación de Acierto Cars en Algete, Madrid"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
 
       {/* Privacy Policy Modal */}
