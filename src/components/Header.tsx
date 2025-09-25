@@ -8,7 +8,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <a href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
             <img 
               src={aciertoCarsLogo} 
               alt="Acierto Cars Logo" 
@@ -18,7 +18,7 @@ const Header = () => {
               <h1 className="text-xl font-bold">Acierto Cars</h1>
               <p className="text-nav-muted text-xs">Luxury Vehicles</p>
             </div>
-          </div>
+          </a>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
