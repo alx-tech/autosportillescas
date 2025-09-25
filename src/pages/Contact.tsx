@@ -101,7 +101,7 @@ const Contact = () => {
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-white">
             Contacta con nosotros
           </h2>
-          <p className="mb-16 font-light text-white sm:text-xl pb-5 md:pb-0">
+          <p className="mb-8 font-light text-white sm:text-xl pb-5 md:pb-0">
             Para cualquier información sobre nosotros o culquier vehículo no dude en contactarnos
           </p>
         </div>
