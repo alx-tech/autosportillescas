@@ -19,8 +19,8 @@ const VehicleGallery = () => {
     retry: 2
   });
 
-  const vehicles: Vehicle[] = carsResponse?.results
-    ? carsResponse.results.map(transformApiCarToVehicle)
+  const vehicles: Vehicle[] = carsResponse
+    ? carsResponse.map(transformApiCarToVehicle)
     : [];
 
   if (isError) {

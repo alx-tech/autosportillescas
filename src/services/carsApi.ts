@@ -1,40 +1,32 @@
 export interface CarApiResponse {
   id: string;
   title: string;
-  description: string;
-  price: number;
-  currency: string;
+  ad_description: string;
+  price_cents: number;
+  currency_code: string;
   status: string;
-  brand: string;
+  make: string;
   model: string;
-  year: number;
-  mileage: number;
-  fuel_type: string;
+  registration_date: string;
+  odometer: {
+    value: number;
+    unit: string;
+  };
+  fuel: string;
   transmission: string;
   body_type: string;
   color: string;
-  doors: number;
-  seats: number;
-  engine_size: number;
-  power: number;
-  images: Array<{
-    id: string;
-    url: string;
-    order: number;
-  }>;
-  features: string[];
-  location: string;
+  num_doors: number;
+  num_seats: number;
+  engine_size: number | null;
+  engine_power: number;
+  photo_urls: string[];
   created_at: string;
   updated_at: string;
   days_in_stock: number;
 }
 
-export interface CarsApiResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: CarApiResponse[];
-}
+export type CarsApiResponse = CarApiResponse[];
 
 export interface Vehicle {
   id: string;
@@ -69,15 +61,19 @@ export const fetchCars = async (): Promise<CarsApiResponse> => {
 };
 
 export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
+  const registrationYear = apiCar.registration_date 
+    ? new Date(apiCar.registration_date).getFullYear() 
+    : new Date().getFullYear();
+    
   return {
     id: apiCar.id,
-    image: apiCar.images?.[0]?.url || '/placeholder.svg',
-    brand: apiCar.brand || 'Unknown',
+    image: apiCar.photo_urls?.[0] || '/placeholder.svg',
+    brand: apiCar.make || 'Unknown',
     model: apiCar.model || 'Unknown',
-    year: apiCar.year || new Date().getFullYear(),
-    price: apiCar.price || 0,
-    mileage: apiCar.mileage || 0,
-    fuel: apiCar.fuel_type || 'Unknown',
+    year: registrationYear,
+    price: apiCar.price_cents ? apiCar.price_cents / 100 : 0, // Convert from cents to euros
+    mileage: apiCar.odometer?.value || 0,
+    fuel: apiCar.fuel || 'Unknown',
     transmission: apiCar.transmission || 'Unknown',
     type: apiCar.body_type || 'Unknown',
     isNew: apiCar.days_in_stock <= 30
