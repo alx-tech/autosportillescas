@@ -269,7 +269,7 @@ const Contact = () => {
       {/* Location Section */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             {/* Address Information */}
             <div className="space-y-8">
               <h2 className="text-3xl font-bold text-foreground">
