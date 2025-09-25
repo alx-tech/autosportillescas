@@ -271,11 +271,12 @@ const Contact = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Address Information */}
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-foreground mb-6">
+            <div className="space-y-8">
+              <h2 className="text-3xl font-bold text-foreground">
                 Nuestra ubicación
               </h2>
-              <div className="space-y-4">
+              
+              <div className="space-y-6">
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                   <div>
@@ -289,45 +290,20 @@ const Contact = () => {
                     </p>
                   </div>
                 </div>
-                
-                <div className="flex items-start space-x-3">
-                  <Phone className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
-                      Teléfono
-                    </h3>
-                    <a 
-                      href="tel:690715080" 
-                      className="text-primary hover:text-primary/80 font-medium"
-                    >
-                      690715080
-                    </a>
-                  </div>
-                </div>
 
                 <div className="flex items-start space-x-3">
-                  <Mail className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                  <div className="w-6 h-6 flex items-center justify-center mt-1">
+                    <div className="w-3 h-3 rounded-full bg-primary"></div>
+                  </div>
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">
-                      Email
+                      Horarios de atención
                     </h3>
-                    <a 
-                      href="mailto:contacto@aciertocars.com" 
-                      className="text-primary hover:text-primary/80 font-medium"
-                    >
-                      contacto@aciertocars.com
-                    </a>
+                    <div className="space-y-1 text-muted-foreground">
+                      <p>Lunes a Viernes: 10:00 - 14:00, 16:00 - 19:00</p>
+                      <p>Sábado y Domingo: Cerrado</p>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="pt-6">
-                <h3 className="text-lg font-semibold text-foreground mb-3">
-                  Horarios de atención
-                </h3>
-                <div className="space-y-2 text-muted-foreground">
-                  <p>Lunes a Viernes: 10:00 - 14:00, 16:00 - 19:00</p>
-                  <p>Sábado y Domingo: Cerrado</p>
                 </div>
               </div>
             </div>
