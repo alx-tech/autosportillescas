@@ -70,7 +70,7 @@ const VehicleFilters = ({
                     variant="ghost" 
                     size="sm" 
                     onClick={onClearFilters}
-                    className="text-primary hover:text-primary/80"
+                    className="text-primary"
                   >
                     <X size={16} className="mr-1" />
                     Eliminar filtros
