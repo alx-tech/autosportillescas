@@ -110,7 +110,6 @@ const Stock = () => {
                   yearRange={filters.yearRange}
                   onYearRangeChange={(value) => updateFilter('yearRange', value)}
                   onClearFilters={clearFilters}
-                  vehicleCount={filteredVehicles.length}
                   brands={filterOptions.brands}
                   bodyTypes={filterOptions.bodyTypes}
                   transmissions={filterOptions.transmissions}
@@ -120,6 +119,14 @@ const Stock = () => {
 
               {/* Vehicles Content */}
               <div className="lg:col-span-3">
+                {/* Results Count */}
+                <div className="mb-6">
+                  <h2 className="text-xl font-semibold">
+                    {filteredVehicles.length} Vehículo{filteredVehicles.length !== 1 ? 's' : ''}
+                    {(filters.searchTerm || filters.selectedBrand || filters.selectedBodyType || filters.selectedTransmission || filters.selectedFuel) && ' encontrado' + (filteredVehicles.length !== 1 ? 's' : '')}
+                  </h2>
+                </div>
+
                 {/* Sort Controls */}
                 <div className="flex justify-end mb-6">
                   <div className="flex items-center gap-2">

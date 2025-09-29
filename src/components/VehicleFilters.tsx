@@ -22,7 +22,6 @@ interface VehicleFiltersProps {
   yearRange?: [number, number];
   onYearRangeChange: (value: [number, number]) => void;
   onClearFilters: () => void;
-  vehicleCount?: number;
   brands?: string[];
   bodyTypes?: string[];
   transmissions?: string[];
@@ -47,7 +46,6 @@ const VehicleFilters = ({
   yearRange = [2000, new Date().getFullYear()],
   onYearRangeChange,
   onClearFilters,
-  vehicleCount = 0,
   brands = [],
   bodyTypes = [],
   transmissions = [],
@@ -64,12 +62,7 @@ const VehicleFilters = ({
     safeYearRange[0] > 2000 || safeYearRange[1] < new Date().getFullYear();
 
   return (
-    <section className="bg-secondary/50 py-8">
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Filters Sidebar */}
-            <div className="lg:w-80 space-y-6">
+    <div className="bg-secondary/50 p-6 rounded-lg space-y-6">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold">Filtros</h3>
                 {hasActiveFilters && (
@@ -226,20 +219,6 @@ const VehicleFilters = ({
                 </div>
               </div>
             </div>
-
-            {/* Results Info */}
-            <div className="flex-1">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold">
-                  {vehicleCount} Vehículo{vehicleCount !== 1 ? 's' : ''}
-                  {hasActiveFilters && ' encontrado' + (vehicleCount !== 1 ? 's' : '')}
-                </h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 };
 
