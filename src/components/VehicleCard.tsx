@@ -117,7 +117,7 @@ const VehicleCard = ({
           </div>
         </div>
         
-        <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground mb-4 flex-1">
+        <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground mb-4">
           <div>📏 {mileage.toLocaleString()} km</div>
           <div>⛽ {fuel}</div>
           <div>⚙️ {transmission}</div>
