@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronLeft, ChevronRight, Share2, MapPin, Phone, Calendar, Mail, User } from "lucide-react";
+import { ChevronLeft, ChevronRight, Share2, MapPin, Phone, Calendar, Mail, User, X } from "lucide-react";
 import { fetchCars, transformApiCarToVehicle, type Vehicle } from "@/services/carsApi";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { toast } from "sonner";
@@ -17,6 +20,7 @@ const VehicleDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
   
   const { data: carsData, isLoading, error } = useQuery({
     queryKey: ['cars'],
@@ -88,6 +92,12 @@ const VehicleDetail = () => {
 
   const handleReserve = () => {
     toast.success("¡Vehículo reservado! Nos pondremos en contacto contigo pronto.");
+  };
+
+  const handleAppointmentSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("¡Cita agendada! Nos pondremos en contacto contigo pronto.");
+    setIsAppointmentModalOpen(false);
   };
 
   return (
@@ -225,10 +235,110 @@ const VehicleDetail = () => {
                 <Phone className="w-4 h-4" />
                 Llamar ahora
               </Button>
-              <Button variant="outline" className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                Agendar cita
-              </Button>
+              <Dialog open={isAppointmentModalOpen} onOpenChange={setIsAppointmentModalOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="outline" className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4" />
+                    Agendar cita
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md bg-background">
+                  <DialogHeader>
+                    <DialogTitle className="text-lg font-semibold text-foreground">
+                      Reserva tu cita en Acierto Cars
+                    </DialogTitle>
+                  </DialogHeader>
+                  <form onSubmit={handleAppointmentSubmit} className="space-y-4 mt-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="appointmentName" className="text-sm font-medium text-muted-foreground">Nombre</Label>
+                        <Input id="appointmentName" placeholder="Nombre" required />
+                      </div>
+                      <div>
+                        <Label htmlFor="appointmentSurname" className="text-sm font-medium text-muted-foreground">Apellido</Label>
+                        <Input id="appointmentSurname" placeholder="Apellido" required />
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="appointmentEmail" className="text-sm font-medium text-muted-foreground">Email</Label>
+                        <Input id="appointmentEmail" type="email" placeholder="xxx@xxx.com" required />
+                      </div>
+                      <div>
+                        <Label htmlFor="appointmentPhone" className="text-sm font-medium text-muted-foreground">Teléfono</Label>
+                        <div className="flex">
+                          <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted text-sm whitespace-nowrap">
+                            🇪🇸 +34
+                          </div>
+                          <Input 
+                            id="appointmentPhone" 
+                            placeholder="666 666 666" 
+                            className="rounded-l-none" 
+                            required 
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="appointmentDate" className="text-sm font-medium text-muted-foreground">Fecha de la cita</Label>
+                        <Input id="appointmentDate" type="date" required />
+                      </div>
+                      <div>
+                        <Label htmlFor="appointmentTime" className="text-sm font-medium text-muted-foreground">Hora</Label>
+                        <Select required>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Selecciona una hora" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="09:00">09:00</SelectItem>
+                            <SelectItem value="09:30">09:30</SelectItem>
+                            <SelectItem value="10:00">10:00</SelectItem>
+                            <SelectItem value="10:30">10:30</SelectItem>
+                            <SelectItem value="11:00">11:00</SelectItem>
+                            <SelectItem value="11:30">11:30</SelectItem>
+                            <SelectItem value="12:00">12:00</SelectItem>
+                            <SelectItem value="12:30">12:30</SelectItem>
+                            <SelectItem value="16:00">16:00</SelectItem>
+                            <SelectItem value="16:30">16:30</SelectItem>
+                            <SelectItem value="17:00">17:00</SelectItem>
+                            <SelectItem value="17:30">17:30</SelectItem>
+                            <SelectItem value="18:00">18:00</SelectItem>
+                            <SelectItem value="18:30">18:30</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="appointmentMessage" className="text-sm font-medium text-muted-foreground">Mensaje</Label>
+                      <Textarea
+                        id="appointmentMessage"
+                        placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
+                        className="min-h-[80px] resize-none"
+                        required
+                      />
+                    </div>
+
+                    <div className="flex items-start space-x-2">
+                      <Checkbox id="appointmentTerms" required className="mt-1" />
+                      <Label htmlFor="appointmentTerms" className="text-xs text-muted-foreground leading-relaxed">
+                        Acepto las comunicaciones comerciales y de ofertas. Acepto la{" "}
+                        <span className="underline cursor-pointer">política de privacidad</span>.
+                      </Label>
+                    </div>
+
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-amber-700 hover:bg-amber-800 text-white"
+                    >
+                      Enviar
+                    </Button>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </div>
 
             {/* Contact Form */}
