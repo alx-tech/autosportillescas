@@ -15,6 +15,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { toast } from "sonner";
+import { useToast } from "@/hooks/use-toast";
 const VehicleDetail = () => {
   const {
     id
@@ -22,10 +23,43 @@ const VehicleDetail = () => {
     id: string;
   }>();
   const navigate = useNavigate();
+  const { toast: toastHook } = useToast();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
   const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
   const [openPrivacyModal, setOpenPrivacyModal] = useState(false);
+  const [isSubmittingAppointment, setIsSubmittingAppointment] = useState(false);
+  const [isSubmittingReservation, setIsSubmittingReservation] = useState(false);
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+
+  // Form data states
+  const [appointmentFormData, setAppointmentFormData] = useState({
+    nombre: "",
+    apellido: "",
+    email: "",
+    telefono: "",
+    fecha: "",
+    hora: "",
+    mensaje: "",
+    acceptTerms: false
+  });
+
+  const [reservationFormData, setReservationFormData] = useState({
+    nombre: "",
+    apellido: "",
+    email: "",
+    telefono: "",
+    mensaje: "",
+    acceptTerms: false
+  });
+
+  const [contactFormData, setContactFormData] = useState({
+    nombre: "",
+    apellido: "",
+    email: "",
+    telefono: "",
+    mensaje: ""
+  });
   const {
     data: carsData,
     isLoading,
@@ -82,15 +116,172 @@ const VehicleDetail = () => {
   const handleReserve = () => {
     toast.success("¡Vehículo reservado! Nos pondremos en contacto contigo pronto.");
   };
-  const handleReservationSubmit = (e: React.FormEvent) => {
+
+  const handleReservationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("¡Reserva confirmada! Nos pondremos en contacto contigo pronto.");
-    setIsReservationModalOpen(false);
+    if (!reservationFormData.acceptTerms) {
+      toastHook({
+        title: "Error",
+        description: "Debes aceptar la política de privacidad",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmittingReservation(true);
+
+    try {
+      const payload = {
+        company_id: "company_94aaffea4b534264bf9d87b02f4ebfbc",
+        lead_firstname: reservationFormData.nombre,
+        lead_lastname: reservationFormData.apellido,
+        lead_phone_number: reservationFormData.telefono,
+        lead_email: reservationFormData.email,
+        message: `RESERVA!\n${reservationFormData.mensaje}`
+      };
+
+      const response = await fetch('https://multipost-api.alx.dev-cluster.alx.tech/api/interactions/contact-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      toast.success("¡Reserva confirmada! Nos pondremos en contacto contigo pronto.");
+      setIsReservationModalOpen(false);
+      setReservationFormData({
+        nombre: "",
+        apellido: "",
+        email: "",
+        telefono: "",
+        mensaje: "",
+        acceptTerms: false
+      });
+    } catch (error) {
+      console.error('Error submitting reservation:', error);
+      toastHook({
+        title: "Error",
+        description: "Hubo un problema al enviar la reserva. Por favor, inténtalo de nuevo.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmittingReservation(false);
+    }
   };
-  const handleAppointmentSubmit = (e: React.FormEvent) => {
+
+  const handleAppointmentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("¡Cita agendada! Nos pondremos en contacto contigo pronto.");
-    setIsAppointmentModalOpen(false);
+    if (!appointmentFormData.acceptTerms) {
+      toastHook({
+        title: "Error",
+        description: "Debes aceptar la política de privacidad",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmittingAppointment(true);
+
+    try {
+      // Format date from YYYY-MM-DD to DD/MM/YYYY
+      const [year, month, day] = appointmentFormData.fecha.split('-');
+      const formattedDate = `${day}/${month}/${year}`;
+
+      const payload = {
+        company_id: "company_94aaffea4b534264bf9d87b02f4ebfbc",
+        lead_firstname: appointmentFormData.nombre,
+        lead_lastname: appointmentFormData.apellido,
+        lead_phone_number: appointmentFormData.telefono,
+        lead_email: appointmentFormData.email,
+        message: `CITA - ${formattedDate} ${appointmentFormData.hora}\n${appointmentFormData.mensaje}`
+      };
+
+      const response = await fetch('https://multipost-api.alx.dev-cluster.alx.tech/api/interactions/contact-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      toast.success("¡Cita agendada! Nos pondremos en contacto contigo pronto.");
+      setIsAppointmentModalOpen(false);
+      setAppointmentFormData({
+        nombre: "",
+        apellido: "",
+        email: "",
+        telefono: "",
+        fecha: "",
+        hora: "",
+        mensaje: "",
+        acceptTerms: false
+      });
+    } catch (error) {
+      console.error('Error submitting appointment:', error);
+      toastHook({
+        title: "Error",
+        description: "Hubo un problema al agendar la cita. Por favor, inténtalo de nuevo.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmittingAppointment(false);
+    }
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setIsSubmittingContact(true);
+
+    try {
+      const payload = {
+        company_id: "company_94aaffea4b534264bf9d87b02f4ebfbc",
+        lead_firstname: contactFormData.nombre,
+        lead_lastname: contactFormData.apellido,
+        lead_phone_number: contactFormData.telefono,
+        lead_email: contactFormData.email,
+        message: contactFormData.mensaje
+      };
+
+      const response = await fetch('https://multipost-api.alx.dev-cluster.alx.tech/api/interactions/contact-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      toast.success("¡Consulta enviada! Nos pondremos en contacto contigo pronto.");
+      setContactFormData({
+        nombre: "",
+        apellido: "",
+        email: "",
+        telefono: "",
+        mensaje: ""
+      });
+    } catch (error) {
+      console.error('Error submitting contact:', error);
+      toastHook({
+        title: "Error",
+        description: "Hubo un problema al enviar la consulta. Por favor, inténtalo de nuevo.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmittingContact(false);
+    }
   };
   return <div className="min-h-screen bg-background">
       <Header />
@@ -257,18 +448,40 @@ const VehicleDetail = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="reservationName" className="text-gray-600">Nombre</Label>
-                          <Input id="reservationName" placeholder="Nombre" required className="bg-gray-50 border-gray-200" />
+                          <Input
+                            id="reservationName"
+                            placeholder="Nombre"
+                            required
+                            className="bg-gray-50 border-gray-200"
+                            value={reservationFormData.nombre}
+                            onChange={(e) => setReservationFormData({ ...reservationFormData, nombre: e.target.value })}
+                          />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="reservationSurname" className="text-gray-600">Apellido</Label>
-                          <Input id="reservationSurname" placeholder="Apellido" required className="bg-gray-50 border-gray-200" />
+                          <Input
+                            id="reservationSurname"
+                            placeholder="Apellido"
+                            required
+                            className="bg-gray-50 border-gray-200"
+                            value={reservationFormData.apellido}
+                            onChange={(e) => setReservationFormData({ ...reservationFormData, apellido: e.target.value })}
+                          />
                         </div>
                       </div>
-                      
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="reservationEmail" className="text-gray-600">Email</Label>
-                          <Input id="reservationEmail" type="email" placeholder="xxx@xxx.com" required className="bg-gray-50 border-gray-200" />
+                          <Input
+                            id="reservationEmail"
+                            type="email"
+                            placeholder="xxx@xxx.com"
+                            required
+                            className="bg-gray-50 border-gray-200"
+                            value={reservationFormData.email}
+                            onChange={(e) => setReservationFormData({ ...reservationFormData, email: e.target.value })}
+                          />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="reservationPhone" className="text-gray-600">Teléfono</Label>
@@ -276,18 +489,39 @@ const VehicleDetail = () => {
                             <div className="flex items-center px-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-md">
                               <span className="text-sm text-red-600 font-semibold">🇪🇸</span>
                             </div>
-                            <Input id="reservationPhone" placeholder="666 666 666" className="bg-gray-50 border-gray-200 rounded-l-none" required />
+                            <Input
+                              id="reservationPhone"
+                              placeholder="666 666 666"
+                              className="bg-gray-50 border-gray-200 rounded-l-none"
+                              required
+                              value={reservationFormData.telefono}
+                              onChange={(e) => setReservationFormData({ ...reservationFormData, telefono: e.target.value })}
+                            />
                           </div>
                         </div>
                       </div>
 
                       <div className="space-y-2">
                         <Label htmlFor="reservationMessage" className="text-gray-600">Mensaje</Label>
-                        <Textarea id="reservationMessage" placeholder={`Quiero reservar este ${vehicle.brand} ${vehicle.model}`} className="min-h-[80px] resize-none bg-gray-50 border-gray-200" required rows={5} />
+                        <Textarea
+                          id="reservationMessage"
+                          placeholder={`Quiero reservar este ${vehicle.brand} ${vehicle.model}`}
+                          className="min-h-[80px] resize-none bg-gray-50 border-gray-200"
+                          required
+                          rows={5}
+                          value={reservationFormData.mensaje}
+                          onChange={(e) => setReservationFormData({ ...reservationFormData, mensaje: e.target.value })}
+                        />
                       </div>
 
                       <div className="flex items-start space-x-2">
-                        <Checkbox id="reservationTerms" required className="mt-1" />
+                        <Checkbox
+                          id="reservationTerms"
+                          required
+                          className="mt-1"
+                          checked={reservationFormData.acceptTerms}
+                          onCheckedChange={(checked) => setReservationFormData({ ...reservationFormData, acceptTerms: checked as boolean })}
+                        />
                         <Label htmlFor="reservationTerms" className="text-sm text-gray-600">
                           Acepto las comunicaciones comerciales y de ofertas. Acepto la{" "}
                           <button type="button" onClick={() => setOpenPrivacyModal(true)} className="text-primary hover:text-primary/80 underline cursor-pointer">
@@ -296,8 +530,8 @@ const VehicleDetail = () => {
                         </Label>
                       </div>
 
-                      <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3">
-                        Confirmar reserva
+                      <Button type="submit" disabled={isSubmittingReservation} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3">
+                        {isSubmittingReservation ? "Enviando..." : "Confirmar reserva"}
                       </Button>
                     </form>
                   </DialogContent>
@@ -330,18 +564,40 @@ const VehicleDetail = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="appointmentName" className="text-gray-600">Nombre</Label>
-                        <Input id="appointmentName" placeholder="Nombre" required className="bg-gray-50 border-gray-200" />
+                        <Input
+                          id="appointmentName"
+                          placeholder="Nombre"
+                          required
+                          className="bg-gray-50 border-gray-200"
+                          value={appointmentFormData.nombre}
+                          onChange={(e) => setAppointmentFormData({ ...appointmentFormData, nombre: e.target.value })}
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="appointmentSurname" className="text-gray-600">Apellido</Label>
-                        <Input id="appointmentSurname" placeholder="Apellido" required className="bg-gray-50 border-gray-200" />
+                        <Input
+                          id="appointmentSurname"
+                          placeholder="Apellido"
+                          required
+                          className="bg-gray-50 border-gray-200"
+                          value={appointmentFormData.apellido}
+                          onChange={(e) => setAppointmentFormData({ ...appointmentFormData, apellido: e.target.value })}
+                        />
                       </div>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="appointmentEmail" className="text-gray-600">Email</Label>
-                        <Input id="appointmentEmail" type="email" placeholder="xxx@xxx.com" required className="bg-gray-50 border-gray-200" />
+                        <Input
+                          id="appointmentEmail"
+                          type="email"
+                          placeholder="xxx@xxx.com"
+                          required
+                          className="bg-gray-50 border-gray-200"
+                          value={appointmentFormData.email}
+                          onChange={(e) => setAppointmentFormData({ ...appointmentFormData, email: e.target.value })}
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="appointmentPhone" className="text-gray-600">Teléfono</Label>
@@ -349,7 +605,14 @@ const VehicleDetail = () => {
                           <div className="flex items-center px-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-md">
                             <span className="text-sm text-red-600 font-semibold">🇪🇸</span>
                           </div>
-                          <Input id="appointmentPhone" placeholder="666 666 666" className="bg-gray-50 border-gray-200 rounded-l-none" required />
+                          <Input
+                            id="appointmentPhone"
+                            placeholder="666 666 666"
+                            className="bg-gray-50 border-gray-200 rounded-l-none"
+                            required
+                            value={appointmentFormData.telefono}
+                            onChange={(e) => setAppointmentFormData({ ...appointmentFormData, telefono: e.target.value })}
+                          />
                         </div>
                       </div>
                     </div>
@@ -357,11 +620,22 @@ const VehicleDetail = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="appointmentDate" className="text-gray-600">Fecha de la cita</Label>
-                        <Input id="appointmentDate" type="date" required className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-500" />
+                        <Input
+                          id="appointmentDate"
+                          type="date"
+                          required
+                          className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-500"
+                          value={appointmentFormData.fecha}
+                          onChange={(e) => setAppointmentFormData({ ...appointmentFormData, fecha: e.target.value })}
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="appointmentTime" className="text-gray-600">Hora</Label>
-                        <Select required>
+                        <Select
+                          required
+                          value={appointmentFormData.hora}
+                          onValueChange={(value) => setAppointmentFormData({ ...appointmentFormData, hora: value })}
+                        >
                           <SelectTrigger className="bg-gray-50 border-gray-200 text-gray-900 data-[placeholder]:text-gray-500">
                             <SelectValue placeholder="Selecciona una hora" />
                           </SelectTrigger>
@@ -387,11 +661,25 @@ const VehicleDetail = () => {
 
                     <div className="space-y-2">
                       <Label htmlFor="appointmentMessage" className="text-gray-600">Mensaje</Label>
-                      <Textarea id="appointmentMessage" placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`} className="min-h-[80px] resize-none bg-gray-50 border-gray-200" required rows={5} />
+                      <Textarea
+                        id="appointmentMessage"
+                        placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
+                        className="min-h-[80px] resize-none bg-gray-50 border-gray-200"
+                        required
+                        rows={5}
+                        value={appointmentFormData.mensaje}
+                        onChange={(e) => setAppointmentFormData({ ...appointmentFormData, mensaje: e.target.value })}
+                      />
                     </div>
 
                     <div className="flex items-start space-x-2">
-                      <Checkbox id="appointmentTerms" required className="mt-1" />
+                      <Checkbox
+                        id="appointmentTerms"
+                        required
+                        className="mt-1"
+                        checked={appointmentFormData.acceptTerms}
+                        onCheckedChange={(checked) => setAppointmentFormData({ ...appointmentFormData, acceptTerms: checked as boolean })}
+                      />
                       <Label htmlFor="appointmentTerms" className="text-sm text-gray-600">
                         Acepto las comunicaciones comerciales y de ofertas. Acepto la{" "}
                         <button type="button" onClick={() => setOpenPrivacyModal(true)} className="text-primary hover:text-primary/80 underline cursor-pointer">
@@ -400,8 +688,8 @@ const VehicleDetail = () => {
                       </Label>
                     </div>
 
-                    <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3">
-                      Enviar
+                    <Button type="submit" disabled={isSubmittingAppointment} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3">
+                      {isSubmittingAppointment ? "Enviando..." : "Enviar"}
                     </Button>
                   </form>
                 </DialogContent>
@@ -416,18 +704,37 @@ const VehicleDetail = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4">
+                <form onSubmit={handleContactSubmit} className="space-y-4">
                   <div>
                     <Label htmlFor="name">Nombre</Label>
-                    <Input id="name" placeholder="Nombre" />
+                    <Input
+                      id="name"
+                      placeholder="Nombre"
+                      required
+                      value={contactFormData.nombre}
+                      onChange={(e) => setContactFormData({ ...contactFormData, nombre: e.target.value })}
+                    />
                   </div>
                   <div>
                     <Label htmlFor="surname">Apellido</Label>
-                    <Input id="surname" placeholder="Apellido" />
+                    <Input
+                      id="surname"
+                      placeholder="Apellido"
+                      required
+                      value={contactFormData.apellido}
+                      onChange={(e) => setContactFormData({ ...contactFormData, apellido: e.target.value })}
+                    />
                   </div>
                   <div>
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="email@gmail.com" />
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="email@gmail.com"
+                      required
+                      value={contactFormData.email}
+                      onChange={(e) => setContactFormData({ ...contactFormData, email: e.target.value })}
+                    />
                   </div>
                   <div>
                     <Label htmlFor="phone">Teléfono</Label>
@@ -435,15 +742,29 @@ const VehicleDetail = () => {
                       <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted text-sm whitespace-nowrap">
                         🇪🇸 +34
                       </div>
-                      <Input id="phone" placeholder="666 666 666" className="rounded-l-none" />
+                      <Input
+                        id="phone"
+                        placeholder="666 666 666"
+                        className="rounded-l-none"
+                        required
+                        value={contactFormData.telefono}
+                        onChange={(e) => setContactFormData({ ...contactFormData, telefono: e.target.value })}
+                      />
                     </div>
                   </div>
                   <div>
                     <Label htmlFor="message">Mensaje</Label>
-                    <Textarea id="message" placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`} className="min-h-[80px]" />
+                    <Textarea
+                      id="message"
+                      placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
+                      className="min-h-[80px]"
+                      required
+                      value={contactFormData.mensaje}
+                      onChange={(e) => setContactFormData({ ...contactFormData, mensaje: e.target.value })}
+                    />
                   </div>
-                  <Button type="submit" className="w-full">
-                    Enviar consulta
+                  <Button type="submit" disabled={isSubmittingContact} className="w-full">
+                    {isSubmittingContact ? "Enviando..." : "Enviar consulta"}
                   </Button>
                 </form>
               </CardContent>
