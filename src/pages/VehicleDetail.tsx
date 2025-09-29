@@ -220,7 +220,7 @@ const VehicleDetail = () => {
             </Card>
 
             {/* Action Buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
               <Button variant="outline" className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
                 Llamar ahora
@@ -230,59 +230,57 @@ const VehicleDetail = () => {
                 Agendar cita
               </Button>
             </div>
+
+            {/* Contact Form */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">
+                  Quiero más información <span className="text-primary">de este coche</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form className="space-y-4">
+                  <div>
+                    <Label htmlFor="name">Nombre</Label>
+                    <Input id="name" placeholder="Nombre" />
+                  </div>
+                  <div>
+                    <Label htmlFor="surname">Apellido</Label>
+                    <Input id="surname" placeholder="Apellido" />
+                  </div>
+                  <div>
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" type="email" placeholder="email@gmail.com" />
+                  </div>
+                  <div>
+                    <Label htmlFor="phone">Teléfono</Label>
+                    <div className="flex">
+                      <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted">
+                        <span className="text-sm">🇪🇸 +34</span>
+                      </div>
+                      <Input 
+                        id="phone" 
+                        placeholder="666 666 666" 
+                        className="rounded-l-none" 
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="message">Mensaje</Label>
+                    <Textarea
+                      id="message"
+                      placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
+                      className="min-h-[80px]"
+                    />
+                  </div>
+                  <Button type="submit" className="w-full">
+                    Enviar consulta
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
-
-        {/* Information Form */}
-        <Card className="mb-12">
-          <CardHeader>
-            <CardTitle className="text-xl">
-              Quiero más información <span className="text-primary">de este coche</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="name">Nombre</Label>
-                <Input id="name" placeholder="Nombre" />
-              </div>
-              <div>
-                <Label htmlFor="surname">Apellido</Label>
-                <Input id="surname" placeholder="Apellido" />
-              </div>
-              <div>
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="email@gmail.com" />
-              </div>
-              <div>
-                <Label htmlFor="phone">Teléfono</Label>
-                <div className="flex">
-                  <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted">
-                    <span className="text-sm">🇪🇸 +34</span>
-                  </div>
-                  <Input 
-                    id="phone" 
-                    placeholder="666 666 666" 
-                    className="rounded-l-none" 
-                  />
-                </div>
-              </div>
-              <div className="md:col-span-2">
-                <Label htmlFor="message">Mensaje</Label>
-                <Textarea
-                  id="message"
-                  placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
-                  className="min-h-[100px]"
-                />
-              </div>
-              <div className="md:col-span-2">
-                <Button type="submit" className="w-full">
-                  Enviar consulta
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
 
         {/* Basic Data */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
