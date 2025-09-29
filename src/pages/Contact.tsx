@@ -22,6 +22,7 @@ const Contact = () => {
   const { toast } = useToast();
   const [openPrivacyModal, setOpenPrivacyModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -67,21 +68,7 @@ const Contact = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      toast({
-        title: "Mensaje enviado",
-        description: "Nos pondremos en contacto contigo pronto",
-      });
-
-      // Reset form
-      setFormData({
-        nombre: "",
-        apellido: "",
-        email: "",
-        telefono: "",
-        mensaje: "",
-        acceptMarketing: false,
-        acceptPrivacy: false
-      });
+      setIsSubmitted(true);
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -154,111 +141,144 @@ const Contact = () => {
         <div className="container mx-auto max-w-2xl">
           <Card className="bg-white shadow-xl border-0 -mt-48 relative z-10">
             <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="nombre" className="text-gray-600">Nombre</Label>
-                    <Input
-                      id="nombre"
-                      name="nombre"
-                      value={formData.nombre}
-                      onChange={handleInputChange}
-                      required
-                      className="bg-gray-50 border-gray-200"
-                      placeholder="Nombre"
-                    />
+              {isSubmitted ? (
+                <div className="text-center py-12">
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center">
+                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="apellido" className="text-gray-600">Apellido</Label>
-                    <Input
-                      id="apellido"
-                      name="apellido"
-                      value={formData.apellido}
-                      onChange={handleInputChange}
-                      required
-                      className="bg-gray-50 border-gray-200"
-                      placeholder="Apellidos"
-                    />
-                  </div>
+                  <h3 className="text-2xl font-bold text-foreground mb-4">
+                    ¡Mensaje enviado con éxito!
+                  </h3>
+                  <p className="text-muted-foreground mb-6">
+                    Gracias por contactarnos. Nos pondremos en contacto contigo pronto.
+                  </p>
+                  <Button
+                    onClick={() => {
+                      setIsSubmitted(false);
+                      setFormData({
+                        nombre: "",
+                        apellido: "",
+                        email: "",
+                        telefono: "",
+                        mensaje: "",
+                        acceptMarketing: false,
+                        acceptPrivacy: false
+                      });
+                    }}
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                  >
+                    Enviar otro mensaje
+                  </Button>
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-gray-600">Email</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="bg-gray-50 border-gray-200"
-                      placeholder="email@ejemplo.com"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="telefono" className="text-gray-600">Teléfono</Label>
-                    <div className="flex">
-                      <div className="flex items-center px-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-md">
-                        <span className="text-sm text-red-600 font-semibold">🇪🇸</span>
-                      </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="nombre" className="text-gray-600">Nombre</Label>
                       <Input
-                        id="telefono"
-                        name="telefono"
-                        type="tel"
-                        value={formData.telefono}
+                        id="nombre"
+                        name="nombre"
+                        value={formData.nombre}
                         onChange={handleInputChange}
                         required
-                        className="bg-gray-50 border-gray-200 rounded-l-none"
-                        placeholder="600 000 000"
+                        className="bg-gray-50 border-gray-200"
+                        placeholder="Nombre"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="apellido" className="text-gray-600">Apellido</Label>
+                      <Input
+                        id="apellido"
+                        name="apellido"
+                        value={formData.apellido}
+                        onChange={handleInputChange}
+                        required
+                        className="bg-gray-50 border-gray-200"
+                        placeholder="Apellidos"
                       />
                     </div>
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="mensaje" className="text-gray-600">Mensaje</Label>
-                  <Textarea
-                    id="mensaje"
-                    name="mensaje"
-                    value={formData.mensaje}
-                    onChange={handleInputChange}
-                    required
-                    rows={5}
-                    placeholder="Escribe tu mensaje aquí..."
-                  />
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-2">
-                    <Checkbox
-                      id="acceptMarketing"
-                      checked={formData.acceptMarketing}
-                      onCheckedChange={(checked) => 
-                        setFormData({ ...formData, acceptMarketing: checked as boolean })
-                      }
-                    />
-                    <Label htmlFor="acceptMarketing" className="text-sm text-gray-600">
-                      Acepto las comunicaciones comerciales y de ofertas. Acepto la{" "}
-                      <button 
-                        type="button"
-                        onClick={() => setOpenPrivacyModal(true)}
-                        className="text-primary hover:text-primary/80 underline"
-                      >
-                        política de privacidad
-                      </button>.
-                    </Label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="text-gray-600">Email</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="bg-gray-50 border-gray-200"
+                        placeholder="email@ejemplo.com"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="telefono" className="text-gray-600">Teléfono</Label>
+                      <div className="flex">
+                        <div className="flex items-center px-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-md">
+                          <span className="text-sm text-red-600 font-semibold">🇪🇸</span>
+                        </div>
+                        <Input
+                          id="telefono"
+                          name="telefono"
+                          type="tel"
+                          value={formData.telefono}
+                          onChange={handleInputChange}
+                          required
+                          className="bg-gray-50 border-gray-200 rounded-l-none"
+                          placeholder="600 000 000"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3"
-                >
-                  {isSubmitting ? "Enviando..." : "Enviar"}
-                </Button>
-              </form>
+                  <div className="space-y-2">
+                    <Label htmlFor="mensaje" className="text-gray-600">Mensaje</Label>
+                    <Textarea
+                      id="mensaje"
+                      name="mensaje"
+                      value={formData.mensaje}
+                      onChange={handleInputChange}
+                      required
+                      rows={5}
+                      placeholder="Escribe tu mensaje aquí..."
+                    />
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-2">
+                      <Checkbox
+                        id="acceptMarketing"
+                        checked={formData.acceptMarketing}
+                        onCheckedChange={(checked) => 
+                          setFormData({ ...formData, acceptMarketing: checked as boolean })
+                        }
+                      />
+                      <Label htmlFor="acceptMarketing" className="text-sm text-gray-600">
+                        Acepto las comunicaciones comerciales y de ofertas. Acepto la{" "}
+                        <button 
+                          type="button"
+                          onClick={() => setOpenPrivacyModal(true)}
+                          className="text-primary hover:text-primary/80 underline"
+                        >
+                          política de privacidad
+                        </button>.
+                      </Label>
+                    </div>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3"
+                  >
+                    {isSubmitting ? "Enviando..." : "Enviar"}
+                  </Button>
+                </form>
+              )}
             </CardContent>
           </Card>
         </div>
