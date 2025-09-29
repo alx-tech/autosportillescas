@@ -31,6 +31,7 @@ const VehicleDetail = () => {
   const [isSubmittingAppointment, setIsSubmittingAppointment] = useState(false);
   const [isSubmittingReservation, setIsSubmittingReservation] = useState(false);
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+  const [isContactSubmitted, setIsContactSubmitted] = useState(false);
 
   // Form data states
   const [appointmentFormData, setAppointmentFormData] = useState({
@@ -264,7 +265,7 @@ const VehicleDetail = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      toast.success("¡Consulta enviada! Nos pondremos en contacto contigo pronto.");
+      setIsContactSubmitted(true);
       setContactFormData({
         nombre: "",
         apellido: "",
@@ -704,69 +705,93 @@ const VehicleDetail = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleContactSubmit} className="space-y-4">
-                  <div>
-                    <Label htmlFor="name">Nombre</Label>
-                    <Input
-                      id="name"
-                      placeholder="Nombre"
-                      required
-                      value={contactFormData.nombre}
-                      onChange={(e) => setContactFormData({ ...contactFormData, nombre: e.target.value })}
-                    />
+                {isContactSubmitted ? (
+                  <div className="text-center py-8">
+                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-3">
+                      ¡Mensaje enviado con éxito!
+                    </h3>
+                    <p className="text-muted-foreground mb-6">
+                      Gracias por tu interés. Nos pondremos en contacto contigo pronto.
+                    </p>
+                    <Button
+                      onClick={() => {
+                        setIsContactSubmitted(false);
+                      }}
+                      variant="outline"
+                    >
+                      Enviar otro mensaje
+                    </Button>
                   </div>
-                  <div>
-                    <Label htmlFor="surname">Apellido</Label>
-                    <Input
-                      id="surname"
-                      placeholder="Apellido"
-                      required
-                      value={contactFormData.apellido}
-                      onChange={(e) => setContactFormData({ ...contactFormData, apellido: e.target.value })}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="email@gmail.com"
-                      required
-                      value={contactFormData.email}
-                      onChange={(e) => setContactFormData({ ...contactFormData, email: e.target.value })}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="phone">Teléfono</Label>
-                    <div className="flex">
-                      <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted text-sm whitespace-nowrap">
-                        🇪🇸 +34
-                      </div>
+                ) : (
+                  <form onSubmit={handleContactSubmit} className="space-y-4">
+                    <div>
+                      <Label htmlFor="name">Nombre</Label>
                       <Input
-                        id="phone"
-                        placeholder="666 666 666"
-                        className="rounded-l-none"
+                        id="name"
+                        placeholder="Nombre"
                         required
-                        value={contactFormData.telefono}
-                        onChange={(e) => setContactFormData({ ...contactFormData, telefono: e.target.value })}
+                        value={contactFormData.nombre}
+                        onChange={(e) => setContactFormData({ ...contactFormData, nombre: e.target.value })}
                       />
                     </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="message">Mensaje</Label>
-                    <Textarea
-                      id="message"
-                      placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
-                      className="min-h-[80px]"
-                      required
-                      value={contactFormData.mensaje}
-                      onChange={(e) => setContactFormData({ ...contactFormData, mensaje: e.target.value })}
-                    />
-                  </div>
-                  <Button type="submit" disabled={isSubmittingContact} className="w-full">
-                    {isSubmittingContact ? "Enviando..." : "Enviar consulta"}
-                  </Button>
-                </form>
+                    <div>
+                      <Label htmlFor="surname">Apellido</Label>
+                      <Input
+                        id="surname"
+                        placeholder="Apellido"
+                        required
+                        value={contactFormData.apellido}
+                        onChange={(e) => setContactFormData({ ...contactFormData, apellido: e.target.value })}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="email">Email</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="email@gmail.com"
+                        required
+                        value={contactFormData.email}
+                        onChange={(e) => setContactFormData({ ...contactFormData, email: e.target.value })}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="phone">Teléfono</Label>
+                      <div className="flex">
+                        <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted text-sm whitespace-nowrap">
+                          🇪🇸 +34
+                        </div>
+                        <Input
+                          id="phone"
+                          placeholder="666 666 666"
+                          className="rounded-l-none"
+                          required
+                          value={contactFormData.telefono}
+                          onChange={(e) => setContactFormData({ ...contactFormData, telefono: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="message">Mensaje</Label>
+                      <Textarea
+                        id="message"
+                        placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
+                        className="min-h-[80px]"
+                        required
+                        value={contactFormData.mensaje}
+                        onChange={(e) => setContactFormData({ ...contactFormData, mensaje: e.target.value })}
+                      />
+                    </div>
+                    <Button type="submit" disabled={isSubmittingContact} className="w-full">
+                      {isSubmittingContact ? "Enviando..." : "Enviar consulta"}
+                    </Button>
+                  </form>
+                )}
               </CardContent>
             </Card>
           </div>
