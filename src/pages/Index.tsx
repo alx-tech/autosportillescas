@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import VehicleFilters from "@/components/VehicleFilters";
 import VehicleGallery from "@/components/VehicleGallery";
 import GoogleReviews from "@/components/GoogleReviews";
 import Services from "@/components/Services";
@@ -13,7 +12,6 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <Hero />
-      <VehicleFilters />
       <VehicleGallery />
       <GoogleReviews />
       <Services />
