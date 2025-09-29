@@ -113,7 +113,12 @@ const VehicleDetail = () => {
             <h1 className="text-3xl font-bold text-foreground">
               {vehicle.brand} {vehicle.model}
             </h1>
-            <p className="text-lg text-muted-foreground">{vehicle.year}</p>
+            <div className="flex flex-wrap gap-2 mt-2">
+              <Badge variant="secondary">{vehicle.year}</Badge>
+              <Badge variant="secondary">{vehicle.transmission}</Badge>
+              <Badge variant="secondary">{vehicle.fuel}</Badge>
+              <Badge variant="secondary">{vehicle.mileage.toLocaleString()} km</Badge>
+            </div>
           </div>
           <Button
             variant="outline"
@@ -185,20 +190,6 @@ const VehicleDetail = () => {
 
           {/* Vehicle Information */}
           <div className="space-y-6">
-            {/* Specifications Badges */}
-            <div className="flex flex-wrap gap-2">
-              <Badge variant="secondary">{vehicle.year}</Badge>
-              <Badge variant="secondary">{vehicle.transmission}</Badge>
-              <Badge variant="secondary">{vehicle.fuel}</Badge>
-              <Badge variant="secondary">{vehicle.mileage.toLocaleString()} km</Badge>
-            </div>
-
-            {/* Location */}
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <MapPin className="w-4 h-4" />
-              <span>Madrid</span>
-            </div>
-
             {/* Pricing */}
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
