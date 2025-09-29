@@ -232,9 +232,11 @@ const VehicleDetail = () => {
 
             {/* Action Buttons */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-              <Button variant="outline" className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                Llamar ahora
+              <Button variant="outline" className="flex items-center gap-2" asChild>
+                <a href="tel:690715080">
+                  <Phone className="w-4 h-4" />
+                  Llamar ahora
+                </a>
               </Button>
               <Dialog open={isAppointmentModalOpen} onOpenChange={setIsAppointmentModalOpen}>
                 <DialogTrigger asChild>
