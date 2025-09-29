@@ -21,6 +21,7 @@ const VehicleDetail = () => {
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const [openPrivacyModal, setOpenPrivacyModal] = useState(false);
   
   const { data: carsData, isLoading, error } = useQuery({
     queryKey: ['cars'],
@@ -348,7 +349,13 @@ const VehicleDetail = () => {
                       <Checkbox id="appointmentTerms" required className="mt-1" />
                       <Label htmlFor="appointmentTerms" className="text-sm text-gray-600">
                         Acepto las comunicaciones comerciales y de ofertas. Acepto la{" "}
-                        <span className="text-primary hover:text-primary/80 underline cursor-pointer">política de privacidad</span>.
+                        <button 
+                          type="button"
+                          onClick={() => setOpenPrivacyModal(true)}
+                          className="text-primary hover:text-primary/80 underline cursor-pointer"
+                        >
+                          política de privacidad
+                        </button>.
                       </Label>
                     </div>
 
@@ -494,6 +501,47 @@ const VehicleDetail = () => {
       </main>
 
       <Footer />
+
+      {/* Privacy Policy Modal */}
+      <Dialog open={openPrivacyModal} onOpenChange={setOpenPrivacyModal}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold">Política de Privacidad</DialogTitle>
+          </DialogHeader>
+          <div className="mt-4 text-sm text-muted-foreground">
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">2.1 Responsable del Tratamiento de Datos</h3>
+              <div className="bg-muted/50 p-4 rounded-lg">
+                <p><strong>Nombre de la empresa:</strong> Acierto Cars Luxury S.L.U.</p>
+                <p><strong>Dirección:</strong> Calle Río Tormes, nº 83, 28110, Algete</p>
+                <p><strong>Correo electrónico:</strong> contacto@aciertocars.com</p>
+                <p><strong>Teléfono:</strong> 690715080</p>
+              </div>
+              
+              <h3 className="text-lg font-semibold">2.2 Datos que Recopilamos</h3>
+              <p>Podemos recopilar los siguientes datos personales:</p>
+              <ul className="list-disc pl-6 space-y-1">
+                <li>Nombre y apellidos</li>
+                <li>CIF/NIF o número de identificación fiscal</li>
+                <li>Correo electrónico y teléfono</li>
+                <li>Dirección postal</li>
+                <li>Datos de navegación mediante cookies (ver nuestra Política de Cookies)</li>
+              </ul>
+              
+              <h3 className="text-lg font-semibold">2.3 Finalidad del Tratamiento</h3>
+              <p>Usamos sus datos para:</p>
+              <ul className="list-disc pl-6 space-y-1">
+                <li>Gestionar la compra y venta de vehículos</li>
+                <li>Gestionar garantías, seguros y financiación</li>
+                <li>Cumplir con obligaciones legales</li>
+              </ul>
+              
+              <h3 className="text-lg font-semibold">2.4 Derechos del Usuario</h3>
+              <p>Tiene derecho a acceder, rectificar, suprimir o limitar el tratamiento de sus datos enviando un correo a: <strong>contacto@aciertocars.com</strong></p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
