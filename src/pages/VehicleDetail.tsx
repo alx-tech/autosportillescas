@@ -126,10 +126,10 @@ const VehicleDetail = () => {
           </Button>
         </div>
 
-        {/* Main Content Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          {/* Image Gallery - Full Width on Mobile, 2 cols on Desktop */}
-          <div className="lg:col-span-2 space-y-4">
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          {/* Image Gallery */}
+          <div className="space-y-4">
             <div className="relative aspect-video rounded-lg overflow-hidden bg-muted group">
               <img
                 src={vehicle.images[currentImageIndex]}
@@ -183,7 +183,7 @@ const VehicleDetail = () => {
             )}
           </div>
 
-          {/* Pricing and Contact Sidebar */}
+          {/* Vehicle Information */}
           <div className="space-y-6">
             {/* Specifications Badges */}
             <div className="flex flex-wrap gap-2">
@@ -201,7 +201,7 @@ const VehicleDetail = () => {
 
             {/* Pricing */}
             <div className="space-y-4">
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Card>
                   <CardContent className="p-4">
                     <div className="text-sm text-muted-foreground mb-1">Al contado</div>
@@ -249,7 +249,7 @@ const VehicleDetail = () => {
             </Card>
 
             {/* Action Buttons */}
-            <div className="grid grid-cols-1 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Button variant="outline" className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
                 Llamar ahora
@@ -262,9 +262,59 @@ const VehicleDetail = () => {
           </div>
         </div>
 
-        {/* Vehicle Details Below Images */}
+        {/* Information Form */}
+        <Card className="mb-12">
+          <CardHeader>
+            <CardTitle className="text-xl">
+              Quiero más información <span className="text-primary">de este coche</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="name">Nombre</Label>
+                <Input id="name" placeholder="Nombre" />
+              </div>
+              <div>
+                <Label htmlFor="surname">Apellido</Label>
+                <Input id="surname" placeholder="Apellido" />
+              </div>
+              <div>
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" type="email" placeholder="email@gmail.com" />
+              </div>
+              <div>
+                <Label htmlFor="phone">Teléfono</Label>
+                <div className="flex">
+                  <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted">
+                    <span className="text-sm">🇪🇸 +34</span>
+                  </div>
+                  <Input 
+                    id="phone" 
+                    placeholder="666 666 666" 
+                    className="rounded-l-none" 
+                  />
+                </div>
+              </div>
+              <div className="md:col-span-2">
+                <Label htmlFor="message">Mensaje</Label>
+                <Textarea
+                  id="message"
+                  placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
+                  className="min-h-[100px]"
+                />
+              </div>
+              <div className="md:col-span-2">
+                <Button type="submit" className="w-full">
+                  Enviar consulta
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+
+        {/* Basic Data */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {/* Basic Data */}
           <Card>
             <CardHeader>
               <CardTitle>Datos básicos</CardTitle>
@@ -327,58 +377,6 @@ const VehicleDetail = () => {
             </CardContent>
           </Card>
         </div>
-
-        {/* Information Form */}
-        <Card className="mb-12">
-          <CardHeader>
-            <CardTitle className="text-xl">
-              Quiero más información <span className="text-primary">de este coche</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="name">Nombre</Label>
-                <Input id="name" placeholder="Nombre" />
-              </div>
-              <div>
-                <Label htmlFor="surname">Apellido</Label>
-                <Input id="surname" placeholder="Apellido" />
-              </div>
-              <div>
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="email@gmail.com" />
-              </div>
-              <div>
-                <Label htmlFor="phone">Teléfono</Label>
-                <div className="flex">
-                  <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted">
-                    <span className="text-sm">🇪🇸 +34</span>
-                  </div>
-                  <Input 
-                    id="phone" 
-                    placeholder="666 666 666" 
-                    className="rounded-l-none" 
-                  />
-                </div>
-              </div>
-              <div className="md:col-span-2">
-                <Label htmlFor="message">Mensaje</Label>
-                <Textarea
-                  id="message"
-                  placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
-                  className="min-h-[100px]"
-                />
-              </div>
-              <div className="md:col-span-2">
-                <Button type="submit" className="w-full">
-                  Enviar consulta
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
-
 
         {/* Trade-in Offer */}
         <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
