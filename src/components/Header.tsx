@@ -5,7 +5,7 @@ import aciertoCarsLogo from "@/assets/acierto-cars-logo.png";
 const Header = () => {
   return (
     <header className="bg-nav-background text-nav-foreground border-b border-border/10">
-      <div className="container mx-auto px-4 py-4">
+      <div className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
