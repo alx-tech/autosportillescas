@@ -40,12 +40,16 @@ const Stock = () => {
     filterOptions,
   } = useVehicleFilters(vehicles);
 
-  // Set initial search from URL parameter only once
+  // Set initial search from URL parameter only once, then remove it from the URL
   useEffect(() => {
-    if (initialSearch) {
-      updateFilter('searchTerm', initialSearch);
-    }
-  }, [initialSearch, updateFilter]);
+    if (!initialSearch) return;
+
+    updateFilter('searchTerm', initialSearch);
+
+    const next = new URLSearchParams(searchParams);
+    next.delete('search');
+    setSearchParams(next, { replace: true });
+  }, [initialSearch, updateFilter, setSearchParams, searchParams]);
 
   const sortOptions = [
     { value: 'updated_desc', label: 'Más recientes' },
