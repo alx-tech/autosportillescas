@@ -68,8 +68,9 @@ const VehicleCard = ({
 
   const currentImage = images[currentImageIndex] || '/placeholder.svg';
   return (
-    <Card className="group overflow-hidden hover:shadow-luxury transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
-      <div className="relative overflow-hidden">
+    <Link to={`/stock/${id}`} className="block h-full">
+      <Card className="group overflow-hidden hover:shadow-luxury transition-all duration-300 hover:scale-[1.02] flex flex-col h-full cursor-pointer">
+        <div className="relative overflow-hidden">
         <img 
           src={currentImage} 
           alt={`${brand} ${model}`}
@@ -87,7 +88,11 @@ const VehicleCard = ({
               size="icon" 
               variant="secondary" 
               className="h-8 w-8 bg-white/80 hover:bg-white/90"
-              onClick={prevImage}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                prevImage();
+              }}
             >
               <ChevronLeft size={16} />
             </Button>
@@ -95,7 +100,11 @@ const VehicleCard = ({
               size="icon" 
               variant="secondary" 
               className="h-8 w-8 bg-white/80 hover:bg-white/90"
-              onClick={nextImage}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                nextImage();
+              }}
             >
               <ChevronRight size={16} />
             </Button>
@@ -126,15 +135,21 @@ const VehicleCard = ({
             <div>⚙️ {transmission}</div>
             <div>📅 {year}</div>
           </div>
-          <Button className="w-full" variant="secondary" asChild>
-            <Link to={`/stock/${id}`}>
-              <Eye size={16} className="mr-2" />
-              Ver detalles
-            </Link>
+          <Button 
+            className="w-full" 
+            variant="secondary"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+          >
+            <Eye size={16} className="mr-2" />
+            Ver detalles
           </Button>
         </div>
       </CardContent>
     </Card>
+    </Link>
   );
 };
 
