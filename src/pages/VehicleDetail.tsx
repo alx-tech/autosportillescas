@@ -218,11 +218,6 @@ const VehicleDetail = () => {
                   <p>Gastos de transferencia y gestor 260€.</p>
                   <p>Aceptamos vehículo como parte de pago.</p>
                   <p>Entrega en toda España, consulte condiciones.</p>
-                  <div className="mt-4 p-3 bg-muted rounded">
-                    <p className="text-xs text-muted-foreground">
-                      Este anuncio no es vinculante, puede contener errores, se muestra a título informativo y no contractual.
-                    </p>
-                  </div>
                 </div>
               </CardContent>
             </Card>
