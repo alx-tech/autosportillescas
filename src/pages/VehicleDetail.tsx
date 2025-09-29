@@ -228,7 +228,7 @@ const VehicleDetail = () => {
           </div>
 
           {/* Vehicle Information */}
-          <div className="space-y-6">
+          <div className="space-y-6 sticky top-8 self-start">
             {/* Pricing */}
             <div>
               <div className="text-sm text-muted-foreground mb-2">Precio</div>
