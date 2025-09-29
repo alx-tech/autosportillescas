@@ -255,7 +255,7 @@ const VehicleDetail = () => {
                   <div>
                     <Label htmlFor="phone">Teléfono</Label>
                     <div className="flex">
-                      <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted text-sm">
+                      <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted text-sm whitespace-nowrap">
                         🇪🇸 +34
                       </div>
                       <Input 
