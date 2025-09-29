@@ -5,58 +5,63 @@ import { Slider } from "@/components/ui/slider";
 import { Search, X } from "lucide-react";
 
 interface VehicleFiltersProps {
-  searchTerm: string;
+  searchTerm?: string;
   onSearchChange: (value: string) => void;
-  selectedBrand: string;
+  selectedBrand?: string;
   onBrandChange: (value: string) => void;
-  selectedBodyType: string;
+  selectedBodyType?: string;
   onBodyTypeChange: (value: string) => void;
-  selectedTransmission: string;
+  selectedTransmission?: string;
   onTransmissionChange: (value: string) => void;
-  selectedFuel: string;
+  selectedFuel?: string;
   onFuelChange: (value: string) => void;
-  priceRange: [number, number];
+  priceRange?: [number, number];
   onPriceRangeChange: (value: [number, number]) => void;
-  mileageRange: [number, number];
+  mileageRange?: [number, number];
   onMileageRangeChange: (value: [number, number]) => void;
-  yearRange: [number, number];
+  yearRange?: [number, number];
   onYearRangeChange: (value: [number, number]) => void;
   onClearFilters: () => void;
-  vehicleCount: number;
-  brands: string[];
-  bodyTypes: string[];
-  transmissions: string[];
-  fuels: string[];
+  vehicleCount?: number;
+  brands?: string[];
+  bodyTypes?: string[];
+  transmissions?: string[];
+  fuels?: string[];
 }
 
 const VehicleFilters = ({ 
-  searchTerm, 
+  searchTerm = '', 
   onSearchChange, 
-  selectedBrand, 
+  selectedBrand = '', 
   onBrandChange,
-  selectedBodyType,
+  selectedBodyType = '',
   onBodyTypeChange,
-  selectedTransmission,
+  selectedTransmission = '',
   onTransmissionChange,
-  selectedFuel,
+  selectedFuel = '',
   onFuelChange,
-  priceRange,
+  priceRange = [0, 100000],
   onPriceRangeChange,
-  mileageRange,
+  mileageRange = [0, 300000],
   onMileageRangeChange,
-  yearRange,
+  yearRange = [2000, new Date().getFullYear()],
   onYearRangeChange,
   onClearFilters,
-  vehicleCount,
-  brands,
-  bodyTypes,
-  transmissions,
-  fuels
+  vehicleCount = 0,
+  brands = [],
+  bodyTypes = [],
+  transmissions = [],
+  fuels = []
 }: VehicleFiltersProps) => {
+  // Safely access array values with fallbacks
+  const safePriceRange = priceRange || [0, 100000];
+  const safeMileageRange = mileageRange || [0, 300000];
+  const safeYearRange = yearRange || [2000, new Date().getFullYear()];
+  
   const hasActiveFilters = searchTerm || selectedBrand || selectedBodyType || selectedTransmission || selectedFuel || 
-    priceRange[0] > 0 || priceRange[1] < 100000 || 
-    mileageRange[0] > 0 || mileageRange[1] < 300000 ||
-    yearRange[0] > 2000 || yearRange[1] < new Date().getFullYear();
+    safePriceRange[0] > 0 || safePriceRange[1] < 100000 || 
+    safeMileageRange[0] > 0 || safeMileageRange[1] < 300000 ||
+    safeYearRange[0] > 2000 || safeYearRange[1] < new Date().getFullYear();
 
   return (
     <section className="bg-secondary/50 py-8">
@@ -171,15 +176,15 @@ const VehicleFilters = ({
                 <label className="text-sm font-medium">Precio</label>
                 <div className="px-2">
                   <Slider
-                    value={priceRange}
+                    value={safePriceRange}
                     onValueChange={onPriceRangeChange}
                     max={100000}
                     step={1000}
                     className="w-full"
                   />
                   <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                    <span>{priceRange[0].toLocaleString()}€</span>
-                    <span>{priceRange[1] >= 100000 ? '100.000€+' : `${priceRange[1].toLocaleString()}€`}</span>
+                    <span>{safePriceRange[0]?.toLocaleString() || '0'}€</span>
+                    <span>{safePriceRange[1] >= 100000 ? '100.000€+' : `${safePriceRange[1]?.toLocaleString() || '0'}€`}</span>
                   </div>
                 </div>
               </div>
@@ -189,15 +194,15 @@ const VehicleFilters = ({
                 <label className="text-sm font-medium">Kilómetros</label>
                 <div className="px-2">
                   <Slider
-                    value={mileageRange}
+                    value={safeMileageRange}
                     onValueChange={onMileageRangeChange}
                     max={300000}
                     step={5000}
                     className="w-full"
                   />
                   <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                    <span>{mileageRange[0].toLocaleString()} km</span>
-                    <span>{mileageRange[1] >= 300000 ? '300.000+ km' : `${mileageRange[1].toLocaleString()} km`}</span>
+                    <span>{safeMileageRange[0]?.toLocaleString() || '0'} km</span>
+                    <span>{safeMileageRange[1] >= 300000 ? '300.000+ km' : `${safeMileageRange[1]?.toLocaleString() || '0'} km`}</span>
                   </div>
                 </div>
               </div>
@@ -207,7 +212,7 @@ const VehicleFilters = ({
                 <label className="text-sm font-medium">Año</label>
                 <div className="px-2">
                   <Slider
-                    value={yearRange}
+                    value={safeYearRange}
                     onValueChange={onYearRangeChange}
                     min={2000}
                     max={new Date().getFullYear()}
@@ -215,8 +220,8 @@ const VehicleFilters = ({
                     className="w-full"
                   />
                   <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                    <span>{yearRange[0]}</span>
-                    <span>{yearRange[1]}</span>
+                    <span>{safeYearRange[0] || 2000}</span>
+                    <span>{safeYearRange[1] || new Date().getFullYear()}</span>
                   </div>
                 </div>
               </div>
