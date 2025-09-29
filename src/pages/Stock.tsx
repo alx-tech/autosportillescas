@@ -119,16 +119,13 @@ const Stock = () => {
 
               {/* Vehicles Content */}
               <div className="lg:col-span-3">
-                {/* Results Count */}
-                <div className="mb-6">
-                  <h2 className="text-xl font-semibold">
+                {/* Results Count and Sort Controls */}
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-sm text-muted-foreground">
                     {filteredVehicles.length} Vehículo{filteredVehicles.length !== 1 ? 's' : ''}
                     {(filters.searchTerm || filters.selectedBrand || filters.selectedBodyType || filters.selectedTransmission || filters.selectedFuel) && ' encontrado' + (filteredVehicles.length !== 1 ? 's' : '')}
                   </h2>
-                </div>
-
-                {/* Sort Controls */}
-                <div className="flex justify-end mb-6">
+                  
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-muted-foreground">Ordenar por:</span>
                     <Select value={filters.sortBy} onValueChange={(value) => updateFilter('sortBy', value === 'none' ? '' : value)}>
