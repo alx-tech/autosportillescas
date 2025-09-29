@@ -34,7 +34,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.acceptPrivacy) {
+    if (!formData.acceptMarketing) {
       toast({
         title: "Error",
         description: "Debes aceptar la política de privacidad",
