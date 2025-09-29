@@ -15,35 +15,35 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { toast } from "sonner";
-
 const VehicleDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  const {
+    id
+  } = useParams<{
+    id: string;
+  }>();
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
   const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
   const [openPrivacyModal, setOpenPrivacyModal] = useState(false);
-  
-  const { data: carsData, isLoading, error } = useQuery({
+  const {
+    data: carsData,
+    isLoading,
+    error
+  } = useQuery({
     queryKey: ['cars'],
     queryFn: fetchCars,
     staleTime: 5 * 60 * 1000,
-    retry: 2,
+    retry: 2
   });
-
-  const vehicle: Vehicle | undefined = carsData
-    ? transformApiCarToVehicle(carsData.find(car => car.id === id)!)
-    : undefined;
-
+  const vehicle: Vehicle | undefined = carsData ? transformApiCarToVehicle(carsData.find(car => car.id === id)!) : undefined;
   useEffect(() => {
     if (!isLoading && !vehicle) {
       navigate('/stock');
     }
   }, [vehicle, isLoading, navigate]);
-
   if (isLoading || !vehicle) {
-    return (
-      <div className="min-h-screen bg-background">
+    return <div className="min-h-screen bg-background">
         <Header />
         <div className="container mx-auto px-4 py-8">
           <div className="animate-pulse">
@@ -58,68 +58,54 @@ const VehicleDetail = () => {
             </div>
           </div>
         </div>
-      </div>
-    );
+      </div>;
   }
-
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % vehicle.images.length);
+    setCurrentImageIndex(prev => (prev + 1) % vehicle.images.length);
   };
-
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + vehicle.images.length) % vehicle.images.length);
+    setCurrentImageIndex(prev => (prev - 1 + vehicle.images.length) % vehicle.images.length);
   };
-
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-ES', {
       style: 'currency',
       currency: 'EUR',
-      minimumFractionDigits: 0,
+      minimumFractionDigits: 0
     }).format(price);
   };
-
   const monthlyPayment = Math.round(vehicle.price / 84); // 84 months financing
 
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
         title: `${vehicle.brand} ${vehicle.model}`,
-        url: window.location.href,
+        url: window.location.href
       });
     } else {
       navigator.clipboard.writeText(window.location.href);
       toast.success("Enlace copiado al portapapeles");
     }
   };
-
   const handleReserve = () => {
     toast.success("¡Vehículo reservado! Nos pondremos en contacto contigo pronto.");
   };
-
   const handleReservationSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast.success("¡Reserva confirmada! Nos pondremos en contacto contigo pronto.");
     setIsReservationModalOpen(false);
   };
-
   const handleAppointmentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast.success("¡Cita agendada! Nos pondremos en contacto contigo pronto.");
     setIsAppointmentModalOpen(false);
   };
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Header />
       
       <main className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <nav className="mb-6">
-          <Button
-            variant="ghost"
-            onClick={() => navigate('/stock')}
-            className="p-0 h-auto text-muted-foreground hover:text-muted-foreground hover:bg-transparent"
-          >
+          <Button variant="ghost" onClick={() => navigate('/stock')} className="p-0 h-auto text-muted-foreground hover:text-muted-foreground hover:bg-transparent">
             <ChevronLeft className="w-4 h-4 mr-1" />
             Volver al stock
           </Button>
@@ -138,12 +124,7 @@ const VehicleDetail = () => {
               <Badge variant="secondary">{vehicle.mileage.toLocaleString()} km</Badge>
             </div>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleShare}
-            className="flex items-center gap-2"
-          >
+          <Button variant="outline" size="sm" onClick={handleShare} className="flex items-center gap-2">
             <Share2 className="w-4 h-4" />
             Compartir
           </Button>
@@ -154,56 +135,28 @@ const VehicleDetail = () => {
           {/* Image Gallery */}
           <div className="lg:col-span-2 space-y-4">
             <div className="relative aspect-video rounded-lg overflow-hidden bg-muted group">
-              <img
-                src={vehicle.images[currentImageIndex]}
-                alt={`${vehicle.brand} ${vehicle.model}`}
-                className="w-full h-full object-cover"
-              />
+              <img src={vehicle.images[currentImageIndex]} alt={`${vehicle.brand} ${vehicle.model}`} className="w-full h-full object-cover" />
               
-              {vehicle.images.length > 1 && (
-                <>
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
+              {vehicle.images.length > 1 && <>
+                  <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity">
                     <ChevronLeft className="w-5 h-5" />
                   </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
+                  <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity">
                     <ChevronRight className="w-5 h-5" />
                   </button>
                   
                   <div className="absolute bottom-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm">
                     {currentImageIndex + 1} / {vehicle.images.length}
                   </div>
-                </>
-              )}
+                </>}
             </div>
 
             {/* Thumbnail Navigation */}
-            {vehicle.images.length > 1 && (
-              <div className="grid grid-cols-5 gap-2">
-                {vehicle.images.slice(0, 5).map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`aspect-video rounded overflow-hidden border-2 transition-colors ${
-                      currentImageIndex === index 
-                        ? 'border-primary' 
-                        : 'border-transparent hover:border-muted-foreground'
-                    }`}
-                  >
-                    <img
-                      src={image}
-                      alt={`Vista ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
+            {vehicle.images.length > 1 && <div className="grid grid-cols-5 gap-2">
+                {vehicle.images.slice(0, 5).map((image, index) => <button key={index} onClick={() => setCurrentImageIndex(index)} className={`aspect-video rounded overflow-hidden border-2 transition-colors ${currentImageIndex === index ? 'border-primary' : 'border-transparent hover:border-muted-foreground'}`}>
+                    <img src={image} alt={`Vista ${index + 1}`} className="w-full h-full object-cover" />
+                  </button>)}
+              </div>}
 
             {/* Vehicle Description */}
             <Card>
@@ -246,10 +199,7 @@ const VehicleDetail = () => {
                 </p>
                 <Dialog open={isReservationModalOpen} onOpenChange={setIsReservationModalOpen}>
                   <DialogTrigger asChild>
-                    <Button
-                      variant="secondary"
-                      className="w-full"
-                    >
+                    <Button variant="secondary" className="w-full">
                       Reservar ahora
                     </Button>
                   </DialogTrigger>
@@ -263,34 +213,18 @@ const VehicleDetail = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="reservationName" className="text-gray-600">Nombre</Label>
-                          <Input 
-                            id="reservationName" 
-                            placeholder="Nombre" 
-                            required 
-                            className="bg-gray-50 border-gray-200"
-                          />
+                          <Input id="reservationName" placeholder="Nombre" required className="bg-gray-50 border-gray-200" />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="reservationSurname" className="text-gray-600">Apellido</Label>
-                          <Input 
-                            id="reservationSurname" 
-                            placeholder="Apellido" 
-                            required 
-                            className="bg-gray-50 border-gray-200"
-                          />
+                          <Input id="reservationSurname" placeholder="Apellido" required className="bg-gray-50 border-gray-200" />
                         </div>
                       </div>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="reservationEmail" className="text-gray-600">Email</Label>
-                          <Input 
-                            id="reservationEmail" 
-                            type="email" 
-                            placeholder="xxx@xxx.com" 
-                            required 
-                            className="bg-gray-50 border-gray-200"
-                          />
+                          <Input id="reservationEmail" type="email" placeholder="xxx@xxx.com" required className="bg-gray-50 border-gray-200" />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="reservationPhone" className="text-gray-600">Teléfono</Label>
@@ -298,45 +232,27 @@ const VehicleDetail = () => {
                             <div className="flex items-center px-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-md">
                               <span className="text-sm text-red-600 font-semibold">🇪🇸</span>
                             </div>
-                            <Input 
-                              id="reservationPhone" 
-                              placeholder="666 666 666" 
-                              className="bg-gray-50 border-gray-200 rounded-l-none" 
-                              required 
-                            />
+                            <Input id="reservationPhone" placeholder="666 666 666" className="bg-gray-50 border-gray-200 rounded-l-none" required />
                           </div>
                         </div>
                       </div>
 
                       <div className="space-y-2">
                         <Label htmlFor="reservationMessage" className="text-gray-600">Mensaje</Label>
-                        <Textarea
-                          id="reservationMessage"
-                          placeholder={`Quiero reservar este ${vehicle.brand} ${vehicle.model}`}
-                          className="min-h-[80px] resize-none bg-gray-50 border-gray-200"
-                          required
-                          rows={5}
-                        />
+                        <Textarea id="reservationMessage" placeholder={`Quiero reservar este ${vehicle.brand} ${vehicle.model}`} className="min-h-[80px] resize-none bg-gray-50 border-gray-200" required rows={5} />
                       </div>
 
                       <div className="flex items-start space-x-2">
                         <Checkbox id="reservationTerms" required className="mt-1" />
                         <Label htmlFor="reservationTerms" className="text-sm text-gray-600">
                           Acepto las comunicaciones comerciales y de ofertas. Acepto la{" "}
-                          <button 
-                            type="button"
-                            onClick={() => setOpenPrivacyModal(true)}
-                            className="text-primary hover:text-primary/80 underline cursor-pointer"
-                          >
+                          <button type="button" onClick={() => setOpenPrivacyModal(true)} className="text-primary hover:text-primary/80 underline cursor-pointer">
                             política de privacidad
                           </button>.
                         </Label>
                       </div>
 
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3"
-                      >
+                      <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3">
                         Confirmar reserva
                       </Button>
                     </form>
@@ -370,34 +286,18 @@ const VehicleDetail = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="appointmentName" className="text-gray-600">Nombre</Label>
-                        <Input 
-                          id="appointmentName" 
-                          placeholder="Nombre" 
-                          required 
-                          className="bg-gray-50 border-gray-200"
-                        />
+                        <Input id="appointmentName" placeholder="Nombre" required className="bg-gray-50 border-gray-200" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="appointmentSurname" className="text-gray-600">Apellido</Label>
-                        <Input 
-                          id="appointmentSurname" 
-                          placeholder="Apellido" 
-                          required 
-                          className="bg-gray-50 border-gray-200"
-                        />
+                        <Input id="appointmentSurname" placeholder="Apellido" required className="bg-gray-50 border-gray-200" />
                       </div>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="appointmentEmail" className="text-gray-600">Email</Label>
-                        <Input 
-                          id="appointmentEmail" 
-                          type="email" 
-                          placeholder="xxx@xxx.com" 
-                          required 
-                          className="bg-gray-50 border-gray-200"
-                        />
+                        <Input id="appointmentEmail" type="email" placeholder="xxx@xxx.com" required className="bg-gray-50 border-gray-200" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="appointmentPhone" className="text-gray-600">Teléfono</Label>
@@ -405,12 +305,7 @@ const VehicleDetail = () => {
                           <div className="flex items-center px-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-md">
                             <span className="text-sm text-red-600 font-semibold">🇪🇸</span>
                           </div>
-                          <Input 
-                            id="appointmentPhone" 
-                            placeholder="666 666 666" 
-                            className="bg-gray-50 border-gray-200 rounded-l-none" 
-                            required 
-                          />
+                          <Input id="appointmentPhone" placeholder="666 666 666" className="bg-gray-50 border-gray-200 rounded-l-none" required />
                         </div>
                       </div>
                     </div>
@@ -418,12 +313,7 @@ const VehicleDetail = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="appointmentDate" className="text-gray-600">Fecha de la cita</Label>
-                        <Input 
-                          id="appointmentDate" 
-                          type="date" 
-                          required 
-                          className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-500"
-                        />
+                        <Input id="appointmentDate" type="date" required className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-500" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="appointmentTime" className="text-gray-600">Hora</Label>
@@ -453,33 +343,20 @@ const VehicleDetail = () => {
 
                     <div className="space-y-2">
                       <Label htmlFor="appointmentMessage" className="text-gray-600">Mensaje</Label>
-                      <Textarea
-                        id="appointmentMessage"
-                        placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
-                        className="min-h-[80px] resize-none bg-gray-50 border-gray-200"
-                        required
-                        rows={5}
-                      />
+                      <Textarea id="appointmentMessage" placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`} className="min-h-[80px] resize-none bg-gray-50 border-gray-200" required rows={5} />
                     </div>
 
                     <div className="flex items-start space-x-2">
                       <Checkbox id="appointmentTerms" required className="mt-1" />
                       <Label htmlFor="appointmentTerms" className="text-sm text-gray-600">
                         Acepto las comunicaciones comerciales y de ofertas. Acepto la{" "}
-                        <button 
-                          type="button"
-                          onClick={() => setOpenPrivacyModal(true)}
-                          className="text-primary hover:text-primary/80 underline cursor-pointer"
-                        >
+                        <button type="button" onClick={() => setOpenPrivacyModal(true)} className="text-primary hover:text-primary/80 underline cursor-pointer">
                           política de privacidad
                         </button>.
                       </Label>
                     </div>
 
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3"
-                    >
+                    <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3">
                       Enviar
                     </Button>
                   </form>
@@ -514,20 +391,12 @@ const VehicleDetail = () => {
                       <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted text-sm whitespace-nowrap">
                         🇪🇸 +34
                       </div>
-                      <Input 
-                        id="phone" 
-                        placeholder="666 666 666" 
-                        className="rounded-l-none" 
-                      />
+                      <Input id="phone" placeholder="666 666 666" className="rounded-l-none" />
                     </div>
                   </div>
                   <div>
                     <Label htmlFor="message">Mensaje</Label>
-                    <Textarea
-                      id="message"
-                      placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
-                      className="min-h-[80px]"
-                    />
+                    <Textarea id="message" placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`} className="min-h-[80px]" />
                   </div>
                   <Button type="submit" className="w-full">
                     Enviar consulta
@@ -580,17 +449,7 @@ const VehicleDetail = () => {
         </Card>
 
         {/* Trade-in Offer */}
-        <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-semibold mb-2">¿Tienes un vehículo? Tásalo al mejor precio</h3>
-            <p className="text-muted-foreground mb-4">
-              En un cuestionario te damos un precio a descontar sobre tu compra. Se recogerá en el momento de la entrega.
-            </p>
-            <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              Iniciar tasación
-            </Button>
-          </CardContent>
-        </Card>
+        
       </main>
 
       <Footer />
@@ -635,8 +494,6 @@ const VehicleDetail = () => {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
-  );
+    </div>;
 };
-
 export default VehicleDetail;
