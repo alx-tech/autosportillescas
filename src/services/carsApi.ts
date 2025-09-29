@@ -40,6 +40,7 @@ export interface Vehicle {
   transmission: string;
   type: string;
   isNew?: boolean;
+  updatedAt: string;
 }
 
 const API_URL = 'https://multipost-api.alx.dev-cluster.alx.tech/api/public/inventory/profiles/0379afc2-5bb2-4322-84d5-5a3df99b09a7';
@@ -76,6 +77,7 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
     fuel: apiCar.fuel || 'Unknown',
     transmission: apiCar.transmission || 'Unknown',
     type: apiCar.body_type || 'Unknown',
-    isNew: apiCar.days_in_stock <= 30
+    isNew: apiCar.days_in_stock <= 30,
+    updatedAt: apiCar.updated_at
   };
 };

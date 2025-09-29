@@ -48,6 +48,8 @@ const Stock = () => {
   }, [initialSearch, filters.searchTerm, updateFilter]);
 
   const sortOptions = [
+    { value: 'updated_desc', label: 'Más recientes' },
+    { value: 'updated_asc', label: 'Más antiguos' },
     { value: 'price_asc', label: 'Precio: menor a mayor' },
     { value: 'price_desc', label: 'Precio: mayor a menor' },
     { value: 'year_desc', label: 'Año: más reciente' },

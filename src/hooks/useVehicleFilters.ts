@@ -23,7 +23,7 @@ export const useVehicleFilters = (vehicles: Vehicle[]) => {
     priceRange: [0, 100000],
     mileageRange: [0, 300000],
     yearRange: [2000, new Date().getFullYear()],
-    sortBy: '',
+    sortBy: 'updated_desc', // Default to most recent
   });
 
   // Extract unique values for filter options
@@ -111,6 +111,10 @@ export const useVehicleFilters = (vehicles: Vehicle[]) => {
     if (filters.sortBy) {
       filtered = [...filtered].sort((a, b) => {
         switch (filters.sortBy) {
+          case 'updated_desc':
+            return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+          case 'updated_asc':
+            return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
           case 'price_asc':
             return a.price - b.price;
           case 'price_desc':
@@ -151,7 +155,7 @@ export const useVehicleFilters = (vehicles: Vehicle[]) => {
       priceRange: [0, 100000],
       mileageRange: [0, 300000],
       yearRange: [2000, new Date().getFullYear()],
-      sortBy: '',
+      sortBy: 'updated_desc', // Keep default sort when clearing
     });
   };
 
