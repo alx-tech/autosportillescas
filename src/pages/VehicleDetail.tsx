@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ChevronLeft, ChevronRight, Share2, MapPin, Phone, Calendar, Mail, User, X } from "lucide-react";
-import { fetchCars, transformApiCarToVehicle, type Vehicle } from "@/services/carsApi";
+import { fetchCars, transformApiCarToVehicle, type Vehicle, CONTACT_FORM_API_URL, COMPANY_ID } from "@/services/carsApi";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -133,7 +133,7 @@ const VehicleDetail = () => {
 
     try {
       const payload = {
-        company_id: "company_94aaffea4b534264bf9d87b02f4ebfbc",
+        company_id: COMPANY_ID,
         lead_firstname: reservationFormData.nombre,
         lead_lastname: reservationFormData.apellido,
         lead_phone_number: reservationFormData.telefono,
@@ -141,7 +141,7 @@ const VehicleDetail = () => {
         message: `RESERVA!\n${reservationFormData.mensaje}`
       };
 
-      const response = await fetch('https://multipost-api.alx.dev-cluster.alx.tech/api/interactions/contact-form', {
+      const response = await fetch(CONTACT_FORM_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -194,7 +194,7 @@ const VehicleDetail = () => {
       const formattedDate = `${day}/${month}/${year}`;
 
       const payload = {
-        company_id: "company_94aaffea4b534264bf9d87b02f4ebfbc",
+        company_id: COMPANY_ID,
         lead_firstname: appointmentFormData.nombre,
         lead_lastname: appointmentFormData.apellido,
         lead_phone_number: appointmentFormData.telefono,
@@ -202,7 +202,7 @@ const VehicleDetail = () => {
         message: `CITA - ${formattedDate} ${appointmentFormData.hora}\n${appointmentFormData.mensaje}`
       };
 
-      const response = await fetch('https://multipost-api.alx.dev-cluster.alx.tech/api/interactions/contact-form', {
+      const response = await fetch(CONTACT_FORM_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -245,7 +245,7 @@ const VehicleDetail = () => {
 
     try {
       const payload = {
-        company_id: "company_94aaffea4b534264bf9d87b02f4ebfbc",
+        company_id: COMPANY_ID,
         lead_firstname: contactFormData.nombre,
         lead_lastname: contactFormData.apellido,
         lead_phone_number: contactFormData.telefono,
@@ -253,7 +253,7 @@ const VehicleDetail = () => {
         message: contactFormData.mensaje
       };
 
-      const response = await fetch('https://multipost-api.alx.dev-cluster.alx.tech/api/interactions/contact-form', {
+      const response = await fetch(CONTACT_FORM_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

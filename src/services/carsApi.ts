@@ -48,7 +48,9 @@ export interface Vehicle {
   updatedAt: string;
 }
 
-const API_URL = 'https://multipost-api.alx.dev-cluster.alx.tech/api/public/inventory/profiles/0379afc2-5bb2-4322-84d5-5a3df99b09a7';
+const API_URL = 'https://multipost-api.alx.test-cluster.alx.tech/api/public/inventory/profiles/83ff4f5c-8237-4240-ada5-473d37443c6d';
+export const CONTACT_FORM_API_URL = 'https://multipost-api.alx.test-cluster.alx.tech/api/interactions/contact-form';
+export const COMPANY_ID = 'company_05e6a332a26246d086c16810681f6f04';
 
 export const fetchCars = async (): Promise<CarsApiResponse> => {
   const response = await fetch(API_URL, {
