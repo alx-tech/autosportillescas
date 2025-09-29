@@ -178,7 +178,7 @@ const VehicleDetail = () => {
             {/* Basic Data */}
             <Card>
               <CardHeader className="bg-muted">
-                <CardTitle>Datos básicos</CardTitle>
+                <CardTitle>Especificaciones</CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
                 <div className="grid grid-cols-2 gap-4 text-sm">
@@ -202,36 +202,26 @@ const VehicleDetail = () => {
                     <div className="text-muted-foreground mb-1">CARROCERÍA</div>
                     <div className="font-semibold">{vehicle.type.toUpperCase()}</div>
                   </div>
-                  {vehicle.color && (
-                    <div>
+                  {vehicle.color && <div>
                       <div className="text-muted-foreground mb-1">COLOR</div>
                       <div className="font-semibold">{vehicle.color.toUpperCase()}</div>
-                    </div>
-                  )}
-                  {vehicle.doors && (
-                    <div>
+                    </div>}
+                  {vehicle.doors && <div>
                       <div className="text-muted-foreground mb-1">PUERTAS</div>
                       <div className="font-semibold">{vehicle.doors}</div>
-                    </div>
-                  )}
-                  {vehicle.seats && (
-                    <div>
+                    </div>}
+                  {vehicle.seats && <div>
                       <div className="text-muted-foreground mb-1">ASIENTOS</div>
                       <div className="font-semibold">{vehicle.seats}</div>
-                    </div>
-                  )}
-                  {vehicle.engineSize && (
-                    <div>
+                    </div>}
+                  {vehicle.engineSize && <div>
                       <div className="text-muted-foreground mb-1">CILINDRADA</div>
                       <div className="font-semibold">{vehicle.engineSize} cc</div>
-                    </div>
-                  )}
-                  {vehicle.enginePower && (
-                    <div>
+                    </div>}
+                  {vehicle.enginePower && <div>
                       <div className="text-muted-foreground mb-1">POTENCIA</div>
                       <div className="font-semibold">{vehicle.enginePower} CV</div>
-                    </div>
-                  )}
+                    </div>}
                 </div>
               </CardContent>
             </Card>
