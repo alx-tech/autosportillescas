@@ -110,7 +110,7 @@ const VehicleDetail = () => {
           <Button
             variant="ghost"
             onClick={() => navigate('/stock')}
-            className="p-0 h-auto text-muted-foreground"
+            className="p-0 h-auto text-muted-foreground hover:text-muted-foreground hover:bg-transparent"
           >
             <ChevronLeft className="w-4 h-4 mr-1" />
             Volver al stock
