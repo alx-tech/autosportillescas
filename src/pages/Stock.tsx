@@ -86,83 +86,92 @@ const Stock = () => {
           </div>
         </div>
         
-        {/* Filters */}
-        <VehicleFilters
-          searchTerm={filters.searchTerm}
-          onSearchChange={(value) => updateFilter('searchTerm', value)}
-          selectedBrand={filters.selectedBrand}
-          onBrandChange={(value) => updateFilter('selectedBrand', value)}
-          selectedBodyType={filters.selectedBodyType}
-          onBodyTypeChange={(value) => updateFilter('selectedBodyType', value)}
-          selectedTransmission={filters.selectedTransmission}
-          onTransmissionChange={(value) => updateFilter('selectedTransmission', value)}
-          selectedFuel={filters.selectedFuel}
-          onFuelChange={(value) => updateFilter('selectedFuel', value)}
-          priceRange={filters.priceRange}
-          onPriceRangeChange={(value) => updateFilter('priceRange', value)}
-          mileageRange={filters.mileageRange}
-          onMileageRangeChange={(value) => updateFilter('mileageRange', value)}
-          yearRange={filters.yearRange}
-          onYearRangeChange={(value) => updateFilter('yearRange', value)}
-          onClearFilters={clearFilters}
-          vehicleCount={filteredVehicles.length}
-          brands={filterOptions.brands}
-          bodyTypes={filterOptions.bodyTypes}
-          transmissions={filterOptions.transmissions}
-          fuels={filterOptions.fuels}
-        />
-
-        {/* Sort and Results */}
+        {/* Main Content with Sidebar Layout */}
         <div className="container mx-auto px-4 pb-16">
           <div className="max-w-7xl mx-auto">
-            <div className="flex justify-end mb-6">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Ordenar por:</span>
-                <Select value={filters.sortBy} onValueChange={(value) => updateFilter('sortBy', value === 'none' ? '' : value)}>
-                  <SelectTrigger className="w-48">
-                    <SelectValue placeholder="Selecciona una opción" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="none">Sin orden específico</SelectItem>
-                    {sortOptions.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+              {/* Filters Sidebar */}
+              <div className="lg:col-span-1">
+                <VehicleFilters
+                  searchTerm={filters.searchTerm}
+                  onSearchChange={(value) => updateFilter('searchTerm', value)}
+                  selectedBrand={filters.selectedBrand}
+                  onBrandChange={(value) => updateFilter('selectedBrand', value)}
+                  selectedBodyType={filters.selectedBodyType}
+                  onBodyTypeChange={(value) => updateFilter('selectedBodyType', value)}
+                  selectedTransmission={filters.selectedTransmission}
+                  onTransmissionChange={(value) => updateFilter('selectedTransmission', value)}
+                  selectedFuel={filters.selectedFuel}
+                  onFuelChange={(value) => updateFilter('selectedFuel', value)}
+                  priceRange={filters.priceRange}
+                  onPriceRangeChange={(value) => updateFilter('priceRange', value)}
+                  mileageRange={filters.mileageRange}
+                  onMileageRangeChange={(value) => updateFilter('mileageRange', value)}
+                  yearRange={filters.yearRange}
+                  onYearRangeChange={(value) => updateFilter('yearRange', value)}
+                  onClearFilters={clearFilters}
+                  vehicleCount={filteredVehicles.length}
+                  brands={filterOptions.brands}
+                  bodyTypes={filterOptions.bodyTypes}
+                  transmissions={filterOptions.transmissions}
+                  fuels={filterOptions.fuels}
+                />
               </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {isLoading ? (
-                Array.from({ length: 12 }).map((_, index) => (
-                  <div key={index} className="space-y-3">
-                    <Skeleton className="h-48 w-full rounded-lg" />
-                    <div className="space-y-2">
-                      <Skeleton className="h-4 w-3/4" />
-                      <Skeleton className="h-4 w-1/2" />
-                      <Skeleton className="h-8 w-full" />
-                    </div>
+
+              {/* Vehicles Content */}
+              <div className="lg:col-span-3">
+                {/* Sort Controls */}
+                <div className="flex justify-end mb-6">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">Ordenar por:</span>
+                    <Select value={filters.sortBy} onValueChange={(value) => updateFilter('sortBy', value === 'none' ? '' : value)}>
+                      <SelectTrigger className="w-48">
+                        <SelectValue placeholder="Selecciona una opción" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">Sin orden específico</SelectItem>
+                        {sortOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
-                ))
-              ) : filteredVehicles.length > 0 ? (
-                filteredVehicles.map((vehicle) => (
-                  <VehicleCard key={vehicle.id} {...vehicle} />
-                ))
-              ) : (
-                <div className="col-span-full text-center py-12">
-                  <p className="text-lg text-muted-foreground mb-4">
-                    No se encontraron vehículos con los filtros seleccionados
-                  </p>
-                  <button 
-                    onClick={clearFilters}
-                    className="text-primary hover:underline"
-                  >
-                    Limpiar filtros y ver todos los vehículos
-                  </button>
                 </div>
-              )}
+                
+                {/* Vehicles Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {isLoading ? (
+                    Array.from({ length: 12 }).map((_, index) => (
+                      <div key={index} className="space-y-3">
+                        <Skeleton className="h-48 w-full rounded-lg" />
+                        <div className="space-y-2">
+                          <Skeleton className="h-4 w-3/4" />
+                          <Skeleton className="h-4 w-1/2" />
+                          <Skeleton className="h-8 w-full" />
+                        </div>
+                      </div>
+                    ))
+                  ) : filteredVehicles.length > 0 ? (
+                    filteredVehicles.map((vehicle) => (
+                      <VehicleCard key={vehicle.id} {...vehicle} />
+                    ))
+                  ) : (
+                    <div className="col-span-full text-center py-12">
+                      <p className="text-lg text-muted-foreground mb-4">
+                        No se encontraron vehículos con los filtros seleccionados
+                      </p>
+                      <button 
+                        onClick={clearFilters}
+                        className="text-primary hover:underline"
+                      >
+                        Limpiar filtros y ver todos los vehículos
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
