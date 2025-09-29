@@ -191,31 +191,10 @@ const VehicleDetail = () => {
           {/* Vehicle Information */}
           <div className="space-y-6">
             {/* Pricing */}
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Card>
-                  <CardContent className="p-4">
-                    <div className="text-sm text-muted-foreground mb-1">Al contado</div>
-                    <div className="text-2xl font-bold text-primary">
-                      {formatPrice(vehicle.price)}
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardContent className="p-4">
-                    <div className="text-sm text-muted-foreground mb-1">Financiado</div>
-                    <div className="text-2xl font-bold">
-                      {formatPrice(monthlyPayment)}
-                    </div>
-                    <div className="text-sm text-muted-foreground">84 meses</div>
-                  </CardContent>
-                </Card>
+            <div>
+              <div className="text-3xl font-bold text-primary mb-4">
+                {formatPrice(vehicle.price)}
               </div>
-
-              <Button className="w-full text-sm text-primary hover:text-primary-foreground border-primary">
-                Elige tu cuota desde {formatPrice(monthlyPayment)}/mes
-              </Button>
             </div>
 
             {/* Reserve Button */}
