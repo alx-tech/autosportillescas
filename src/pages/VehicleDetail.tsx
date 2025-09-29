@@ -235,7 +235,7 @@ const VehicleDetail = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">
-                  Quiero más información <span className="text-primary">de este coche</span>
+                  Quiero más información de este coche
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -255,8 +255,8 @@ const VehicleDetail = () => {
                   <div>
                     <Label htmlFor="phone">Teléfono</Label>
                     <div className="flex">
-                      <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted">
-                        <span className="text-sm">🇪🇸 +34</span>
+                      <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted text-sm">
+                        🇪🇸 +34
                       </div>
                       <Input 
                         id="phone" 
