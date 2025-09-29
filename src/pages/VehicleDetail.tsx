@@ -204,6 +204,28 @@ const VehicleDetail = () => {
                 ))}
               </div>
             )}
+
+            {/* Vehicle Description */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Detalles</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3 text-sm">
+                  <p><strong>{vehicle.brand} {vehicle.model}</strong></p>
+                  <p>Financiación a tu medida.</p>
+                  <p>En precio de venta están incluidos 12 meses de garantía. (Ampliable a 3 años)</p>
+                  <p>Gastos de transferencia y gestor 260€.</p>
+                  <p>Aceptamos vehículo como parte de pago.</p>
+                  <p>Entrega en toda España, consulte condiciones.</p>
+                  <div className="mt-4 p-3 bg-muted rounded">
+                    <p className="text-xs text-muted-foreground">
+                      Este anuncio no es vinculante, puede contener errores, se muestra a título informativo y no contractual.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Vehicle Information */}
@@ -520,28 +542,6 @@ const VehicleDetail = () => {
             </Card>
           </div>
         </div>
-
-        {/* Vehicle Description */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>Detalles</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3 text-sm">
-              <p><strong>{vehicle.brand} {vehicle.model}</strong></p>
-              <p>Financiación a tu medida.</p>
-              <p>En precio de venta están incluidos 12 meses de garantía. (Ampliable a 3 años)</p>
-              <p>Gastos de transferencia y gestor 260€.</p>
-              <p>Aceptamos vehículo como parte de pago.</p>
-              <p>Entrega en toda España, consulte condiciones.</p>
-              <div className="mt-4 p-3 bg-muted rounded">
-                <p className="text-xs text-muted-foreground">
-                  Este anuncio no es vinculante, puede contener errores, se muestra a título informativo y no contractual.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Basic Data */}
         <Card className="mb-12">
