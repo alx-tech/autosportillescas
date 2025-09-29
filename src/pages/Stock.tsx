@@ -40,12 +40,12 @@ const Stock = () => {
     filterOptions,
   } = useVehicleFilters(vehicles);
 
-  // Set initial search from URL parameter
+  // Set initial search from URL parameter only once
   useEffect(() => {
-    if (initialSearch && initialSearch !== filters.searchTerm) {
+    if (initialSearch) {
       updateFilter('searchTerm', initialSearch);
     }
-  }, [initialSearch, filters.searchTerm, updateFilter]);
+  }, [initialSearch, updateFilter]);
 
   const sortOptions = [
     { value: 'updated_desc', label: 'Más recientes' },
@@ -144,12 +144,11 @@ const Stock = () => {
                   
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-muted-foreground">Ordenar por:</span>
-                    <Select value={filters.sortBy} onValueChange={(value) => updateFilter('sortBy', value === 'none' ? '' : value)}>
+                    <Select value={filters.sortBy} onValueChange={(value) => updateFilter('sortBy', value)}>
                       <SelectTrigger className="w-48">
                         <SelectValue placeholder="Selecciona una opción" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="none">Sin orden específico</SelectItem>
                         {sortOptions.map((option) => (
                           <SelectItem key={option.value} value={option.value}>
                             {option.label}
