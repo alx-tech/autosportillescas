@@ -174,6 +174,67 @@ const VehicleDetail = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Basic Data */}
+            <Card>
+              <CardHeader className="bg-muted">
+                <CardTitle>Datos básicos</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <div className="text-muted-foreground mb-1">AÑO</div>
+                    <div className="font-semibold">{vehicle.year}</div>
+                  </div>
+                  <div>
+                    <div className="text-muted-foreground mb-1">KILÓMETROS</div>
+                    <div className="font-semibold">{vehicle.mileage.toLocaleString()} km</div>
+                  </div>
+                  <div>
+                    <div className="text-muted-foreground mb-1">COMBUSTIBLE</div>
+                    <div className="font-semibold">{vehicle.fuel.toUpperCase()}</div>
+                  </div>
+                  <div>
+                    <div className="text-muted-foreground mb-1">CAMBIO</div>
+                    <div className="font-semibold">{vehicle.transmission.toUpperCase()}</div>
+                  </div>
+                  <div>
+                    <div className="text-muted-foreground mb-1">CARROCERÍA</div>
+                    <div className="font-semibold">{vehicle.type.toUpperCase()}</div>
+                  </div>
+                  {vehicle.color && (
+                    <div>
+                      <div className="text-muted-foreground mb-1">COLOR</div>
+                      <div className="font-semibold">{vehicle.color.toUpperCase()}</div>
+                    </div>
+                  )}
+                  {vehicle.doors && (
+                    <div>
+                      <div className="text-muted-foreground mb-1">PUERTAS</div>
+                      <div className="font-semibold">{vehicle.doors}</div>
+                    </div>
+                  )}
+                  {vehicle.seats && (
+                    <div>
+                      <div className="text-muted-foreground mb-1">ASIENTOS</div>
+                      <div className="font-semibold">{vehicle.seats}</div>
+                    </div>
+                  )}
+                  {vehicle.engineSize && (
+                    <div>
+                      <div className="text-muted-foreground mb-1">CILINDRADA</div>
+                      <div className="font-semibold">{vehicle.engineSize} cc</div>
+                    </div>
+                  )}
+                  {vehicle.enginePower && (
+                    <div>
+                      <div className="text-muted-foreground mb-1">POTENCIA</div>
+                      <div className="font-semibold">{vehicle.enginePower} CV</div>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Vehicle Information */}
@@ -407,46 +468,6 @@ const VehicleDetail = () => {
           </div>
         </div>
 
-        {/* Basic Data */}
-        <Card className="mb-12">
-          <CardHeader>
-            <CardTitle>Datos básicos</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">AÑO</div>
-                  <div className="font-semibold">{vehicle.year}</div>
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">KILÓMETROS</div>
-                  <div className="font-semibold">{vehicle.mileage.toLocaleString()} km</div>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">COMBUSTIBLE</div>
-                  <div className="font-semibold">{vehicle.fuel.toUpperCase()}</div>
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">CAMBIO</div>
-                  <div className="font-semibold">{vehicle.transmission.toUpperCase()}</div>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">CARROCERÍA</div>
-                  <div className="font-semibold">{vehicle.type.toUpperCase()}</div>
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">PUERTAS</div>
-                  <div className="font-semibold">5</div>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Trade-in Offer */}
         
