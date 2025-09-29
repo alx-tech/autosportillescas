@@ -245,6 +245,7 @@ const Contact = () => {
                       required
                       rows={5}
                       placeholder="Escribe tu mensaje aquí..."
+                      className="bg-gray-50 border-gray-200"
                     />
                   </div>
 

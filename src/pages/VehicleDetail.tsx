@@ -338,7 +338,7 @@ const VehicleDetail = () => {
                       <Textarea
                         id="appointmentMessage"
                         placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
-                        className="min-h-[80px] resize-none"
+                        className="min-h-[80px] resize-none bg-gray-50 border-gray-200"
                         required
                         rows={5}
                       />
