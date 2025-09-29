@@ -21,6 +21,7 @@ const VehicleDetail = () => {
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
   const [openPrivacyModal, setOpenPrivacyModal] = useState(false);
   
   const { data: carsData, isLoading, error } = useQuery({
@@ -93,6 +94,12 @@ const VehicleDetail = () => {
 
   const handleReserve = () => {
     toast.success("¡Vehículo reservado! Nos pondremos en contacto contigo pronto.");
+  };
+
+  const handleReservationSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("¡Reserva confirmada! Nos pondremos en contacto contigo pronto.");
+    setIsReservationModalOpen(false);
   };
 
   const handleAppointmentSubmit = (e: React.FormEvent) => {
@@ -220,13 +227,104 @@ const VehicleDetail = () => {
                   Reserva el vehículo para asegurarte de que no te lo quiten, y
                   nos pondremos en contacto contigo para ayudarte con todo el proceso de compra.
                 </p>
-                <Button
-                  onClick={handleReserve}
-                  variant="secondary"
-                  className="w-full"
-                >
-                  Reservar ahora
-                </Button>
+                <Dialog open={isReservationModalOpen} onOpenChange={setIsReservationModalOpen}>
+                  <DialogTrigger asChild>
+                    <Button
+                      variant="secondary"
+                      className="w-full"
+                    >
+                      Reservar ahora
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md bg-background">
+                    <DialogHeader>
+                      <DialogTitle className="text-lg font-semibold text-foreground">
+                        Reservar {vehicle.brand} {vehicle.model}
+                      </DialogTitle>
+                    </DialogHeader>
+                    <form onSubmit={handleReservationSubmit} className="space-y-6 mt-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="reservationName" className="text-gray-600">Nombre</Label>
+                          <Input 
+                            id="reservationName" 
+                            placeholder="Nombre" 
+                            required 
+                            className="bg-gray-50 border-gray-200"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="reservationSurname" className="text-gray-600">Apellido</Label>
+                          <Input 
+                            id="reservationSurname" 
+                            placeholder="Apellido" 
+                            required 
+                            className="bg-gray-50 border-gray-200"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="reservationEmail" className="text-gray-600">Email</Label>
+                          <Input 
+                            id="reservationEmail" 
+                            type="email" 
+                            placeholder="xxx@xxx.com" 
+                            required 
+                            className="bg-gray-50 border-gray-200"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="reservationPhone" className="text-gray-600">Teléfono</Label>
+                          <div className="flex">
+                            <div className="flex items-center px-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-md">
+                              <span className="text-sm text-red-600 font-semibold">🇪🇸</span>
+                            </div>
+                            <Input 
+                              id="reservationPhone" 
+                              placeholder="666 666 666" 
+                              className="bg-gray-50 border-gray-200 rounded-l-none" 
+                              required 
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="reservationMessage" className="text-gray-600">Mensaje</Label>
+                        <Textarea
+                          id="reservationMessage"
+                          placeholder={`Quiero reservar este ${vehicle.brand} ${vehicle.model}`}
+                          className="min-h-[80px] resize-none bg-gray-50 border-gray-200"
+                          required
+                          rows={5}
+                        />
+                      </div>
+
+                      <div className="flex items-start space-x-2">
+                        <Checkbox id="reservationTerms" required className="mt-1" />
+                        <Label htmlFor="reservationTerms" className="text-sm text-gray-600">
+                          Acepto las comunicaciones comerciales y de ofertas. Acepto la{" "}
+                          <button 
+                            type="button"
+                            onClick={() => setOpenPrivacyModal(true)}
+                            className="text-primary hover:text-primary/80 underline cursor-pointer"
+                          >
+                            política de privacidad
+                          </button>.
+                        </Label>
+                      </div>
+
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3"
+                      >
+                        Confirmar reserva
+                      </Button>
+                    </form>
+                  </DialogContent>
+                </Dialog>
               </CardContent>
             </Card>
 
