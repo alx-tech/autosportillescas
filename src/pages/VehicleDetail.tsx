@@ -132,9 +132,9 @@ const VehicleDetail = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {/* Image Gallery */}
-          <div className="space-y-4">
+          <div className="lg:col-span-2 space-y-4">
             <div className="relative aspect-video rounded-lg overflow-hidden bg-muted group">
               <img
                 src={vehicle.images[currentImageIndex]}
@@ -192,6 +192,7 @@ const VehicleDetail = () => {
           <div className="space-y-6">
             {/* Pricing */}
             <div>
+              <div className="text-sm text-muted-foreground mb-2">Precio</div>
               <div className="text-3xl font-bold text-primary mb-4">
                 {formatPrice(vehicle.price)}
               </div>
