@@ -248,48 +248,69 @@ const VehicleDetail = () => {
                       Reserva tu cita en Acierto Cars
                     </DialogTitle>
                   </DialogHeader>
-                  <form onSubmit={handleAppointmentSubmit} className="space-y-4 mt-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="appointmentName" className="text-sm font-medium text-muted-foreground">Nombre</Label>
-                        <Input id="appointmentName" placeholder="Nombre" required />
+                  <form onSubmit={handleAppointmentSubmit} className="space-y-6 mt-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="appointmentName" className="text-gray-600">Nombre</Label>
+                        <Input 
+                          id="appointmentName" 
+                          placeholder="Nombre" 
+                          required 
+                          className="bg-gray-50 border-gray-200"
+                        />
                       </div>
-                      <div>
-                        <Label htmlFor="appointmentSurname" className="text-sm font-medium text-muted-foreground">Apellido</Label>
-                        <Input id="appointmentSurname" placeholder="Apellido" required />
+                      <div className="space-y-2">
+                        <Label htmlFor="appointmentSurname" className="text-gray-600">Apellido</Label>
+                        <Input 
+                          id="appointmentSurname" 
+                          placeholder="Apellido" 
+                          required 
+                          className="bg-gray-50 border-gray-200"
+                        />
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="appointmentEmail" className="text-sm font-medium text-muted-foreground">Email</Label>
-                        <Input id="appointmentEmail" type="email" placeholder="xxx@xxx.com" required />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="appointmentEmail" className="text-gray-600">Email</Label>
+                        <Input 
+                          id="appointmentEmail" 
+                          type="email" 
+                          placeholder="xxx@xxx.com" 
+                          required 
+                          className="bg-gray-50 border-gray-200"
+                        />
                       </div>
-                      <div>
-                        <Label htmlFor="appointmentPhone" className="text-sm font-medium text-muted-foreground">Teléfono</Label>
+                      <div className="space-y-2">
+                        <Label htmlFor="appointmentPhone" className="text-gray-600">Teléfono</Label>
                         <div className="flex">
-                          <div className="flex items-center px-3 border border-r-0 border-input rounded-l-md bg-muted text-sm whitespace-nowrap">
-                            🇪🇸 +34
+                          <div className="flex items-center px-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-md">
+                            <span className="text-sm text-red-600 font-semibold">🇪🇸</span>
                           </div>
                           <Input 
                             id="appointmentPhone" 
                             placeholder="666 666 666" 
-                            className="rounded-l-none" 
+                            className="bg-gray-50 border-gray-200 rounded-l-none" 
                             required 
                           />
                         </div>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="appointmentDate" className="text-sm font-medium text-muted-foreground">Fecha de la cita</Label>
-                        <Input id="appointmentDate" type="date" required />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="appointmentDate" className="text-gray-600">Fecha de la cita</Label>
+                        <Input 
+                          id="appointmentDate" 
+                          type="date" 
+                          required 
+                          className="bg-gray-50 border-gray-200"
+                        />
                       </div>
-                      <div>
-                        <Label htmlFor="appointmentTime" className="text-sm font-medium text-muted-foreground">Hora</Label>
+                      <div className="space-y-2">
+                        <Label htmlFor="appointmentTime" className="text-gray-600">Hora</Label>
                         <Select required>
-                          <SelectTrigger>
+                          <SelectTrigger className="bg-gray-50 border-gray-200">
                             <SelectValue placeholder="Selecciona una hora" />
                           </SelectTrigger>
                           <SelectContent>
@@ -312,27 +333,28 @@ const VehicleDetail = () => {
                       </div>
                     </div>
 
-                    <div>
-                      <Label htmlFor="appointmentMessage" className="text-sm font-medium text-muted-foreground">Mensaje</Label>
+                    <div className="space-y-2">
+                      <Label htmlFor="appointmentMessage" className="text-gray-600">Mensaje</Label>
                       <Textarea
                         id="appointmentMessage"
                         placeholder={`Estoy interesado en ${vehicle.brand} ${vehicle.model}`}
                         className="min-h-[80px] resize-none"
                         required
+                        rows={5}
                       />
                     </div>
 
                     <div className="flex items-start space-x-2">
                       <Checkbox id="appointmentTerms" required className="mt-1" />
-                      <Label htmlFor="appointmentTerms" className="text-xs text-muted-foreground leading-relaxed">
+                      <Label htmlFor="appointmentTerms" className="text-sm text-gray-600">
                         Acepto las comunicaciones comerciales y de ofertas. Acepto la{" "}
-                        <span className="underline cursor-pointer">política de privacidad</span>.
+                        <span className="text-primary hover:text-primary/80 underline cursor-pointer">política de privacidad</span>.
                       </Label>
                     </div>
 
                     <Button 
                       type="submit" 
-                      className="w-full bg-amber-700 hover:bg-amber-800 text-white"
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3"
                     >
                       Enviar
                     </Button>
