@@ -21,6 +21,7 @@ import { useToast } from "@/hooks/use-toast";
 const Contact = () => {
   const { toast } = useToast();
   const [openPrivacyModal, setOpenPrivacyModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -31,7 +32,7 @@ const Contact = () => {
     acceptPrivacy: false
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.acceptPrivacy) {
       toast({
@@ -41,23 +42,56 @@ const Contact = () => {
       });
       return;
     }
-    
-    // Here you would normally send the form data to your backend
-    toast({
-      title: "Mensaje enviado",
-      description: "Nos pondremos en contacto contigo pronto",
-    });
-    
-    // Reset form
-    setFormData({
-      nombre: "",
-      apellido: "",
-      email: "",
-      telefono: "",
-      mensaje: "",
-      acceptMarketing: false,
-      acceptPrivacy: false
-    });
+
+    setIsSubmitting(true);
+
+    try {
+      const payload = {
+        company_id: "company_94aaffea4b534264bf9d87b02f4ebfbc",
+        lead_firstname: formData.nombre,
+        lead_lastname: formData.apellido,
+        lead_phone_number: formData.telefono,
+        lead_email: formData.email,
+        message: formData.mensaje
+      };
+
+      const response = await fetch('https://multipost-api.alx.dev-cluster.alx.tech/api/interactions/contact-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      toast({
+        title: "Mensaje enviado",
+        description: "Nos pondremos en contacto contigo pronto",
+      });
+
+      // Reset form
+      setFormData({
+        nombre: "",
+        apellido: "",
+        email: "",
+        telefono: "",
+        mensaje: "",
+        acceptMarketing: false,
+        acceptPrivacy: false
+      });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "Hubo un problema al enviar el mensaje. Por favor, inténtalo de nuevo.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -217,11 +251,12 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3"
                 >
-                  Enviar
+                  {isSubmitting ? "Enviando..." : "Enviar"}
                 </Button>
               </form>
             </CardContent>
