@@ -9,8 +9,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { AlertCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Stock = () => {
+  const [searchParams] = useSearchParams();
+  const initialSearch = searchParams.get('search') || '';
+
   const { 
     data: carsResponse, 
     isLoading, 
@@ -34,6 +39,13 @@ const Stock = () => {
     filteredVehicles,
     filterOptions,
   } = useVehicleFilters(vehicles);
+
+  // Set initial search from URL parameter
+  useEffect(() => {
+    if (initialSearch && initialSearch !== filters.searchTerm) {
+      updateFilter('searchTerm', initialSearch);
+    }
+  }, [initialSearch, filters.searchTerm, updateFilter]);
 
   const sortOptions = [
     { value: 'price_asc', label: 'Precio: menor a mayor' },
