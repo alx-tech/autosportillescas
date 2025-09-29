@@ -92,7 +92,8 @@ const Stock = () => {
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
               {/* Filters Sidebar */}
               <div className="lg:col-span-1">
-                <VehicleFilters
+                <div className="sticky top-4">
+                  <VehicleFilters
                   searchTerm={filters.searchTerm}
                   onSearchChange={(value) => updateFilter('searchTerm', value)}
                   selectedBrand={filters.selectedBrand}
@@ -113,8 +114,9 @@ const Stock = () => {
                   brands={filterOptions.brands}
                   bodyTypes={filterOptions.bodyTypes}
                   transmissions={filterOptions.transmissions}
-                  fuels={filterOptions.fuels}
-                />
+                    fuels={filterOptions.fuels}
+                  />
+                </div>
               </div>
 
               {/* Vehicles Content */}
