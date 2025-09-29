@@ -102,12 +102,12 @@ const VehicleFilters = ({
               {/* Brand Filter */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Marca</label>
-                <Select value={selectedBrand} onValueChange={onBrandChange}>
+                <Select value={selectedBrand} onValueChange={(value) => onBrandChange(value === 'all' ? '' : value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Todas las marcas" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Todas las marcas</SelectItem>
+                    <SelectItem value="all">Todas las marcas</SelectItem>
                     {brands.map((brand) => (
                       <SelectItem key={brand} value={brand}>
                         {brand}
@@ -120,12 +120,12 @@ const VehicleFilters = ({
               {/* Body Type Filter */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Carrocería</label>
-                <Select value={selectedBodyType} onValueChange={onBodyTypeChange}>
+                <Select value={selectedBodyType} onValueChange={(value) => onBodyTypeChange(value === 'all' ? '' : value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Todos los tipos" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Todos los tipos</SelectItem>
+                    <SelectItem value="all">Todos los tipos</SelectItem>
                     {bodyTypes.map((type) => (
                       <SelectItem key={type} value={type}>
                         {type}
@@ -138,12 +138,12 @@ const VehicleFilters = ({
               {/* Transmission Filter */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Transmisión</label>
-                <Select value={selectedTransmission} onValueChange={onTransmissionChange}>
+                <Select value={selectedTransmission} onValueChange={(value) => onTransmissionChange(value === 'all' ? '' : value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Todas" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Todas</SelectItem>
+                    <SelectItem value="all">Todas</SelectItem>
                     {transmissions.map((transmission) => (
                       <SelectItem key={transmission} value={transmission}>
                         {transmission}
@@ -156,12 +156,12 @@ const VehicleFilters = ({
               {/* Fuel Filter */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Combustible</label>
-                <Select value={selectedFuel} onValueChange={onFuelChange}>
+                <Select value={selectedFuel} onValueChange={(value) => onFuelChange(value === 'all' ? '' : value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Todos" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Todos</SelectItem>
+                    <SelectItem value="all">Todos</SelectItem>
                     {fuels.map((fuel) => (
                       <SelectItem key={fuel} value={fuel}>
                         {fuel}

@@ -118,12 +118,12 @@ const Stock = () => {
             <div className="flex justify-end mb-6">
               <div className="flex items-center gap-2">
                 <span className="text-sm text-muted-foreground">Ordenar por:</span>
-                <Select value={filters.sortBy} onValueChange={(value) => updateFilter('sortBy', value)}>
+                <Select value={filters.sortBy} onValueChange={(value) => updateFilter('sortBy', value === 'none' ? '' : value)}>
                   <SelectTrigger className="w-48">
                     <SelectValue placeholder="Selecciona una opción" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Sin orden específico</SelectItem>
+                    <SelectItem value="none">Sin orden específico</SelectItem>
                     {sortOptions.map((option) => (
                       <SelectItem key={option.value} value={option.value}>
                         {option.label}
