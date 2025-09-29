@@ -163,7 +163,7 @@ const VehicleDetail = () => {
               <CardHeader className="bg-muted">
                 <CardTitle>Detalles</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="pt-6">
                 <div className="space-y-3 text-sm">
                   <p><strong>{vehicle.brand} {vehicle.model}</strong></p>
                   <p>Financiación a tu medida.</p>
