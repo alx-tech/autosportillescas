@@ -160,7 +160,7 @@ const VehicleDetail = () => {
 
             {/* Vehicle Description */}
             <Card>
-              <CardHeader>
+              <CardHeader className="bg-muted">
                 <CardTitle>Detalles</CardTitle>
               </CardHeader>
               <CardContent>
