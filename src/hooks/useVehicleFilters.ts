@@ -28,10 +28,27 @@ export const useVehicleFilters = (vehicles: Vehicle[]) => {
 
   // Extract unique values for filter options
   const filterOptions = useMemo(() => {
-    const brands = [...new Set(vehicles.map(v => v.brand).filter(Boolean))].sort();
-    const bodyTypes = [...new Set(vehicles.map(v => v.type).filter(Boolean))].sort();
-    const transmissions = [...new Set(vehicles.map(v => v.transmission).filter(Boolean))].sort();
-    const fuels = [...new Set(vehicles.map(v => v.fuel).filter(Boolean))].sort();
+    // Filter out unknown, undefined, null, and empty values, then normalize brands
+    const brands = [...new Set(vehicles
+      .map(v => v.brand)
+      .filter(brand => brand && brand.toLowerCase() !== 'unknown' && brand.trim())
+      .map(brand => brand.toUpperCase())
+    )].sort();
+    
+    const bodyTypes = [...new Set(vehicles
+      .map(v => v.type)
+      .filter(type => type && type.toLowerCase() !== 'unknown' && type.trim())
+    )].sort();
+    
+    const transmissions = [...new Set(vehicles
+      .map(v => v.transmission)
+      .filter(transmission => transmission && transmission.toLowerCase() !== 'unknown' && transmission.trim())
+    )].sort();
+    
+    const fuels = [...new Set(vehicles
+      .map(v => v.fuel)
+      .filter(fuel => fuel && fuel.toLowerCase() !== 'unknown' && fuel.trim())
+    )].sort();
     
     return { brands, bodyTypes, transmissions, fuels };
   }, [vehicles]);
@@ -50,8 +67,8 @@ export const useVehicleFilters = (vehicles: Vehicle[]) => {
         if (!matchesSearch) return false;
       }
 
-      // Brand filter
-      if (filters.selectedBrand && vehicle.brand !== filters.selectedBrand) {
+      // Brand filter (normalize for comparison)
+      if (filters.selectedBrand && vehicle.brand.toUpperCase() !== filters.selectedBrand) {
         return false;
       }
 
