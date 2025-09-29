@@ -117,17 +117,18 @@ const VehicleCard = ({
           </div>
         </div>
         
-        <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground mb-4">
-          <div>📏 {mileage.toLocaleString()} km</div>
-          <div>⛽ {fuel}</div>
-          <div>⚙️ {transmission}</div>
-          <div>📅 {year}</div>
+        <div className="mt-auto">
+          <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground mb-4">
+            <div>📏 {mileage.toLocaleString()} km</div>
+            <div>⛽ {fuel}</div>
+            <div>⚙️ {transmission}</div>
+            <div>📅 {year}</div>
+          </div>
+          <Button className="w-full" variant="secondary">
+            <Eye size={16} className="mr-2" />
+            Ver detalles
+          </Button>
         </div>
-        
-        <Button className="w-full" variant="secondary">
-          <Eye size={16} className="mr-2" />
-          Ver detalles
-        </Button>
       </CardContent>
     </Card>
   );
