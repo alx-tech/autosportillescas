@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Eye, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 interface VehicleCardProps {
   id: string;
@@ -19,6 +20,7 @@ interface VehicleCardProps {
 }
 
 const VehicleCard = ({ 
+  id,
   images = [], 
   brand, 
   model, 
@@ -124,9 +126,11 @@ const VehicleCard = ({
             <div>⚙️ {transmission}</div>
             <div>📅 {year}</div>
           </div>
-          <Button className="w-full" variant="secondary">
-            <Eye size={16} className="mr-2" />
-            Ver detalles
+          <Button className="w-full" variant="secondary" asChild>
+            <Link to={`/stock/${id}`}>
+              <Eye size={16} className="mr-2" />
+              Ver detalles
+            </Link>
           </Button>
         </div>
       </CardContent>
