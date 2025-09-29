@@ -16,7 +16,6 @@ interface VehicleCardProps {
   fuel: string;
   transmission: string;
   type: string;
-  isNew?: boolean;
 }
 
 const VehicleCard = ({ 
@@ -29,8 +28,7 @@ const VehicleCard = ({
   mileage, 
   fuel, 
   transmission, 
-  type,
-  isNew = false 
+  type
 }: VehicleCardProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([]);
@@ -77,11 +75,6 @@ const VehicleCard = ({
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
           style={{ imageRendering: 'auto' }}
         />
-        {isNew && (
-          <Badge className="absolute top-3 left-3 bg-primary">
-            Nuevo
-          </Badge>
-        )}
         {images.length > 1 && (
           <div className="absolute inset-x-2 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity">
             <Button 

@@ -44,7 +44,6 @@ export interface Vehicle {
   seats?: number;
   engineSize?: number | null;
   enginePower?: number;
-  isNew?: boolean;
   updatedAt: string;
 }
 
@@ -89,7 +88,6 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
     seats: apiCar.num_seats,
     engineSize: apiCar.engine_size,
     enginePower: apiCar.engine_power,
-    isNew: apiCar.days_in_stock <= 30,
     updatedAt: apiCar.updated_at
   };
 };
