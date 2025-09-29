@@ -76,15 +76,8 @@ const VehicleDetail = () => {
   const monthlyPayment = Math.round(vehicle.price / 84); // 84 months financing
 
   const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: `${vehicle.brand} ${vehicle.model}`,
-        url: window.location.href
-      });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      toast.success("Enlace copiado al portapapeles");
-    }
+    navigator.clipboard.writeText(window.location.href);
+    toast.success("Enlace copiado al portapapeles");
   };
   const handleReserve = () => {
     toast.success("¡Vehículo reservado! Nos pondremos en contacto contigo pronto.");
