@@ -521,70 +521,68 @@ const VehicleDetail = () => {
           </div>
         </div>
 
-        {/* Basic Data */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <Card>
-            <CardHeader>
-              <CardTitle>Datos básicos</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <div className="text-sm text-muted-foreground mb-1">AÑO</div>
-                    <div className="font-semibold">{vehicle.year}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground mb-1">KILÓMETROS</div>
-                    <div className="font-semibold">{vehicle.mileage.toLocaleString()} km</div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <div className="text-sm text-muted-foreground mb-1">COMBUSTIBLE</div>
-                    <div className="font-semibold">{vehicle.fuel.toUpperCase()}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground mb-1">CAMBIO</div>
-                    <div className="font-semibold">{vehicle.transmission.toUpperCase()}</div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <div className="text-sm text-muted-foreground mb-1">CARROCERÍA</div>
-                    <div className="font-semibold">{vehicle.type.toUpperCase()}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground mb-1">PUERTAS</div>
-                    <div className="font-semibold">5</div>
-                  </div>
-                </div>
+        {/* Vehicle Description */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Detalles</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3 text-sm">
+              <p><strong>{vehicle.brand} {vehicle.model}</strong></p>
+              <p>Financiación a tu medida.</p>
+              <p>En precio de venta están incluidos 12 meses de garantía. (Ampliable a 3 años)</p>
+              <p>Gastos de transferencia y gestor 260€.</p>
+              <p>Aceptamos vehículo como parte de pago.</p>
+              <p>Entrega en toda España, consulte condiciones.</p>
+              <div className="mt-4 p-3 bg-muted rounded">
+                <p className="text-xs text-muted-foreground">
+                  Este anuncio no es vinculante, puede contener errores, se muestra a título informativo y no contractual.
+                </p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </CardContent>
+        </Card>
 
-          {/* Details */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Detalles</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3 text-sm">
-                <p><strong>{vehicle.brand} {vehicle.model}</strong></p>
-                <p>Financiación a tu medida.</p>
-                <p>En precio de venta están incluidos 12 meses de garantía. (Ampliable a 3 años)</p>
-                <p>Gastos de transferencia y gestor 260€.</p>
-                <p>Aceptamos vehículo como parte de pago.</p>
-                <p>Entrega en toda España, consulte condiciones.</p>
-                <div className="mt-4 p-3 bg-muted rounded">
-                  <p className="text-xs text-muted-foreground">
-                    Este anuncio no es vinculante, puede contener errores, se muestra a título informativo y no contractual.
-                  </p>
+        {/* Basic Data */}
+        <Card className="mb-12">
+          <CardHeader>
+            <CardTitle>Datos básicos</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <div className="text-sm text-muted-foreground mb-1">AÑO</div>
+                  <div className="font-semibold">{vehicle.year}</div>
+                </div>
+                <div>
+                  <div className="text-sm text-muted-foreground mb-1">KILÓMETROS</div>
+                  <div className="font-semibold">{vehicle.mileage.toLocaleString()} km</div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <div className="text-sm text-muted-foreground mb-1">COMBUSTIBLE</div>
+                  <div className="font-semibold">{vehicle.fuel.toUpperCase()}</div>
+                </div>
+                <div>
+                  <div className="text-sm text-muted-foreground mb-1">CAMBIO</div>
+                  <div className="font-semibold">{vehicle.transmission.toUpperCase()}</div>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <div className="text-sm text-muted-foreground mb-1">CARROCERÍA</div>
+                  <div className="font-semibold">{vehicle.type.toUpperCase()}</div>
+                </div>
+                <div>
+                  <div className="text-sm text-muted-foreground mb-1">PUERTAS</div>
+                  <div className="font-semibold">5</div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Trade-in Offer */}
         <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
