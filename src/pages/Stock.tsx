@@ -47,23 +47,6 @@ const Stock = () => {
     }
   }, [initialSearch, filters.searchTerm, updateFilter]);
 
-  // Update URL when search term changes
-  useEffect(() => {
-    const newSearchParams = new URLSearchParams(searchParams);
-    if (filters.searchTerm) {
-      newSearchParams.set('search', filters.searchTerm);
-    } else {
-      newSearchParams.delete('search');
-    }
-    
-    // Only update if the URL actually changed
-    const newSearch = newSearchParams.toString();
-    const currentSearch = searchParams.toString();
-    if (newSearch !== currentSearch) {
-      setSearchParams(newSearchParams, { replace: true });
-    }
-  }, [filters.searchTerm, searchParams, setSearchParams]);
-
   const sortOptions = [
     { value: 'price_asc', label: 'Precio: menor a mayor' },
     { value: 'price_desc', label: 'Precio: mayor a menor' },
