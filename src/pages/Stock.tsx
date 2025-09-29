@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const Stock = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const initialSearch = searchParams.get('search') || '';
 
   const { 
@@ -46,6 +46,23 @@ const Stock = () => {
       updateFilter('searchTerm', initialSearch);
     }
   }, [initialSearch, filters.searchTerm, updateFilter]);
+
+  // Update URL when search term changes
+  useEffect(() => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (filters.searchTerm) {
+      newSearchParams.set('search', filters.searchTerm);
+    } else {
+      newSearchParams.delete('search');
+    }
+    
+    // Only update if the URL actually changed
+    const newSearch = newSearchParams.toString();
+    const currentSearch = searchParams.toString();
+    if (newSearch !== currentSearch) {
+      setSearchParams(newSearchParams, { replace: true });
+    }
+  }, [filters.searchTerm, searchParams, setSearchParams]);
 
   const sortOptions = [
     { value: 'price_asc', label: 'Precio: menor a mayor' },
