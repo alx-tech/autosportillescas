@@ -152,7 +152,7 @@ const VehicleCard = ({
             </div>
             {badgeImage && (
               <div className="flex-shrink-0">
-                <img src={badgeImage} alt={`Badge ${environmentalBadge}`} className="w-16 h-16" />
+                <img src={badgeImage} alt={`Badge ${environmentalBadge}`} className="w-12 h-12" />
               </div>
             )}
           </div>
