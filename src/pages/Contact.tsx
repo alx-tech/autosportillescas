@@ -357,7 +357,8 @@ const Contact = () => {
                     </h3>
                     <div className="space-y-1 text-muted-foreground">
                       <p>Lunes a Viernes: 10:00 - 14:00, 16:00 - 19:00</p>
-                      <p>Sábado y Domingo: Cerrado</p>
+                      <p>Sábado: Con cita previa</p>
+                      <p>Domingo: Cerrado</p>
                     </div>
                   </div>
                 </div>
