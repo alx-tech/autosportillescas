@@ -24,6 +24,7 @@ export interface CarApiResponse {
   created_at: string;
   updated_at: string;
   days_in_stock: number;
+  environmental_badge?: string;
 }
 
 export type CarsApiResponse = CarApiResponse[];
@@ -45,6 +46,7 @@ export interface Vehicle {
   engineSize?: number | null;
   enginePower?: number;
   updatedAt: string;
+  environmentalBadge?: string;
 }
 
 const API_URL = 'https://multipost-api.alx.test-cluster.alx.tech/api/public/inventory/profiles/83ff4f5c-8237-4240-ada5-473d37443c6d';
@@ -105,6 +107,7 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
     seats: apiCar.num_seats,
     engineSize: apiCar.engine_size,
     enginePower: apiCar.engine_power,
-    updatedAt: apiCar.updated_at
+    updatedAt: apiCar.updated_at,
+    environmentalBadge: apiCar.environmental_badge
   };
 };

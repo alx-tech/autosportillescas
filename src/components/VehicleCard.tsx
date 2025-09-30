@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Eye, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import dgtB from "@/assets/dgt-b.png";
+import dgtC from "@/assets/dgt-c.png";
+import dgtCero from "@/assets/dgt-cero.png";
+import dgtEco from "@/assets/dgt-eco.png";
 
 interface VehicleCardProps {
   id: string;
@@ -16,6 +20,7 @@ interface VehicleCardProps {
   fuel: string;
   transmission: string;
   type: string;
+  environmentalBadge?: string;
 }
 
 const VehicleCard = ({ 
@@ -28,7 +33,8 @@ const VehicleCard = ({
   mileage, 
   fuel, 
   transmission, 
-  type
+  type,
+  environmentalBadge
 }: VehicleCardProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([]);
@@ -65,6 +71,19 @@ const VehicleCard = ({
   };
 
   const currentImage = images[currentImageIndex] || '/placeholder.svg';
+  
+  const getBadgeImage = (badge?: string) => {
+    if (!badge) return null;
+    const badgeLower = badge.toLowerCase();
+    if (badgeLower.includes('b')) return dgtB;
+    if (badgeLower.includes('c') && !badgeLower.includes('eco')) return dgtC;
+    if (badgeLower.includes('0') || badgeLower.includes('cero')) return dgtCero;
+    if (badgeLower.includes('eco')) return dgtEco;
+    return null;
+  };
+
+  const badgeImage = getBadgeImage(environmentalBadge);
+  
   return (
     <Link to={`/stock/${id}`} className="block h-full">
       <Card className="group overflow-hidden hover:shadow-luxury transition-all duration-300 hover:scale-[1.02] flex flex-col h-full cursor-pointer">
@@ -122,11 +141,16 @@ const VehicleCard = ({
         </div>
         
         <div className="mt-auto">
-          <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground mb-4">
+          <div className="grid grid-cols-3 gap-2 text-sm text-muted-foreground mb-4">
             <div>📏 {mileage.toLocaleString()} km</div>
             <div>⛽ {fuel}</div>
             <div>⚙️ {transmission}</div>
             <div>📅 {year}</div>
+            {badgeImage && (
+              <div className="flex items-center">
+                <img src={badgeImage} alt={`Badge ${environmentalBadge}`} className="w-6 h-6" />
+              </div>
+            )}
           </div>
           <Button 
             className="w-full" 
