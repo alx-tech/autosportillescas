@@ -73,6 +73,25 @@ const FUEL_TRANSLATIONS: Record<string, string> = {
   'Other': 'Otro',
 };
 
+const COLOR_TRANSLATIONS: Record<string, string> = {
+  'White': 'Blanco',
+  'Black': 'Negro',
+  'Silver': 'Plateado',
+  'Grey': 'Gris',
+  'Gray': 'Gris',
+  'Red': 'Rojo',
+  'Blue': 'Azul',
+  'Green': 'Verde',
+  'Yellow': 'Amarillo',
+  'Orange': 'Naranja',
+  'Brown': 'Marrón',
+  'Beige': 'Beige',
+  'Gold': 'Dorado',
+  'Purple': 'Morado',
+  'Pink': 'Rosa',
+  'Other': 'Otro',
+};
+
 export const fetchCars = async (): Promise<CarsApiResponse> => {
   const response = await fetch(API_URL, {
     method: 'GET',
@@ -109,7 +128,7 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
     fuel: FUEL_TRANSLATIONS[apiCar.fuel] || apiCar.fuel || 'Desconocido',
     transmission: TRANSMISSION_TRANSLATIONS[apiCar.transmission] || apiCar.transmission || 'Desconocido',
     type: apiCar.body_type || 'Unknown',
-    color: apiCar.color,
+    color: apiCar.color ? (COLOR_TRANSLATIONS[apiCar.color] || apiCar.color) : undefined,
     doors: apiCar.num_doors,
     seats: apiCar.num_seats,
     engineSize: apiCar.engine_size,
