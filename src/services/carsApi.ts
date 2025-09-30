@@ -24,9 +24,9 @@ export interface CarApiResponse {
   created_at: string;
   updated_at: string;
   days_in_stock: number;
-  environmental_badge?: {
-    _type: string;
-    value: string;
+  country_details?: {
+    country_code: string;
+    environmental_badge: string;
   };
 }
 
@@ -94,9 +94,7 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
     ? new Date(apiCar.registration_date).getFullYear() 
     : new Date().getFullYear();
   
-  const badgeValue = apiCar.environmental_badge?.value !== 'undefined' 
-    ? apiCar.environmental_badge?.value 
-    : undefined;
+  const badgeValue = apiCar.country_details?.environmental_badge;
   
   console.log('API Car badge value:', badgeValue, 'for', apiCar.make, apiCar.model);
     
