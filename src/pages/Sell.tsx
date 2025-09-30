@@ -18,47 +18,90 @@ const Sell = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Vende tu coche de forma rápida y segura
+                Tasa y vende fácilmente
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
-                Te ofrecemos la mejor valoración por tu vehículo. Proceso simple, rápido y sin complicaciones.
+                Consigue la mejor oferta del mercado.
               </p>
             </div>
           </div>
         </section>
 
         {/* Benefits Section */}
-        <section className="py-16 bg-muted/30">
+        <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Euro className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">Mejor precio</h3>
-                <p className="text-sm text-muted-foreground">Te ofrecemos la mejor valoración del mercado</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">Proceso rápido</h3>
-                <p className="text-sm text-muted-foreground">Valoración en 24 horas</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle2 className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">Sin compromiso</h3>
-                <p className="text-sm text-muted-foreground">Valoración gratuita y sin obligación</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Car className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">Cualquier vehículo</h3>
-                <p className="text-sm text-muted-foreground">Compramos todo tipo de vehículos</p>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              <Card className="text-center bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover-scale overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="bg-gray-100 p-6">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Euro className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">
+                      Mejor precio
+                    </h3>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      Te ofrecemos la mejor valoración del mercado
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover-scale overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="bg-gray-100 p-6">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Clock className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">
+                      Proceso rápido
+                    </h3>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      Valoración en 24 horas
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover-scale overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="bg-gray-100 p-6">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                      <CheckCircle2 className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">
+                      Sin compromiso
+                    </h3>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      Valoración gratuita y sin obligación
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover-scale overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="bg-gray-100 p-6">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Car className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">
+                      Cualquier vehículo
+                    </h3>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      Compramos todo tipo de vehículos
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
