@@ -24,7 +24,10 @@ export interface CarApiResponse {
   created_at: string;
   updated_at: string;
   days_in_stock: number;
-  environmental_badge?: string;
+  environmental_badge?: {
+    _type: string;
+    value: string;
+  };
 }
 
 export type CarsApiResponse = CarApiResponse[];
@@ -91,7 +94,11 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
     ? new Date(apiCar.registration_date).getFullYear() 
     : new Date().getFullYear();
   
-  console.log('API Car environmental_badge:', apiCar.environmental_badge, 'for', apiCar.make, apiCar.model);
+  const badgeValue = apiCar.environmental_badge?.value !== 'undefined' 
+    ? apiCar.environmental_badge?.value 
+    : undefined;
+  
+  console.log('API Car badge value:', badgeValue, 'for', apiCar.make, apiCar.model);
     
   return {
     id: apiCar.id,
@@ -110,6 +117,6 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
     engineSize: apiCar.engine_size,
     enginePower: apiCar.engine_power,
     updatedAt: apiCar.updated_at,
-    environmentalBadge: apiCar.environmental_badge
+    environmentalBadge: badgeValue
   };
 };
