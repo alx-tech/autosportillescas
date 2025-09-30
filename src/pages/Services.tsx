@@ -101,13 +101,13 @@ const Services = () => {
                 informándolo del momento idóneo para cambiar antes de que se devalúe, elección de nuevo modelo, 
                 equipamiento y todo lo necesario para que su experiencia con nosotros sea un éxito.
               </p>
-              <Button 
+              <Button
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg"
                 asChild
               >
-                <a href="/contact">
-                  Contáctanos para tasar tu vehículo
+                <a href="/sell">
+                  Tasar mi vehículo
                 </a>
               </Button>
             </div>
