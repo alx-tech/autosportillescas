@@ -1,6 +1,19 @@
 import { useState, useMemo } from 'react';
 import type { Vehicle } from '@/services/carsApi';
 
+// Valid fuel values that we have translations for
+const VALID_FUEL_VALUES = [
+  'Diésel',
+  'Gasolina',
+  'Eléctrico',
+  'Hidrógeno',
+  'Biocombustibles',
+  'GNC',
+  'GLP',
+  'Híbrido',
+  'Otro'
+];
+
 export interface VehicleFilterState {
   searchTerm: string;
   selectedBrand: string;
@@ -47,7 +60,13 @@ export const useVehicleFilters = (vehicles: Vehicle[]) => {
     
     const fuels = [...new Set(vehicles
       .map(v => v.fuel)
-      .filter(fuel => fuel && fuel.toLowerCase() !== 'unknown' && fuel.trim())
+      .filter(fuel => 
+        fuel && 
+        fuel.toLowerCase() !== 'unknown' && 
+        fuel.toLowerCase() !== 'desconocido' &&
+        fuel.trim() &&
+        VALID_FUEL_VALUES.includes(fuel)
+      )
     )].sort();
     
     return { brands, bodyTypes, transmissions, fuels };
