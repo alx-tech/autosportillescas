@@ -5,29 +5,72 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Progress } from "@/components/ui/progress";
-import { CheckCircle2, ArrowRight, ArrowLeft, Car, User, CheckCircle } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CheckCircle2, ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
 
 const Sell = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
+    tipoVehiculo: "",
     marca: "",
     modelo: "",
     ano: "",
-    kilometros: "",
+    carroceria: "",
+    color: "",
     combustible: "",
+    tipoCambio: "",
+    version: "",
+    kilometraje: "",
+    matricula: "",
+    cuandoVender: "",
+    interesIntercambio: "",
     nombre: "",
     telefono: "",
-    email: "",
-    observaciones: ""
+    email: ""
   });
 
   const totalSteps = 3;
   const progress = (currentStep / totalSteps) * 100;
 
+  // Vehicle type specific marca lists
+  const marcasTurismo = [
+    "Abarth", "Aiways", "Aixam", "Alfa Romeo", "Alpine", "Aro", "Asia", "Aston Martin", "Audi",
+    "Baic", "Bentley", "Bestune", "BMW", "BYD", "Cadillac", "Chevrolet", "Chrysler", "Citroën",
+    "Corvette", "CUPRA", "Dacia", "Daewoo", "Daihatsu", "Daimler", "Dodge", "Dongfeng", "DR AUTOMOBILES",
+    "DS", "DFSK", "EBRO", "EVO", "Ferrari", "Fiat", "Fisker", "Ford", "Galloper", "Honda", "HONGQI",
+    "HUMMER", "Hyundai", "Ineos", "Infiniti", "Innocenti", "Isuzu", "Iveco", "JAECOO", "Jaguar",
+    "Jeep", "Kia", "KIA", "KGM", "Lada", "Lamborghini", "Lancia", "Land Rover", "Leapmotor", "Lexus",
+    "Ligier", "Livan", "Lotus", "Lynk & Co", "Mahindra", "Maserati", "Maybach", "Mazda", "MCC",
+    "McLaren", "Mercedes", "Mercedes-Benz", "MG", "MHero", "Micro", "MINI", "Mitsubishi", "Morgan",
+    "MAXUS", "Nissan", "OMODA", "Opel", "Peugeot", "Pilote", "Polestar", "Pontiac", "Porsche",
+    "Renault", "Rolls-Royce", "Rover", "Saab", "Santana", "SEAT", "SERES", "Skoda", "Skywell",
+    "smart", "Smart", "SsangYong", "Subaru", "Suzuki", "SWM", "TATA", "Tesla", "Toyota", "UMM",
+    "VAZ", "Volkswagen", "Volvo", "Voyah", "Weinsberg", "Xpeng", "Yooudooo", "Yudo", "Zhidou"
+  ];
+
+  const marcasIndustrial = [
+    "Baic", "BYD", "Cenntro", "Citroën", "Dacia", "Daewoo", "DAF", "Daihatsu", "DFSK", "DR AUTOMOBILES",
+    "DSK", "EVO", "EVUM", "Farizon", "Fiat", "Ford", "Foton", "Hyundai", "Ineos", "Isuzu", "Iveco",
+    "Jeep", "KGM", "KIA", "Lada", "Land Rover", "LDV", "LEVC", "Ligier", "Livan", "Mahindra", "MAN",
+    "MAXUS", "Mazda", "Mercedes", "Mercedes-Benz", "Mitsubishi", "Mitsubishi Fuso", "MW Motors",
+    "Nextem", "Nissan", "Opel", "Peugeot", "Piaggio", "RAM", "Renault", "Renault Trucks", "SaIC",
+    "SAIC MAXUS", "Santana", "Scania", "SEAT", "Skoda", "SsangYong", "Suzuki", "TATA", "Toyota",
+    "UMM", "Volkswagen", "Volvo"
+  ];
+
+  // Generate years from 2025 down to 2000
+  const years = Array.from({ length: 26 }, (_, i) => (2025 - i).toString());
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSelectChange = (field: string, value: string) => {
+    setFormData({ ...formData, [field]: value });
+    // Reset marca when vehicle type changes
+    if (field === "tipoVehiculo") {
+      setFormData({ ...formData, [field]: value, marca: "" });
+    }
   };
 
   const handleNext = () => {
@@ -115,36 +158,24 @@ const Sell = () => {
             <div className="max-w-2xl mx-auto">
               <Card>
                 <CardHeader className="space-y-4">
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <span>Paso {currentStep} de {totalSteps}</span>
-                    <span>{Math.round(progress)}% completado</span>
-                  </div>
-                  <Progress value={progress} className="h-2" />
-                  
                   {currentStep === 1 && (
                     <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-primary">
-                        <Car className="w-5 h-5" />
-                        <CardTitle className="text-2xl">Detalles del vehículo</CardTitle>
-                      </div>
+                      <CardTitle className="text-2xl">Detalles del vehículo</CardTitle>
                       <p className="text-sm text-muted-foreground">
                         Cuéntanos sobre tu coche para ofrecerte la mejor valoración
                       </p>
                     </div>
                   )}
-                  
+
                   {currentStep === 2 && (
                     <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-primary">
-                        <User className="w-5 h-5" />
-                        <CardTitle className="text-2xl">Tus datos</CardTitle>
-                      </div>
+                      <CardTitle className="text-2xl">Tus datos</CardTitle>
                       <p className="text-sm text-muted-foreground">
                         ¿Cómo podemos contactarte con tu valoración?
                       </p>
                     </div>
                   )}
-                  
+
                   {currentStep === 3 && (
                     <div className="space-y-2">
                       <div className="flex items-center gap-2 text-green-600">
@@ -162,67 +193,185 @@ const Sell = () => {
                       <div className="space-y-6 animate-fade-in">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="space-y-2">
+                            <Label htmlFor="tipoVehiculo">Tipo de vehículo *</Label>
+                            <Select
+                              value={formData.tipoVehiculo}
+                              onValueChange={(value) => handleSelectChange("tipoVehiculo", value)}
+                              required
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Selecciona tipo" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="turismo">Turismo</SelectItem>
+                                <SelectItem value="industrial">Industrial</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="space-y-2">
                             <Label htmlFor="marca">Marca *</Label>
-                            <Input 
-                              id="marca" 
-                              placeholder="Ej: Ford, Toyota..." 
+                            <Select
                               value={formData.marca}
+                              onValueChange={(value) => handleSelectChange("marca", value)}
+                              required
+                              disabled={!formData.tipoVehiculo}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Selecciona marca" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {(formData.tipoVehiculo === "turismo" ? marcasTurismo : marcasIndustrial).map((marca) => (
+                                  <SelectItem key={marca} value={marca}>{marca}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label htmlFor="modelo">Modelo *</Label>
+                            <Input
+                              id="modelo"
+                              placeholder="Ej: Focus, Corolla..."
+                              value={formData.modelo}
                               onChange={handleInputChange}
-                              required 
+                              required
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="modelo">Modelo *</Label>
-                            <Input 
-                              id="modelo" 
-                              placeholder="Ej: Focus, Corolla..." 
-                              value={formData.modelo}
+                            <Label htmlFor="ano">Año *</Label>
+                            <Select
+                              value={formData.ano}
+                              onValueChange={(value) => handleSelectChange("ano", value)}
+                              required
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Selecciona año" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {years.map((year) => (
+                                  <SelectItem key={year} value={year}>{year}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+
+                        {formData.tipoVehiculo === "turismo" && (
+                          <div className="space-y-2">
+                            <Label htmlFor="carroceria">Carrocería *</Label>
+                            <Select
+                              value={formData.carroceria}
+                              onValueChange={(value) => handleSelectChange("carroceria", value)}
+                              required
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Selecciona carrocería" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="berlina">Berlina</SelectItem>
+                                <SelectItem value="coupe">Coupé</SelectItem>
+                                <SelectItem value="cabrio">Cabrio</SelectItem>
+                                <SelectItem value="familiar">Familiar</SelectItem>
+                                <SelectItem value="monovolumen">Monovolumen</SelectItem>
+                                <SelectItem value="suv">SUV</SelectItem>
+                                <SelectItem value="pickup">Pick Up</SelectItem>
+                                <SelectItem value="otro">Otro</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        )}
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label htmlFor="color">Color *</Label>
+                            <Input
+                              id="color"
+                              placeholder="Ej: Blanco, Negro..."
+                              value={formData.color}
                               onChange={handleInputChange}
-                              required 
+                              required
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="combustible">Combustible *</Label>
+                            <Select
+                              value={formData.combustible}
+                              onValueChange={(value) => handleSelectChange("combustible", value)}
+                              required
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Selecciona combustible" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="gasolina">Gasolina</SelectItem>
+                                <SelectItem value="diesel">Diésel</SelectItem>
+                                <SelectItem value="hibrido">Híbrido</SelectItem>
+                                <SelectItem value="hibrido-enchufable">Híbrido Enchufable</SelectItem>
+                                <SelectItem value="electrico">Eléctrico</SelectItem>
+                                <SelectItem value="gas">Gas (GLP/GNC)</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label htmlFor="tipoCambio">Tipo de cambio *</Label>
+                            <Select
+                              value={formData.tipoCambio}
+                              onValueChange={(value) => handleSelectChange("tipoCambio", value)}
+                              required
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Selecciona tipo" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="manual">Manual</SelectItem>
+                                <SelectItem value="automatico">Automático</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="version">Versión *</Label>
+                            <Input
+                              id="version"
+                              placeholder="Ej: GTI, Sport..."
+                              value={formData.version}
+                              onChange={handleInputChange}
+                              required
                             />
                           </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="space-y-2">
-                            <Label htmlFor="ano">Año *</Label>
-                            <Input 
-                              id="ano" 
-                              type="number" 
-                              placeholder="2020" 
-                              value={formData.ano}
+                            <Label htmlFor="kilometraje">Kilometraje *</Label>
+                            <Input
+                              id="kilometraje"
+                              type="number"
+                              placeholder="50000"
+                              value={formData.kilometraje}
                               onChange={handleInputChange}
-                              required 
+                              required
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="kilometros">Kilómetros *</Label>
-                            <Input 
-                              id="kilometros" 
-                              type="number" 
-                              placeholder="50000" 
-                              value={formData.kilometros}
+                            <Label htmlFor="matricula">Matrícula (opcional)</Label>
+                            <Input
+                              id="matricula"
+                              placeholder="1234 ABC"
+                              value={formData.matricula}
                               onChange={handleInputChange}
-                              required 
                             />
                           </div>
                         </div>
 
-                        <div className="space-y-2">
-                          <Label htmlFor="combustible">Combustible *</Label>
-                          <Input 
-                            id="combustible" 
-                            placeholder="Gasolina, Diésel, Híbrido..." 
-                            value={formData.combustible}
-                            onChange={handleInputChange}
-                            required 
-                          />
-                        </div>
-
-                        <Button 
-                          type="button" 
-                          onClick={handleNext} 
-                          className="w-full" 
+                        <Button
+                          type="button"
+                          onClick={handleNext}
+                          className="w-full"
                           size="lg"
                         >
                           Continuar
@@ -234,57 +383,82 @@ const Sell = () => {
                     {/* Step 2: Contact Details */}
                     {currentStep === 2 && (
                       <div className="space-y-6 animate-fade-in">
+                        <div className="space-y-2">
+                          <Label htmlFor="cuandoVender">¿Cuándo planeas venderlo? *</Label>
+                          <Select
+                            value={formData.cuandoVender}
+                            onValueChange={(value) => handleSelectChange("cuandoVender", value)}
+                            required
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Selecciona una opción" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="lo-antes-posible">Lo antes posible</SelectItem>
+                              <SelectItem value="4-semanas">En las próximas 4 semanas</SelectItem>
+                              <SelectItem value="4-meses">En los próximos 4 meses</SelectItem>
+                              <SelectItem value="no-decidido">Aún no lo he decidido</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor="interesIntercambio">¿Estás interesado en comprar un coche a cambio? *</Label>
+                          <Select
+                            value={formData.interesIntercambio}
+                            onValueChange={(value) => handleSelectChange("interesIntercambio", value)}
+                            required
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Selecciona una opción" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="si">Sí</SelectItem>
+                              <SelectItem value="no">No</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="space-y-2">
                             <Label htmlFor="nombre">Nombre *</Label>
-                            <Input 
-                              id="nombre" 
-                              placeholder="Tu nombre" 
+                            <Input
+                              id="nombre"
+                              placeholder="Tu nombre"
                               value={formData.nombre}
                               onChange={handleInputChange}
-                              required 
+                              required
                             />
                           </div>
                           <div className="space-y-2">
                             <Label htmlFor="telefono">Teléfono *</Label>
-                            <Input 
-                              id="telefono" 
-                              type="tel" 
-                              placeholder="690715080" 
+                            <Input
+                              id="telefono"
+                              type="tel"
+                              placeholder="690715080"
                               value={formData.telefono}
                               onChange={handleInputChange}
-                              required 
+                              required
                             />
                           </div>
                         </div>
 
                         <div className="space-y-2">
                           <Label htmlFor="email">Email *</Label>
-                          <Input 
-                            id="email" 
-                            type="email" 
-                            placeholder="tu@email.com" 
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="tu@email.com"
                             value={formData.email}
                             onChange={handleInputChange}
-                            required 
-                          />
-                        </div>
-
-                        <div className="space-y-2">
-                          <Label htmlFor="observaciones">Información adicional</Label>
-                          <Textarea 
-                            id="observaciones" 
-                            placeholder="¿Algo más que debamos saber sobre tu vehículo? (extras, estado, historial...)"
-                            value={formData.observaciones}
-                            onChange={handleInputChange}
-                            rows={4}
+                            required
                           />
                         </div>
 
                         <div className="flex gap-4">
-                          <Button 
-                            type="button" 
-                            onClick={handleBack} 
+                          <Button
+                            type="button"
+                            onClick={handleBack}
                             variant="outline"
                             className="flex-1"
                             size="lg"
@@ -292,12 +466,12 @@ const Sell = () => {
                             <ArrowLeft className="w-4 h-4 mr-2" />
                             Atrás
                           </Button>
-                          <Button 
-                            type="submit" 
-                            className="flex-1" 
+                          <Button
+                            type="submit"
+                            className="flex-1"
                             size="lg"
                           >
-                            Solicitar valoración
+                            Get Tasación
                             <ArrowRight className="w-4 h-4 ml-2" />
                           </Button>
                         </div>
@@ -331,20 +505,27 @@ const Sell = () => {
                           </p>
                         </div>
 
-                        <Button 
-                          type="button" 
+                        <Button
+                          type="button"
                           onClick={() => {
                             setCurrentStep(1);
                             setFormData({
+                              tipoVehiculo: "",
                               marca: "",
                               modelo: "",
                               ano: "",
-                              kilometros: "",
+                              carroceria: "",
+                              color: "",
                               combustible: "",
+                              tipoCambio: "",
+                              version: "",
+                              kilometraje: "",
+                              matricula: "",
+                              cuandoVender: "",
+                              interesIntercambio: "",
                               nombre: "",
                               telefono: "",
-                              email: "",
-                              observaciones: ""
+                              email: ""
                             });
                           }}
                           variant="outline"
