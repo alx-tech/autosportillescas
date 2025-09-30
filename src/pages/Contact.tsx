@@ -107,9 +107,9 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Ven a visitarnos",
-      description: "Encuéntranos en C. del Rio Tormes, 83, 28110 Algete, Madrid",
-      contact: "C. del Rio Tormes, 83, 28110 Algete, Madrid",
-      href: "https://maps.google.com/?q=C.+del+Rio+Tormes,+83,+28110+Algete,+Madrid"
+      description: "Encuéntranos en Calle Rio Tormes, 83, 28110 Algete, Madrid",
+      contact: "Calle Rio Tormes, 83, 28110 Algete, Madrid",
+      href: "https://maps.google.com/?q=Calle+Rio+Tormes,+83,+28110+Algete,+Madrid"
     }
   ];
 
@@ -342,7 +342,7 @@ const Contact = () => {
                       Dirección
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      C. del Rio Tormes, 83<br />
+                      Calle Rio Tormes, 83<br />
                       28110 Algete, Madrid<br />
                       España
                     </p>
