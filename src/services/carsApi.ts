@@ -51,6 +51,23 @@ const API_URL = 'https://multipost-api.alx.test-cluster.alx.tech/api/public/inve
 export const CONTACT_FORM_API_URL = 'https://multipost-api.alx.test-cluster.alx.tech/api/interactions/contact-form';
 export const COMPANY_ID = 'company_05e6a332a26246d086c16810681f6f04';
 
+const TRANSMISSION_TRANSLATIONS: Record<string, string> = {
+  'Manual': 'Manual',
+  'Automatic': 'Automático',
+};
+
+const FUEL_TRANSLATIONS: Record<string, string> = {
+  'Diesel': 'Diésel',
+  'Petrol': 'Gasolina',
+  'Electricity': 'Eléctrico',
+  'Hydrogen': 'Hidrógeno',
+  'Biofuels': 'Biocombustibles',
+  'CNG': 'GNC',
+  'LPG': 'GLP',
+  'Hybrid': 'Híbrido',
+  'Other': 'Otro',
+};
+
 export const fetchCars = async (): Promise<CarsApiResponse> => {
   const response = await fetch(API_URL, {
     method: 'GET',
@@ -80,8 +97,8 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
     year: registrationYear,
     price: apiCar.price_cents ? apiCar.price_cents / 100 : 0, // Convert from cents to euros
     mileage: apiCar.odometer?.value || 0,
-    fuel: apiCar.fuel || 'Unknown',
-    transmission: apiCar.transmission || 'Unknown',
+    fuel: FUEL_TRANSLATIONS[apiCar.fuel] || apiCar.fuel || 'Desconocido',
+    transmission: TRANSMISSION_TRANSLATIONS[apiCar.transmission] || apiCar.transmission || 'Desconocido',
     type: apiCar.body_type || 'Unknown',
     color: apiCar.color,
     doors: apiCar.num_doors,
