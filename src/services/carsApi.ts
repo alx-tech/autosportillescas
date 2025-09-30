@@ -90,6 +90,8 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
   const registrationYear = apiCar.registration_date 
     ? new Date(apiCar.registration_date).getFullYear() 
     : new Date().getFullYear();
+  
+  console.log('API Car environmental_badge:', apiCar.environmental_badge, 'for', apiCar.make, apiCar.model);
     
   return {
     id: apiCar.id,

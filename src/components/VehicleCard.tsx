@@ -39,6 +39,8 @@ const VehicleCard = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([]);
   
+  console.log('VehicleCard - environmentalBadge:', environmentalBadge, 'for', brand, model);
+  
   // Preload all images
   useEffect(() => {
     if (images.length > 1) {
