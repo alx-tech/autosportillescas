@@ -14,15 +14,15 @@ const Sell = () => {
       
       <main className="flex-1">
         {/* Hero Section with Benefits */}
-        <section className="bg-muted py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <section className="py-16 px-4 bg-muted">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* Left side - Title and subtitle */}
-              <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              <div className="space-y-6">
+                <h1 className="text-4xl md:text-5xl font-bold text-foreground">
                   Tasa y vende fácilmente
                 </h1>
-                <p className="text-xl text-muted-foreground">
+                <p className="text-xl text-muted-foreground leading-relaxed">
                   Consigue la mejor oferta del mercado.
                 </p>
               </div>
