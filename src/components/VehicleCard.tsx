@@ -143,14 +143,16 @@ const VehicleCard = ({
         </div>
         
         <div className="mt-auto">
-          <div className="grid grid-cols-3 gap-2 text-sm text-muted-foreground mb-4">
-            <div>📏 {mileage.toLocaleString()} km</div>
-            <div>⛽ {fuel}</div>
-            <div>⚙️ {transmission}</div>
-            <div>📅 {year}</div>
+          <div className="flex items-end justify-between gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground flex-1">
+              <div>📏 {mileage.toLocaleString()} km</div>
+              <div>⛽ {fuel}</div>
+              <div>⚙️ {transmission}</div>
+              <div>📅 {year}</div>
+            </div>
             {badgeImage && (
-              <div className="flex items-center">
-                <img src={badgeImage} alt={`Badge ${environmentalBadge}`} className="w-6 h-6" />
+              <div className="flex-shrink-0">
+                <img src={badgeImage} alt={`Badge ${environmentalBadge}`} className="w-16 h-16" />
               </div>
             )}
           </div>
