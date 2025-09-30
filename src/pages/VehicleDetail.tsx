@@ -16,6 +16,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { toast } from "sonner";
 import { useToast } from "@/hooks/use-toast";
+import dgtB from "@/assets/dgt-b.png";
+import dgtC from "@/assets/dgt-c.png";
+import dgtCero from "@/assets/dgt-cero.png";
+import dgtEco from "@/assets/dgt-eco.png";
 const VehicleDetail = () => {
   const {
     id
@@ -109,6 +113,18 @@ const VehicleDetail = () => {
     }).format(price);
   };
   const monthlyPayment = Math.round(vehicle.price / 84); // 84 months financing
+
+  const getBadgeImage = (badge?: string) => {
+    if (!badge) return null;
+    const badgeLower = badge.toLowerCase();
+    if (badgeLower.includes('b')) return dgtB;
+    if (badgeLower.includes('c') && !badgeLower.includes('eco')) return dgtC;
+    if (badgeLower.includes('0') || badgeLower.includes('cero')) return dgtCero;
+    if (badgeLower.includes('eco')) return dgtEco;
+    return null;
+  };
+
+  const badgeImage = getBadgeImage(vehicle.environmentalBadge);
 
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -406,6 +422,12 @@ const VehicleDetail = () => {
                   {vehicle.enginePower && <div>
                       <div className="text-muted-foreground mb-1">POTENCIA</div>
                       <div className="font-semibold">{vehicle.enginePower} CV</div>
+                    </div>}
+                  {badgeImage && <div>
+                      <div className="text-muted-foreground mb-1">DISTINTIVO AMBIENTAL</div>
+                      <div className="font-semibold">
+                        <img src={badgeImage} alt={`Badge ${vehicle.environmentalBadge}`} className="w-12 h-12" />
+                      </div>
                     </div>}
                 </div>
               </CardContent>
