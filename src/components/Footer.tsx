@@ -168,7 +168,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin size={16} className="text-primary" />
-                <span className="text-nav-muted">Calle Rio Tormes 83, 28110, Algete, Madrid, España</span>
+                <span className="text-nav-muted">Calle Rio Tormes, 83, 28110 Algete, Madrid</span>
               </div>
             </div>
           </div>
@@ -195,7 +195,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Clock size={16} className="text-primary" />
-                <span>Sáb-Dom: Cerrado</span>
+                <span>Sáb: Con cita previa</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Clock size={16} className="text-primary" />
+                <span>Dom: Cerrado</span>
               </div>
             </div>
           </div>
