@@ -109,7 +109,7 @@ const Contact = () => {
       title: "Ven a visitarnos",
       description: "Encuéntranos en Calle Rio Tormes, 83, 28110 Algete, Madrid",
       contact: "Calle Rio Tormes, 83, 28110 Algete, Madrid",
-      href: "https://maps.google.com/?q=Calle+Rio+Tormes,+83,+28110+Algete,+Madrid"
+      href: "https://www.google.com/maps/place//data=!4m2!3m1!1s0xd43ccc764e50acb:0x9f466d7bde5e0e58?sa=X&ved=1t:8290&ictx=111"
     }
   ];
 
@@ -368,7 +368,7 @@ const Contact = () => {
             <div className="w-full">
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.8756789123456!2d-3.5123456789!3d40.6123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDM2JzQ0LjQiTiAzwrAzMCc0NC40Ilc!5e0!3m2!1ses!2ses!4v1234567890123!5m2!1ses!2ses&q=C.+del+Rio+Tormes,+83,+28110+Algete,+Madrid"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12149.207471547842!2d-3.4993847!3d40.5969394!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd43ccc764e50acb%3A0x9f466d7bde5e0e58!2sAcierto%20Cars!5e0!3m2!1sen!2ses!4v1234567890123!5m2!1sen!2ses"
                   width="100%"
                   height="400"
                   style={{ border: 0 }}
