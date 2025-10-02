@@ -17,7 +17,7 @@ const FAQ = () => {
     },
     {
       question: "¿Cuál es nuestro horario?",
-      answer: "Estamos abiertos de Lunes a Viernes de 9:00h - 19:00h todos los días del año."
+      answer: "Estamos abiertos todo el año de Lunes a Viernes de 10:00 a 14:00 y de 16:00 a 19:00. Los Sábados atendemos con cita previa y los Domingos permanecemos cerrados."
     },
     {
       question: "¿Qué control de calidad pasan nuestros vehículos?",
