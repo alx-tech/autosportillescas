@@ -208,7 +208,7 @@ const Footer = () => {
         <div className="border-t border-border/10 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-nav-muted">
-              © 2025 Acierto Cars. Powered by INFINIT
+              © 2025 Acierto Cars. Powered by <a href="https://www.infinit.com/" target="_blank" rel="noopener noreferrer" className="underline">INFINIT</a>
             </p>
             
             {/* Legal Links */}
