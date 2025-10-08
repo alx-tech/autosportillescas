@@ -52,9 +52,9 @@ export interface Vehicle {
   environmentalBadge?: string;
 }
 
-const API_URL = 'https://multipost-api.alx.test-cluster.alx.tech/api/public/inventory/profiles/83ff4f5c-8237-4240-ada5-473d37443c6d';
-export const CONTACT_FORM_API_URL = 'https://multipost-api.alx.test-cluster.alx.tech/api/interactions/contact-form';
-export const COMPANY_ID = 'company_05e6a332a26246d086c16810681f6f04';
+const API_URL = 'https://multipost-api.app.infinit.cc/api/public/inventory/profiles/442804f3-ac62-4488-b940-1c11a0f641c2';
+export const CONTACT_FORM_API_URL = 'https://multipost-api.app.infinit.cc/api/interactions/contact-form';
+export const COMPANY_ID = 'company_bcce0ba100f74b4ab89eeb41dd71987c';
 
 const TRANSMISSION_TRANSLATIONS: Record<string, string> = {
   'Manual': 'Manual',
