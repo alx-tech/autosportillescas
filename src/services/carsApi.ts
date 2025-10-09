@@ -92,6 +92,25 @@ const COLOR_TRANSLATIONS: Record<string, string> = {
   'Other': 'Otro',
 };
 
+const BODY_TYPE_TRANSLATIONS: Record<string, string> = {
+  'Sedan': 'Sedán',
+  'Hatchback': 'Compacto',
+  'SUV': 'SUV',
+  'Coupe': 'Coupé',
+  'Convertible': 'Descapotable',
+  'Wagon': 'Familiar',
+  'Van': 'Furgoneta',
+  'Truck': 'Camioneta',
+  'Minivan': 'Monovolumen',
+  'Pickup': 'Pick-up',
+  'Crossover': 'Crossover',
+  'Sports Car': 'Deportivo',
+  'Luxury': 'Lujo',
+  'Compact': 'Compacto',
+  'Subcompact': 'Subcompacto',
+  'Other': 'Otro',
+};
+
 export const fetchCars = async (): Promise<CarsApiResponse> => {
   const response = await fetch(API_URL, {
     method: 'GET',
@@ -127,7 +146,7 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
     mileage: apiCar.odometer?.value || 0,
     fuel: FUEL_TRANSLATIONS[apiCar.fuel] || apiCar.fuel || 'Desconocido',
     transmission: TRANSMISSION_TRANSLATIONS[apiCar.transmission] || apiCar.transmission || 'Desconocido',
-    type: apiCar.body_type || 'Unknown',
+    type: BODY_TYPE_TRANSLATIONS[apiCar.body_type] || apiCar.body_type || 'Desconocido',
     color: apiCar.color ? (COLOR_TRANSLATIONS[apiCar.color] || apiCar.color) : undefined,
     doors: apiCar.num_doors,
     seats: apiCar.num_seats,

@@ -156,13 +156,9 @@ const VehicleCard = ({
               </div>
             )}
           </div>
-          <Button 
-            className="w-full" 
+          <Button
+            className="w-full"
             variant="secondary"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
           >
             <Eye size={16} className="mr-2" />
             Ver detalles
