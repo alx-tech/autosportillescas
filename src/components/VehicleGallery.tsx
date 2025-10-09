@@ -23,6 +23,11 @@ const VehicleGallery = () => {
     ? carsResponse.map(transformApiCarToVehicle)
     : [];
 
+  // Sort by most recent (createdAt) and take first 3
+  const recentVehicles = [...vehicles]
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .slice(0, 3);
+
   if (isError) {
     return (
       <section className="py-16 bg-background">
@@ -68,7 +73,7 @@ const VehicleGallery = () => {
               </div>
             ))
           ) : (
-            vehicles.slice(0, 3).map((vehicle) => (
+            recentVehicles.map((vehicle) => (
               <VehicleCard key={vehicle.id} {...vehicle} />
             ))
           )}

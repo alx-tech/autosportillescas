@@ -48,6 +48,7 @@ export interface Vehicle {
   seats?: number;
   engineSize?: number | null;
   enginePower?: number;
+  createdAt: string;
   updatedAt: string;
   environmentalBadge?: string;
 }
@@ -152,6 +153,7 @@ export const transformApiCarToVehicle = (apiCar: CarApiResponse): Vehicle => {
     seats: apiCar.num_seats,
     engineSize: apiCar.engine_size,
     enginePower: apiCar.engine_power,
+    createdAt: apiCar.created_at,
     updatedAt: apiCar.updated_at,
     environmentalBadge: badgeValue
   };

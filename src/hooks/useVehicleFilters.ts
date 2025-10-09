@@ -131,9 +131,9 @@ export const useVehicleFilters = (vehicles: Vehicle[]) => {
       filtered = [...filtered].sort((a, b) => {
         switch (filters.sortBy) {
           case 'updated_desc':
-            return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
           case 'updated_asc':
-            return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
+            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
           case 'price_asc':
             return a.price - b.price;
           case 'price_desc':
