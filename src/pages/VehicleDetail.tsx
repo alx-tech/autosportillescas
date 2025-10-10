@@ -154,7 +154,8 @@ const VehicleDetail = () => {
         lead_lastname: reservationFormData.apellido,
         lead_phone_number: reservationFormData.telefono,
         lead_email: reservationFormData.email,
-        message: `RESERVA!\n${reservationFormData.mensaje}`
+        message: `RESERVA!\n${reservationFormData.mensaje}`,
+        interest_car_id: vehicle.id
       };
 
       const response = await fetch(CONTACT_FORM_API_URL, {
@@ -215,7 +216,8 @@ const VehicleDetail = () => {
         lead_lastname: appointmentFormData.apellido,
         lead_phone_number: appointmentFormData.telefono,
         lead_email: appointmentFormData.email,
-        message: `CITA - ${formattedDate} ${appointmentFormData.hora}\n${appointmentFormData.mensaje}`
+        message: `CITA - ${formattedDate} ${appointmentFormData.hora}\n${appointmentFormData.mensaje}`,
+        interest_car_id: vehicle.id
       };
 
       const response = await fetch(CONTACT_FORM_API_URL, {
@@ -266,7 +268,8 @@ const VehicleDetail = () => {
         lead_lastname: contactFormData.apellido,
         lead_phone_number: contactFormData.telefono,
         lead_email: contactFormData.email,
-        message: contactFormData.mensaje
+        message: contactFormData.mensaje,
+        interest_car_id: vehicle.id
       };
 
       const response = await fetch(CONTACT_FORM_API_URL, {
