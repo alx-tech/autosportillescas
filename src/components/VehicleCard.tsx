@@ -20,20 +20,22 @@ interface VehicleCardProps {
   fuel: string;
   transmission: string;
   type: string;
+  status: string;
   environmentalBadge?: string;
 }
 
-const VehicleCard = ({ 
+const VehicleCard = ({
   id,
-  images = [], 
-  brand, 
-  model, 
-  year, 
-  price, 
-  mileage, 
-  fuel, 
-  transmission, 
+  images = [],
+  brand,
+  model,
+  year,
+  price,
+  mileage,
+  fuel,
+  transmission,
   type,
+  status,
   environmentalBadge
 }: VehicleCardProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -90,12 +92,19 @@ const VehicleCard = ({
     <Link to={`/stock/${id}`} className="block h-full">
       <Card className="group overflow-hidden hover:shadow-luxury transition-all duration-300 hover:scale-[1.02] flex flex-col h-full cursor-pointer">
         <div className="relative overflow-hidden">
-        <img 
-          src={currentImage} 
+        <img
+          src={currentImage}
           alt={`${brand} ${model}`}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
           style={{ imageRendering: 'auto' }}
         />
+        {status === 'Reserved' && (
+          <div className="absolute top-0 right-0 overflow-hidden w-32 h-32 pointer-events-none">
+            <div className="absolute top-6 -right-8 bg-primary text-primary-foreground text-xs font-bold py-1 px-10 transform rotate-45 shadow-md">
+              RESERVADO
+            </div>
+          </div>
+        )}
         {images.length > 1 && (
           <div className="absolute inset-x-2 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity">
             <Button 

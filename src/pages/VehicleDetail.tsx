@@ -340,7 +340,15 @@ const VehicleDetail = () => {
           <div className="lg:col-span-2 space-y-4">
             <div className="relative aspect-video rounded-lg overflow-hidden bg-muted group">
               <img src={vehicle.images[currentImageIndex]} alt={`${vehicle.brand} ${vehicle.model}`} className="w-full h-full object-cover" />
-              
+
+              {vehicle.status === 'Reserved' && (
+                <div className="absolute top-0 right-0 overflow-hidden w-40 h-40 pointer-events-none">
+                  <div className="absolute top-8 -right-10 bg-primary text-primary-foreground text-sm font-bold py-2 px-12 transform rotate-45 shadow-lg">
+                    RESERVADO
+                  </div>
+                </div>
+              )}
+
               {vehicle.images.length > 1 && <>
                   <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity">
                     <ChevronLeft className="w-5 h-5" />
@@ -448,22 +456,23 @@ const VehicleDetail = () => {
             </div>
 
             {/* Reserve Button */}
-            <Card className="bg-primary text-primary-foreground">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
-                  <span className="font-semibold">Reservar vehículo</span>
-                </div>
-                <p className="text-sm mb-4 opacity-90">
-                  Reserva el vehículo para asegurarte de que no te lo quiten, y
-                  nos pondremos en contacto contigo para ayudarte con todo el proceso de compra.
-                </p>
-                <Dialog open={isReservationModalOpen} onOpenChange={setIsReservationModalOpen}>
-                  <DialogTrigger asChild>
-                    <Button variant="secondary" className="w-full">
-                      Reservar ahora
-                    </Button>
-                  </DialogTrigger>
+            {vehicle.status !== 'Reserved' && (
+              <Card className="bg-primary text-primary-foreground">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
+                    <span className="font-semibold">Reservar vehículo</span>
+                  </div>
+                  <p className="text-sm mb-4 opacity-90">
+                    Reserva el vehículo para asegurarte de que no te lo quiten, y
+                    nos pondremos en contacto contigo para ayudarte con todo el proceso de compra.
+                  </p>
+                  <Dialog open={isReservationModalOpen} onOpenChange={setIsReservationModalOpen}>
+                    <DialogTrigger asChild>
+                      <Button variant="secondary" className="w-full">
+                        Reservar ahora
+                      </Button>
+                    </DialogTrigger>
                   <DialogContent className="sm:max-w-md bg-background">
                     <DialogHeader>
                       <DialogTitle className="text-lg font-semibold text-foreground">
@@ -564,6 +573,7 @@ const VehicleDetail = () => {
                 </Dialog>
               </CardContent>
             </Card>
+            )}
 
             {/* Action Buttons */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
