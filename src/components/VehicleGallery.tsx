@@ -23,9 +23,9 @@ const VehicleGallery = () => {
     ? carsResponse.map(transformApiCarToVehicle)
     : [];
 
-  // Sort by most recent (createdAt) and take first 3
+  // Sort by most recent (updatedAt) and take first 3
   const recentVehicles = [...vehicles]
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
     .slice(0, 3);
 
   if (isError) {
