@@ -17,6 +17,7 @@ const BODY_CODE_MAPPINGS: Record<string, string> = {
   'CUATRO_POR_CUATRO_SUV': 'SUV',
   'FAMILIAR': 'Monovolumen',
   'COUPE': 'Coupé',
+  'MONOVOLUMEN': 'Monovolumen',
 };
 
 const Stock = () => {
