@@ -12,9 +12,17 @@ import Footer from "@/components/Footer";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
+// Body code mappings
+const BODY_CODE_MAPPINGS: Record<string, string> = {
+  'CUATRO_POR_CUATRO_SUV': 'SUV',
+  'FAMILIAR': 'Monovolumen',
+  'COUPE': 'Coupé',
+};
+
 const Stock = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialSearch = searchParams.get('search') || '';
+  const bodyCodesParam = searchParams.get('bodyCodes') || '';
 
   const { 
     data: carsResponse, 
@@ -50,6 +58,22 @@ const Stock = () => {
     next.delete('search');
     setSearchParams(next, { replace: true });
   }, [initialSearch, updateFilter, setSearchParams, searchParams]);
+
+  // Set initial body type from bodyCodes URL parameter, then remove it from the URL
+  useEffect(() => {
+    if (!bodyCodesParam) return;
+
+    // Map the body code to the actual body type value
+    const mappedBodyType = BODY_CODE_MAPPINGS[bodyCodesParam];
+
+    if (mappedBodyType) {
+      updateFilter('selectedBodyType', mappedBodyType);
+    }
+
+    const next = new URLSearchParams(searchParams);
+    next.delete('bodyCodes');
+    setSearchParams(next, { replace: true });
+  }, [bodyCodesParam, updateFilter, setSearchParams, searchParams]);
 
   const sortOptions = [
     { value: 'updated_desc', label: 'Más recientes' },
