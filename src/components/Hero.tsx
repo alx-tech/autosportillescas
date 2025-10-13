@@ -12,9 +12,9 @@ const Hero = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      navigate(`/stock?search=${encodeURIComponent(searchTerm.trim())}`);
+      navigate(`/buy?search=${encodeURIComponent(searchTerm.trim())}`);
     } else {
-      navigate('/stock');
+      navigate('/buy');
     }
   };
 

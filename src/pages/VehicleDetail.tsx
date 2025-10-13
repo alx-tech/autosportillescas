@@ -78,7 +78,7 @@ const VehicleDetail = () => {
   const vehicle: Vehicle | undefined = carsData ? transformApiCarToVehicle(carsData.find(car => car.id === id)!) : undefined;
   useEffect(() => {
     if (!isLoading && !vehicle) {
-      navigate('/stock');
+      navigate('/buy');
     }
   }, [vehicle, isLoading, navigate]);
   if (isLoading || !vehicle) {
@@ -309,9 +309,9 @@ const VehicleDetail = () => {
       <main className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <nav className="mb-6">
-          <Button variant="ghost" onClick={() => navigate('/stock')} className="p-0 h-auto text-muted-foreground hover:text-muted-foreground hover:bg-transparent">
+          <Button variant="ghost" onClick={() => navigate('/buy')} className="p-0 h-auto text-muted-foreground hover:text-muted-foreground hover:bg-transparent">
             <ChevronLeft className="w-4 h-4 mr-1" />
-            Volver al stock
+            Volver a Comprar
           </Button>
         </nav>
 

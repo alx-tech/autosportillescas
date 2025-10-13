@@ -89,7 +89,7 @@ const VehicleCard = ({
   const badgeImage = getBadgeImage(environmentalBadge);
   
   return (
-    <Link to={`/stock/${id}`} className="block h-full">
+    <Link to={`/buy/${id}`} className="block h-full">
       <Card className="group overflow-hidden hover:shadow-luxury transition-all duration-300 hover:scale-[1.02] flex flex-col h-full cursor-pointer">
         <div className="relative overflow-hidden">
         <img
