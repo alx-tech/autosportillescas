@@ -4,5 +4,15 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "images": {
+    "domains": ["alxproduction.blob.core.windows.net"],
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "alxproduction.blob.core.windows.net",
+        "pathname": "/multipost-public/**"
+      }
+    ]
+  }
 }

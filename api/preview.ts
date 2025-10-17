@@ -115,7 +115,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const pageDescription = `${descParts.join(' ')} - ${mileageText}, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Acierto Cars Madrid.`;
 
     const pageUrl = `https://www.aciertocars.com/buy/${id}`;
-    const carImage = vehicle.images && vehicle.images.length > 0 ? vehicle.images[0] : 'https://www.aciertocars.com/placeholder.svg';
+    let carImage = vehicle.images && vehicle.images.length > 0 ? vehicle.images[0] : 'https://www.aciertocars.com/placeholder.svg';
+
+    // Use Vercel Image Optimization to resize images for WhatsApp compatibility (max 600KB recommended)
+    // Resize to 1600px width to ensure file size stays under 600KB
+    if (carImage && carImage.includes('alxproduction.blob.core.windows.net')) {
+      const encodedUrl = encodeURIComponent(carImage);
+      carImage = `https://www.aciertocars.com/_vercel/image?url=${encodedUrl}&w=1600&q=80`;
+    }
 
     const html = `<!doctype html>
 <html lang="es">
