@@ -28,9 +28,9 @@ async function fetchVehicleData(id: string): Promise<Vehicle | null> {
     }
 
     const cars = await response.json();
-    const vehicle = cars.find((car: any) => car.id === id);
+    const apiCar = cars.find((car: any) => car.id === id);
 
-    if (!vehicle) {
+    if (!apiCar) {
       return null;
     }
 
@@ -39,6 +39,12 @@ async function fetchVehicleData(id: string): Promise<Vehicle | null> {
       'Petrol': 'Gasolina',
       'Hybrid': 'Híbrido',
       'Electric': 'Eléctrico',
+      'Electricity': 'Eléctrico',
+      'Hydrogen': 'Hidrógeno',
+      'Biofuels': 'Biocombustibles',
+      'CNG': 'GNC',
+      'LPG': 'GLP',
+      'Other': 'Otro',
     };
 
     const transmissionTranslations: Record<string, string> = {
@@ -46,17 +52,25 @@ async function fetchVehicleData(id: string): Promise<Vehicle | null> {
       'Manual': 'Manual',
     };
 
-    return {
-      id: vehicle.id,
-      brand: vehicle.brand,
-      model: vehicle.model,
-      year: vehicle.year,
-      price: vehicle.price,
-      mileage: vehicle.mileage,
-      fuel: fuelTranslations[vehicle.fuel] || vehicle.fuel,
-      transmission: transmissionTranslations[vehicle.transmission] || vehicle.transmission,
-      images: vehicle.images || [],
+    // Parse registration year from registration_date
+    const registrationYear = apiCar.registration_date
+      ? new Date(apiCar.registration_date).getFullYear()
+      : new Date().getFullYear();
+
+    const vehicle = {
+      id: apiCar.id,
+      brand: apiCar.make || 'Unknown',
+      model: apiCar.model || 'Unknown',
+      year: registrationYear,
+      price: apiCar.price_cents ? apiCar.price_cents / 100 : 0,
+      mileage: apiCar.odometer?.value || 0,
+      fuel: fuelTranslations[apiCar.fuel] || apiCar.fuel || 'Desconocido',
+      transmission: transmissionTranslations[apiCar.transmission] || apiCar.transmission || 'Desconocido',
+      images: apiCar.photo_urls?.length > 0 ? apiCar.photo_urls : [],
     };
+
+    console.log('[PREVIEW] Transformed vehicle:', JSON.stringify(vehicle, null, 2));
+    return vehicle;
   } catch (error) {
     console.error('[PREVIEW] Error fetching vehicle data:', error);
     return null;
@@ -90,11 +104,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       minimumFractionDigits: 0,
     }).format(vehicle.price || 0);
 
-    const mileageText = vehicle.mileage ? `${vehicle.mileage.toLocaleString()} km` : 'Consultar';
-    const pageTitle = `${vehicle.brand} ${vehicle.model} ${vehicle.year} - ${formattedPrice} | Acierto Cars`;
-    const pageDescription = `${vehicle.brand} ${vehicle.model} ${vehicle.year} - ${mileageText}, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Acierto Cars Madrid.`;
+    const mileageText = vehicle.mileage ? `${vehicle.mileage.toLocaleString('es-ES')} km` : 'Consultar';
+
+    // Build title parts, filtering out undefined/empty values
+    const titleParts = [vehicle.brand, vehicle.model, vehicle.year].filter(Boolean);
+    const pageTitle = `${titleParts.join(' ')} - ${formattedPrice} | Acierto Cars`;
+
+    // Build description parts
+    const descParts = [vehicle.brand, vehicle.model, vehicle.year].filter(Boolean);
+    const pageDescription = `${descParts.join(' ')} - ${mileageText}, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Acierto Cars Madrid.`;
+
     const pageUrl = `https://www.aciertocars.com/buy/${id}`;
-    const carImage = vehicle.images && vehicle.images.length > 0 ? vehicle.images[0] : 'https://www.aciertocars.com/assets/hero-banner.png';
+    const carImage = vehicle.images && vehicle.images.length > 0 ? vehicle.images[0] : 'https://www.aciertocars.com/placeholder.svg';
 
     const html = `<!doctype html>
 <html lang="es">
@@ -153,7 +174,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   </head>
   <body>
     <div class="card">
-      <h1>${vehicle.brand} ${vehicle.model} ${vehicle.year}</h1>
+      <h1>${titleParts.join(' ')}</h1>
       <div class="price">${formattedPrice}</div>
       <img src="${carImage}" alt="${vehicle.brand} ${vehicle.model}" />
       <div class="specs">
