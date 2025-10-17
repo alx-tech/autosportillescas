@@ -40,9 +40,9 @@ async function fetchVehicleData(id: string): Promise<Vehicle | null> {
     }
 
     const cars = await response.json();
-    const vehicle = cars.find((car: any) => car.id === id);
+    const apiCar = cars.find((car: any) => car.id === id);
 
-    if (!vehicle) {
+    if (!apiCar) {
       return null;
     }
 
@@ -51,6 +51,12 @@ async function fetchVehicleData(id: string): Promise<Vehicle | null> {
       'Petrol': 'Gasolina',
       'Hybrid': 'Híbrido',
       'Electric': 'Eléctrico',
+      'Electricity': 'Eléctrico',
+      'Hydrogen': 'Hidrógeno',
+      'Biofuels': 'Biocombustibles',
+      'CNG': 'GNC',
+      'LPG': 'GLP',
+      'Other': 'Otro',
     };
 
     const transmissionTranslations: Record<string, string> = {
@@ -58,17 +64,24 @@ async function fetchVehicleData(id: string): Promise<Vehicle | null> {
       'Manual': 'Manual',
     };
 
-    return {
-      id: vehicle.id,
-      brand: vehicle.brand,
-      model: vehicle.model,
-      year: vehicle.year,
-      price: vehicle.price,
-      mileage: vehicle.mileage,
-      fuel: fuelTranslations[vehicle.fuel] || vehicle.fuel,
-      transmission: transmissionTranslations[vehicle.transmission] || vehicle.transmission,
-      images: vehicle.images || [],
+    const registrationYear = apiCar.registration_date
+      ? new Date(apiCar.registration_date).getFullYear()
+      : new Date().getFullYear();
+
+    const vehicle = {
+      id: apiCar.id,
+      brand: apiCar.make || 'Unknown',
+      model: apiCar.model || 'Unknown',
+      year: registrationYear,
+      price: apiCar.price_cents ? apiCar.price_cents / 100 : 0,
+      mileage: apiCar.odometer?.value || 0,
+      fuel: fuelTranslations[apiCar.fuel] || apiCar.fuel || 'Desconocido',
+      transmission: transmissionTranslations[apiCar.transmission] || apiCar.transmission || 'Desconocido',
+      images: apiCar.photo_urls?.length > 0 ? apiCar.photo_urls : [],
     };
+
+    console.log('[SSR-OG] Transformed vehicle:', JSON.stringify(vehicle, null, 2));
+    return vehicle;
   } catch (error) {
     console.error('[SSR-OG] Error fetching vehicle data:', error);
     return null;
@@ -77,7 +90,7 @@ async function fetchVehicleData(id: string): Promise<Vehicle | null> {
 
 function getMetadataForRoute(path: string, vehicle?: Vehicle) {
   // Check if it's a vehicle detail route
-  const buyMatch = path.match(/^\/buy\/([^\/]+)$/);
+  const buyMatch = path.match(/^\/buy\/([^\/]+)$/) || path.match(/^\/preview\/([^\/]+)$/);
 
   if (buyMatch && vehicle) {
     const vehicleId = buyMatch[1];
@@ -85,11 +98,20 @@ function getMetadataForRoute(path: string, vehicle?: Vehicle) {
       style: 'currency',
       currency: 'EUR',
       minimumFractionDigits: 0,
-    }).format(vehicle.price);
+    }).format(vehicle.price || 0);
 
-    const title = `${vehicle.brand} ${vehicle.model} ${vehicle.year} - ${formattedPrice} | Acierto Cars`;
-    const description = `${vehicle.brand} ${vehicle.model} ${vehicle.year} - ${vehicle.mileage.toLocaleString()} km, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Acierto Cars Madrid.`;
-    const image = vehicle.images[0] || DEFAULT_METADATA.ogImage;
+    const mileageText = vehicle.mileage ? `${vehicle.mileage.toLocaleString('es-ES')} km` : 'Consultar';
+    const titleParts = [vehicle.brand, vehicle.model, vehicle.year].filter(Boolean);
+    const title = `${titleParts.join(' ')} - ${formattedPrice} | Acierto Cars`;
+    const description = `${titleParts.join(' ')} - ${mileageText}, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Acierto Cars Madrid.`;
+
+    // Optimize image for WhatsApp (resize if needed to stay under 600KB)
+    let image = vehicle.images && vehicle.images.length > 0 ? vehicle.images[0] : DEFAULT_METADATA.ogImage;
+    if (image && image.includes('alxproduction.blob.core.windows.net')) {
+      const encodedUrl = encodeURIComponent(image);
+      image = `https://www.aciertocars.com/_vercel/image?url=${encodedUrl}&w=1600&q=80`;
+    }
+
     const url = `https://www.aciertocars.com/buy/${vehicleId}`;
 
     return {
@@ -134,7 +156,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Extract vehicle ID if it's a vehicle route
-    const buyMatch = path.match(/^\/buy\/([^\/]+)$/);
+    const buyMatch = path.match(/^\/buy\/([^\/]+)$/) || path.match(/^\/preview\/([^\/]+)$/);
     let vehicle: Vehicle | undefined;
 
     if (buyMatch) {
