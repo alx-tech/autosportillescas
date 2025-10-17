@@ -1,24 +1,8 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/index.html",
-      "continue": true
-    },
-    {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|webp|mp4|webm|woff|woff2|ttf|otf|eot|ico|xml|txt|pdf|zip|rar|json|webmanifest|html))$",
-      "continue": true
-    },
-    {
-      "src": "/[^.]+",
-      "dest": "/api/ssrOG"
-    },
-    {
-      "src": "/",
-      "dest": "/api/ssrOG"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
