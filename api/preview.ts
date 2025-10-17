@@ -77,9 +77,37 @@ async function fetchVehicleData(id: string): Promise<Vehicle | null> {
   }
 }
 
+// User agents that should get the preview (social media crawlers)
+const BOT_USER_AGENTS = [
+  'facebookexternalhit',
+  'WhatsApp',
+  'Twitterbot',
+  'LinkedInBot',
+  'Slackbot',
+  'TelegramBot',
+  'Discordbot',
+  'SkypeUriPreview',
+];
+
+function isCrawler(userAgent: string): boolean {
+  const ua = userAgent.toLowerCase();
+  return BOT_USER_AGENTS.some(bot => ua.includes(bot.toLowerCase()));
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const { id } = req.query;
+    const userAgent = req.headers['user-agent'] || '';
+    const path = req.url || '';
+
+    console.log(`[PREVIEW] Request from: ${userAgent}`);
+    console.log(`[PREVIEW] Path: ${path}`);
+
+    // If this is a /buy/:id request from a regular user (not crawler), redirect to SPA
+    if (path.includes('/buy/') && !isCrawler(userAgent)) {
+      console.log('[PREVIEW] Regular user on /buy route, redirecting to SPA');
+      return res.redirect(307, '/index.html');
+    }
 
     if (!id || typeof id !== 'string') {
       console.log('[PREVIEW] No ID provided');

@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/buy/:id",
+      "destination": "/api/preview?id=:id"
+    },
+    {
       "source": "/preview/:id",
       "destination": "/api/preview?id=:id"
     },
