@@ -134,6 +134,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     <meta property="og:description" content="${pageDescription}" />
     <meta property="og:image" content="${carImage}" />
     <meta property="og:image:secure_url" content="${carImage}" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="${titleParts.join(' ')}" />
     <meta property="og:site_name" content="Acierto Cars" />
 
     <!-- Twitter -->
