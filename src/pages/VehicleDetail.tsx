@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Helmet } from "react-helmet-async";
 import { ChevronLeft, ChevronRight, Share2, MapPin, Phone, Calendar, Mail, User, X } from "lucide-react";
 import { fetchCars, transformApiCarToVehicle, type Vehicle, CONTACT_FORM_API_URL, PROFILE_ID } from "@/services/carsApi";
 import { Button } from "@/components/ui/button";
@@ -310,36 +309,7 @@ const VehicleDetail = () => {
       setIsSubmittingContact(false);
     }
   };
-  const pageTitle = `${vehicle.brand} ${vehicle.model} ${vehicle.year} - ${formatPrice(vehicle.price)} | Acierto Cars`;
-  const pageDescription = `${vehicle.brand} ${vehicle.model} ${vehicle.year} - ${vehicle.mileage.toLocaleString()} km, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Acierto Cars Madrid.`;
-  const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const carImage = vehicle.images[0] || '';
-
   return <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={pageUrl} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta property="og:image" content={carImage} />
-
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={pageUrl} />
-        <meta property="twitter:title" content={pageTitle} />
-        <meta property="twitter:description" content={pageDescription} />
-        <meta property="twitter:image" content={carImage} />
-
-        {/* WhatsApp specific */}
-        <meta property="og:site_name" content="Acierto Cars" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-      </Helmet>
-
       <Header />
 
       <main className="container mx-auto px-4 py-8">
