@@ -111,16 +111,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const path = req.url || '/';
     console.log(`[SSR-OG] Processing request for: ${path}`);
 
-    // Try to read the built index.html
+    // Fetch the index.html from the deployed site
+    // This is more reliable than trying to read from the filesystem in serverless
     let htmlContent: string;
     try {
-      // In production, the file is in the output directory
-      htmlContent = readFileSync(join(process.cwd(), 'dist', 'index.html'), 'utf-8');
-    } catch (error) {
-      // Fallback: try to fetch from the site itself
-      console.log('[SSR-OG] Could not read dist/index.html, fetching from origin');
-      const response = await fetch(`https://www.aciertocars.com/index.html`);
+      console.log('[SSR-OG] Fetching index.html from deployed site');
+      const response = await fetch(`https://${req.headers.host || 'www.aciertocars.com'}/index.html`, {
+        headers: {
+          'User-Agent': 'SSR-Function-Internal'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch index.html: ${response.status}`);
+      }
+
       htmlContent = await response.text();
+      console.log('[SSR-OG] Successfully fetched index.html');
+    } catch (error) {
+      console.error('[SSR-OG] Error fetching index.html:', error);
+      throw error;
     }
 
     // Extract vehicle ID if it's a vehicle route
