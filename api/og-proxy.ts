@@ -139,38 +139,47 @@ function generateHTMLWithMetaTags(vehicle: Vehicle, vehicleId: string): string {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const { id } = req.query;
-
-  if (!id || typeof id !== 'string') {
-    return res.status(400).json({ error: 'Vehicle ID is required' });
-  }
-
-  const userAgent = req.headers['user-agent'] || '';
-  const isBot = isCrawler(userAgent);
-
-  console.log(`Request for vehicle ${id}, User-Agent: ${userAgent}, isBot: ${isBot}`);
-
-  // For regular browsers, just redirect to the SPA
-  if (!isBot) {
-    return res.redirect(307, `/buy/${id}`);
-  }
-
-  // For bots, fetch vehicle data and return HTML with meta tags
   try {
+    const { id } = req.query;
+
+    if (!id || typeof id !== 'string') {
+      return res.status(400).json({ error: 'Vehicle ID is required' });
+    }
+
+    const userAgent = req.headers['user-agent'] || '';
+    const isBot = isCrawler(userAgent);
+
+    console.log(`[OG-PROXY] Request for vehicle ${id}, User-Agent: ${userAgent}, isBot: ${isBot}`);
+
+    // For regular browsers, just redirect to the SPA
+    if (!isBot) {
+      console.log(`[OG-PROXY] Redirecting non-bot to /buy/${id}`);
+      return res.redirect(307, `/buy/${id}`);
+    }
+
+    // For bots, fetch vehicle data and return HTML with meta tags
+    console.log(`[OG-PROXY] Fetching vehicle data for bot...`);
     const vehicle = await fetchVehicleData(id);
 
     if (!vehicle) {
-      console.log(`Vehicle ${id} not found`);
+      console.log(`[OG-PROXY] Vehicle ${id} not found, redirecting to /buy`);
       return res.redirect(307, '/buy');
     }
 
+    console.log(`[OG-PROXY] Generating HTML for ${vehicle.brand} ${vehicle.model}`);
     const html = generateHTMLWithMetaTags(vehicle, id);
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
+
+    console.log(`[OG-PROXY] Sending HTML response`);
     return res.status(200).send(html);
   } catch (error) {
-    console.error('Error in OG proxy handler:', error);
-    return res.redirect(307, `/buy/${id}`);
+    console.error('[OG-PROXY] Error in handler:', error);
+    const { id } = req.query;
+    if (typeof id === 'string') {
+      return res.redirect(307, `/buy/${id}`);
+    }
+    return res.redirect(307, '/buy');
   }
 }
