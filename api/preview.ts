@@ -115,14 +115,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const pageDescription = `${descParts.join(' ')} - ${mileageText}, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Acierto Cars Madrid.`;
 
     const pageUrl = `https://www.aciertocars.com/buy/${id}`;
-    // Use car image for the page preview, but Acierto Cars logo for OG tags
     const carImage = vehicle.images && vehicle.images.length > 0 ? vehicle.images[0] : 'https://www.aciertocars.com/placeholder.svg';
-    const ogImage = 'https://www.aciertocars.com/og-image.png'; // Acierto Cars logo for social sharing
 
     const html = `<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="https://www.aciertocars.com/favicon.ico" />
+    <link rel="icon" type="image/png" href="https://www.aciertocars.com/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${pageTitle}</title>
     <meta name="description" content="${pageDescription}" />
