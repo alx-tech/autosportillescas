@@ -115,7 +115,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const pageDescription = `${descParts.join(' ')} - ${mileageText}, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Acierto Cars Madrid.`;
 
     const pageUrl = `https://www.aciertocars.com/buy/${id}`;
+    // Use car image for the page preview, but Acierto Cars logo for OG tags
     const carImage = vehicle.images && vehicle.images.length > 0 ? vehicle.images[0] : 'https://www.aciertocars.com/placeholder.svg';
+    const ogImage = 'https://www.aciertocars.com/og-image.png'; // Acierto Cars logo for social sharing
 
     const html = `<!doctype html>
 <html lang="es">
