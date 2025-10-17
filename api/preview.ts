@@ -68,17 +68,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const { id } = req.query;
 
     if (!id || typeof id !== 'string') {
-      return res.status(400).json({ error: 'Vehicle ID is required' });
+      console.log('[PREVIEW] No ID provided');
+      return res.status(400).send('<h1>Error</h1><p>Vehicle ID is required. Format: /api/preview?id=VEHICLE_ID</p>');
     }
 
     console.log(`[PREVIEW] Request for vehicle ${id}`);
+    console.log(`[PREVIEW] Starting to fetch vehicle data...`);
 
     const vehicle = await fetchVehicleData(id);
 
     if (!vehicle) {
-      console.log(`[PREVIEW] Vehicle ${id} not found`);
+      console.log(`[PREVIEW] Vehicle ${id} not found in API response`);
       return res.status(404).send('<h1>Vehicle not found</h1><p>Redirecting...</p><script>setTimeout(() => window.location.href = "/buy", 2000)</script>');
     }
+
+    console.log(`[PREVIEW] Found vehicle: ${vehicle.brand} ${vehicle.model}`);
 
     const formattedPrice = new Intl.NumberFormat('es-ES', {
       style: 'currency',
@@ -168,6 +172,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).send(html);
   } catch (error) {
     console.error('[PREVIEW] Error in handler:', error);
-    return res.status(500).send('<h1>Error loading preview</h1><p>Please try again later.</p>');
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const errorStack = error instanceof Error ? error.stack : '';
+    console.error('[PREVIEW] Error details:', errorMessage, errorStack);
+    return res.status(500).send(`<h1>Error loading preview</h1><p>${errorMessage}</p><pre style="background:#f5f5f5;padding:10px;overflow:auto;">${errorStack}</pre>`);
   }
 }
