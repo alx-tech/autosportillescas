@@ -1,10 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/buy/:id",
-      "destination": "/api/og-proxy?id=:id"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
