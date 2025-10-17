@@ -142,12 +142,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     <meta name="twitter:description" content="${pageDescription}" />
     <meta name="twitter:image" content="${carImage}" />
 
-    <!-- Auto-redirect to actual vehicle page after 0 seconds for browsers -->
-    <meta http-equiv="refresh" content="0;url=/buy/${id}" />
-    <script>
-      // Immediate redirect (crawlers won't execute this)
-      window.location.href = '/buy/${id}';
-    </script>
+    <!-- No redirect for testing - crawlers can read OG tags without interruption -->
 
     <style>
       body {
