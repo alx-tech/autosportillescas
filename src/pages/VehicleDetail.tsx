@@ -76,6 +76,12 @@ const VehicleDetail = () => {
     retry: 2
   });
   const vehicle: Vehicle | undefined = carsData ? transformApiCarToVehicle(carsData.find(car => car.id === id)!) : undefined;
+
+  // Scroll to top when component mounts or vehicle changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
   useEffect(() => {
     if (!isLoading && !vehicle) {
       navigate('/buy');
