@@ -1,20 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
-    },
-    {
-      "source": "/:path*.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)",
-      "destination": "/:path*"
-    },
-    {
       "source": "/preview/:id",
-      "destination": "/api/ssrOG"
+      "destination": "/api/preview?id=:id"
     },
     {
       "source": "/(.*)",
-      "destination": "/api/ssrOG"
+      "destination": "/index.html"
     }
   ],
   "images": {
