@@ -88,12 +88,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       style: 'currency',
       currency: 'EUR',
       minimumFractionDigits: 0,
-    }).format(vehicle.price);
+    }).format(vehicle.price || 0);
 
+    const mileageText = vehicle.mileage ? `${vehicle.mileage.toLocaleString()} km` : 'Consultar';
     const pageTitle = `${vehicle.brand} ${vehicle.model} ${vehicle.year} - ${formattedPrice} | Acierto Cars`;
-    const pageDescription = `${vehicle.brand} ${vehicle.model} ${vehicle.year} - ${vehicle.mileage.toLocaleString()} km, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Acierto Cars Madrid.`;
+    const pageDescription = `${vehicle.brand} ${vehicle.model} ${vehicle.year} - ${mileageText}, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Acierto Cars Madrid.`;
     const pageUrl = `https://www.aciertocars.com/buy/${id}`;
-    const carImage = vehicle.images[0] || 'https://www.aciertocars.com/assets/hero-banner.png';
+    const carImage = vehicle.images && vehicle.images.length > 0 ? vehicle.images[0] : 'https://www.aciertocars.com/assets/hero-banner.png';
 
     const html = `<!doctype html>
 <html lang="es">
@@ -156,9 +157,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       <div class="price">${formattedPrice}</div>
       <img src="${carImage}" alt="${vehicle.brand} ${vehicle.model}" />
       <div class="specs">
-        <p><strong>Kilometraje:</strong> ${vehicle.mileage.toLocaleString()} km</p>
-        <p><strong>Combustible:</strong> ${vehicle.fuel}</p>
-        <p><strong>Transmisión:</strong> ${vehicle.transmission}</p>
+        <p><strong>Kilometraje:</strong> ${mileageText}</p>
+        <p><strong>Combustible:</strong> ${vehicle.fuel || 'N/A'}</p>
+        <p><strong>Transmisión:</strong> ${vehicle.transmission || 'N/A'}</p>
       </div>
       <p style="margin-top: 20px; color: #999;">Redirecting to vehicle page...</p>
     </div>
