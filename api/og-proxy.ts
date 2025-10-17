@@ -1,6 +1,4 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { readFileSync } from 'fs';
-import { join } from 'path';
 
 const CARS_API_URL = 'https://multipost-public.app.infinit.cc/api/public/inventory/profiles/442804f3-ac62-4488-b940-1c11a0f641c2';
 
@@ -32,9 +30,14 @@ function isCrawler(userAgent: string): boolean {
 
 async function fetchVehicleData(id: string): Promise<Vehicle | null> {
   try {
-    const response = await fetch(CARS_API_URL);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+
+    const response = await fetch(CARS_API_URL, { signal: controller.signal });
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
+      console.error(`API returned status: ${response.status}`);
       return null;
     }
 
@@ -42,6 +45,7 @@ async function fetchVehicleData(id: string): Promise<Vehicle | null> {
     const vehicle = cars.find((car: any) => car.id === id);
 
     if (!vehicle) {
+      console.error(`Vehicle with ID ${id} not found in API response`);
       return null;
     }
 
