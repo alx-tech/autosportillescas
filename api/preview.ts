@@ -111,8 +111,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.log(`[PREVIEW] Request for vehicle ${id}`);
     console.log(`[PREVIEW] Starting to fetch vehicle data...`);
 
-    const vehicle = await fetchVehicleData(id);
     const isBot = isCrawler(userAgent);
+
+    const vehicle = await fetchVehicleData(id);
 
     if (!vehicle) {
       console.log(`[PREVIEW] Vehicle ${id} not found in API response`);
@@ -147,8 +148,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       carImage = `https://www.aciertocars.com/_vercel/image?url=${encodedUrl}&w=1600&q=80`;
     }
 
-    // For regular users, serve the SPA with dynamic meta tags
     // For bots/crawlers, serve static HTML with meta tags for previews
+    // For regular users, serve a simple page that redirects via window.location.replace
     const html = isBot ? `<!doctype html>
 <html lang="es">
   <head>
@@ -218,35 +219,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${pageTitle}</title>
-    <meta name="description" content="${pageDescription}" />
-
-    <!-- Open Graph / Facebook / WhatsApp -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="${pageUrl}" />
-    <meta property="og:title" content="${pageTitle}" />
-    <meta property="og:description" content="${pageDescription}" />
-    <meta property="og:image" content="${carImage}" />
-    <meta property="og:image:secure_url" content="${carImage}" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="${titleParts.join(' ')}" />
-    <meta property="og:site_name" content="Acierto Cars" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${pageTitle}" />
-    <meta name="twitter:description" content="${pageDescription}" />
-    <meta name="twitter:image" content="${carImage}" />
+    <meta http-equiv="refresh" content="0;url=/" />
+    <script>
+      // Use replaceState to change the URL without reloading, then reload once
+      window.history.replaceState({}, '', '/buy/${id}');
+      window.location.reload();
+    </script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <p>Loading...</p>
   </body>
 </html>`;
 
