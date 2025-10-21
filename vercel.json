@@ -2,7 +2,14 @@
   "rewrites": [
     {
       "source": "/buy/:id",
-      "destination": "/api/preview?id=:id"
+      "destination": "/api/preview?id=:id",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(facebookexternalhit|WhatsApp|Twitterbot|LinkedInBot|Slackbot|TelegramBot|Discordbot|SkypeUriPreview).*"
+        }
+      ]
     },
     {
       "source": "/preview/:id",

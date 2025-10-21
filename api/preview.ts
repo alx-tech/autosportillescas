@@ -77,23 +77,6 @@ async function fetchVehicleData(id: string): Promise<Vehicle | null> {
   }
 }
 
-// User agents that should get the preview (social media crawlers)
-const BOT_USER_AGENTS = [
-  'facebookexternalhit',
-  'WhatsApp',
-  'Twitterbot',
-  'LinkedInBot',
-  'Slackbot',
-  'TelegramBot',
-  'Discordbot',
-  'SkypeUriPreview',
-];
-
-function isCrawler(userAgent: string): boolean {
-  const ua = userAgent.toLowerCase();
-  return BOT_USER_AGENTS.some(bot => ua.includes(bot.toLowerCase()));
-}
-
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const { id } = req.query;
@@ -110,8 +93,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     console.log(`[PREVIEW] Request for vehicle ${id}`);
     console.log(`[PREVIEW] Starting to fetch vehicle data...`);
-
-    const isBot = isCrawler(userAgent);
 
     const vehicle = await fetchVehicleData(id);
 
@@ -148,9 +129,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       carImage = `https://www.aciertocars.com/_vercel/image?url=${encodedUrl}&w=1600&q=80`;
     }
 
-    // For bots/crawlers, serve static HTML with meta tags for previews
-    // For regular users, serve a simple page that redirects via window.location.replace
-    const html = isBot ? `<!doctype html>
+    // Serve static HTML with meta tags for previews (only bots reach this function now)
+    const html = `<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -215,26 +195,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       </div>
     </div>
   </body>
-</html>` : `<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0;url=/" />
-    <script>
-      // Use replaceState to change the URL without reloading, then reload once
-      window.history.replaceState({}, '', '/buy/${id}');
-      window.location.reload();
-    </script>
-  </head>
-  <body>
-    <p>Loading...</p>
-  </body>
 </html>`;
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
 
-    console.log(`[PREVIEW] Sending ${isBot ? 'static preview' : 'SPA'} for ${vehicle.brand} ${vehicle.model}`);
+    console.log(`[PREVIEW] Sending preview for ${vehicle.brand} ${vehicle.model}`);
     return res.status(200).send(html);
   } catch (error) {
     console.error('[PREVIEW] Error in handler:', error);
