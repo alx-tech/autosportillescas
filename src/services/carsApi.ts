@@ -54,9 +54,9 @@ export interface Vehicle {
   environmentalBadge?: string;
 }
 
-const API_URL = 'https://multipost-public.app.infinit.cc/api/public/inventory/profiles/442804f3-ac62-4488-b940-1c11a0f641c2';
+const API_URL = 'https://multipost-public.app.infinit.cc/api/public/inventory/profiles/d3a25fa0-a0fd-4854-bf4f-ad7b773101ba';
 export const CONTACT_FORM_API_URL = 'https://multipost-public.app.infinit.cc/api/interactions/contact-form';
-export const PROFILE_ID = '442804f3-ac62-4488-b940-1c11a0f641c2';
+export const PROFILE_ID = 'd3a25fa0-a0fd-4854-bf4f-ad7b773101ba';
 
 const TRANSMISSION_TRANSLATIONS: Record<string, string> = {
   'Manual': 'Manual',

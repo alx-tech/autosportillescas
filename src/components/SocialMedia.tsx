@@ -1,4 +1,4 @@
-import aciertoCarsLogo from "@/assets/acierto-cars-logo.png";
+import autosportLogo from "@/assets/logo-autosport.png";
 
 const SocialMedia = () => {
   return (
@@ -22,9 +22,9 @@ const SocialMedia = () => {
           >
             <div className="text-center">
               <div className="flex items-center justify-center mb-4">
-                <img 
-                  src={aciertoCarsLogo} 
-                  alt="Acierto Cars Logo" 
+                <img
+                  src={autosportLogo}
+                  alt="Autosport Illescas Logo"
                   className="w-12 h-12 rounded-full"
                 />
               </div>
@@ -60,9 +60,9 @@ const SocialMedia = () => {
           >
             <div className="text-center">
               <div className="flex items-center justify-center mb-4">
-                <img 
-                  src={aciertoCarsLogo} 
-                  alt="Acierto Cars Logo" 
+                <img
+                  src={autosportLogo}
+                  alt="Autosport Illescas Logo"
                   className="w-12 h-12 rounded-full"
                 />
               </div>

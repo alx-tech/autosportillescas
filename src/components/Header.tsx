@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Menu, X } from "lucide-react";
-import aciertoCarsLogo from "@/assets/acierto-cars-logo.png";
+import autosportLogo from "@/assets/logo-autosport.png";
 import { useState } from "react";
 
 const Header = () => {
@@ -17,12 +17,12 @@ const Header = () => {
           {/* Logo */}
           <a href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
             <img
-              src={aciertoCarsLogo}
-              alt="Acierto Cars Logo"
+              src={autosportLogo}
+              alt="Autosport Illescas Logo"
               className="w-12 h-12 object-contain"
             />
             <div>
-              <h1 className="text-xl font-bold">Acierto Cars</h1>
+              <h1 className="text-xl font-bold">Autosport Illescas</h1>
             </div>
           </a>
 
@@ -47,7 +47,7 @@ const Header = () => {
 
           {/* Desktop CTA Button */}
           <Button variant="premium" className="hidden md:flex items-center gap-2" asChild>
-            <a href="tel:690715080">
+            <a href="tel:925501794">
               <Phone size={16} />
               Llama ahora
             </a>
@@ -104,7 +104,7 @@ const Header = () => {
               Contacto
             </a>
             <Button variant="premium" className="flex items-center gap-2 w-full" asChild>
-              <a href="tel:690715080">
+              <a href="tel:925501794">
                 <Phone size={16} />
                 Llama ahora
               </a>

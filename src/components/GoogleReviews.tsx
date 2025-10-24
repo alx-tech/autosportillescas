@@ -6,24 +6,40 @@ import googleLogo from "@/assets/google-logo.jpeg";
 const GoogleReviews = () => {
   const reviews = [
     {
-      name: "Nadia G",
-      review: "Gracias al soporte de Jorge en todo el proceso he avanzado comprando mi primer coche y a distancia. Me ha transmitido confianza y me ha ayudado con el proceso de financiación. Responden rapido y estan disponibles cuando los necesitas. Fuimos a buscar el coche a Madrid y todo estaba tal cual nos habían dicho. Volvimos a casa con el coche y todo super bien. Los recomiendo!"
+      name: "Victor Requejo Rodriguez-Guisado",
+      review: "Compre un coche y todo fenomenal, muy serios y Juan Ramon persona de toda confianza, muy recomendables."
     },
     {
-      name: "CRIS ZALEA",
-      review: "Muy contentos, queríamos un coche para nuestro hijo, fuimos a verlo, y en 2 días lo estaba conduciendo, todo muy rápido, y fácil. Muchas gracias por las gestiones. Recomendable 100%"
+      name: "Pablo R.G",
+      review: "Hace un mes compre un Kia Venga, buena relación calidad/precio del coche, el trato de 10, Juan Ramón contesto a todas mis dudas sobre el coche, y algo que me gusto mucho ha sido su sinceridad con los detalles del coche, ya he recomendad este vendedor a dos amigos más."
     },
     {
-      name: "Rocio Luna",
-      review: "Hemos comprado un Seat Arona TGI (GNC), desde que entré en el concesionario sentí la sensación, que allí encontraría el coche que estábamos buscando, ajustado a nuestro presupuesto en relación CALIDAD y PRECIO. En un principio, sólo queríamos mirar coches, y al final salimos comprando uno. Igualmente , muy agradecidos por la atención de sus vendedores, en especial con JORGE , que ha estado muy pendiente tanto en la venta como en la postventa del coche , y por estás razones de gran peso cuando se adquiere un coche recomiendo este concesionario al 💯 por cien ."
+      name: "Beatriz Roman",
+      review: "Buen trato y atento, el comercial se molestó bastante en buscar lo que yo buscaba y en contacto hasta que lo encontré"
     },
     {
-      name: "Alexander Gonzalez",
-      review: "Hace poco compré un BMW X1 híbrido enchufable completamente online en ACIEROTOCAR LUXURY, mi experiencia fue muy satisfactoria fue atendido por JORGE, quien en todo momento fue muy cordial correcto y me brindó todas las fotografías, vídeos y documentación para poder comprar el coche con absoluta tranquilidad y transparencia hicimos nuestras transacciones de manera que las Las dos partes hiciéramos el negocio lo más satisfactorio para ambas partes Mi coche fue entregado en Almería capital Tal y como me lo prometieron y en el tiempo que habíamos acordado. Recomiendo a ACIERTOCAR a cualquier persona que quiera comprar su coche a larga distancia, con total confianza y tranquilidad, lo he recomendado amigos y familiares para que lo tengan en cuenta, cuando tome la decisión de comprar o cambiar su coche."
+      name: "Andres Crespo",
+      review: "Muy bien atendido , la descripción del coche correspondía con su estado , y se encargan de hacer todos los trámites."
     },
     {
-      name: "Alberto de la Puente",
-      review: "Nos ha tratado fenomenal, el coche que hemos comprado estaba como nuevo y tenía un precio muy competitivo. Volveremos a trabajar con ellos."
+      name: "juanan j",
+      review: "Humildad y sencillez con el vendedor.A través de coches.net tenían anunciado un CLA que me enamoro.siendo de valencia pensaba que iba a ser un poco complicado en poder hacer casi toda la gestión por teléfono pero no fue así.me facilitaron todo lo que me hiciera falta,fotos videos, documentos etc...al final fui a Illescas a constatar y comprar el coche y eso hice.Estoy muy contento y satisfecho,no tuve ningún problema.Les doy 5 estrellas porque no puedo darles mas seguir así."
+    },
+    {
+      name: "Riccardo Accolla",
+      review: "Estive muy satisfecho que mi primera compra de coche en Espana ha sido con Autosport Illescas. Juan Ramon y su team han sido muy profesionales y amables. Los recomiendo mucho"
+    },
+    {
+      name: "Mª Carmen Baixauli",
+      review: "Totalmente recomendable. Hemos comprado un coche en Autosport Illescas. Juan Ramón ha sido muy amable con nosotros y nos ha facilitado toda la información necesaria. El coche funciona muy bien y estamos muy satisfechos con la compra realizada. Su trato, amabilidad y profesionalidad han sido de 10. Muchísimas gracias Juan Ramón."
+    },
+    {
+      name: "Sanlo",
+      review: "Excepcional, gran atención y profesionalidad. Fui a la tienda por recomendación de un amigo en busca de un BMW x1 y ha sido lo mejor que he podido hacer. Los coches están impecables y la confianza que da Juan Ramón es máxima. Ya tengo coche nuevo!"
+    },
+    {
+      name: "Fran De la Rosa",
+      review: "Compré un Audi! y estamos muy contentos! Nos atendió Juanra un gran profesional y muy amable nos asesoro sobre el coche y todas sus características."
     }
   ];
 
@@ -38,8 +54,8 @@ const GoogleReviews = () => {
           {/* Google Rating Display */}
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="flex items-center gap-2">
-              <a 
-                href="https://www.google.com/maps?cid=11476981079179398744"
+              <a
+                href="https://www.google.com/maps?cid=5577598555223990958"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity"
@@ -52,7 +68,7 @@ const GoogleReviews = () => {
               </a>
               <div className="w-px h-6 bg-border"></div>
               <div className="flex items-center gap-1">
-                <span className="text-2xl font-bold text-foreground">4.9</span>
+                <span className="text-2xl font-bold text-foreground">4.7</span>
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star

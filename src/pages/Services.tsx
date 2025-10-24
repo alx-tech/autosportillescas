@@ -41,10 +41,10 @@ const Services = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-                Servicios en Acierto Cars Luxury
+                Servicios en Autosport Illescas
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Comercializamos e importamos vehículos premium a la carta, de ocasión, seminuevos y de KM 0 en Madrid.
+                Comercializamos e importamos vehículos premium a la carta, de ocasión, seminuevos y de KM 0 en Illescas, Toledo.
               </p>
             </div>
             <div className="flex justify-center">

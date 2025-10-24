@@ -94,22 +94,22 @@ const Contact = () => {
       icon: Phone,
       title: "Llámanos",
       description: "Estamos disponible en el siguiente teléfono:",
-      contact: "690715080",
-      href: "tel:690715080"
+      contact: "925 501 794",
+      href: "tel:925501794"
     },
     {
       icon: Mail,
       title: "Escríbenos",
       description: "No dudes en contactar con nosotros en el siguiente correo o si lo prefieres, puedes rellenar el anterior formulario.",
-      contact: "contacto@aciertocars.com",
-      href: "mailto:contacto@aciertocars.com"
+      contact: "autosportillescas@gmail.com",
+      href: "mailto:autosportillescas@gmail.com"
     },
     {
       icon: MapPin,
       title: "Ven a visitarnos",
-      description: "Encuéntranos en Calle Rio Tormes, 83, 28110 Algete, Madrid",
-      contact: "Calle Rio Tormes, 83, 28110 Algete, Madrid",
-      href: "https://www.google.com/maps/place//data=!4m2!3m1!1s0xd43ccc764e50acb:0x9f466d7bde5e0e58?sa=X&ved=1t:8290&ictx=111"
+      description: "Encuéntranos en Avenida Los Trabajadores, 8 nave 4 (Minipark Los Pradillos) 45220 Illescas, España",
+      contact: "Avenida Los Trabajadores, 8 nave 4 (Minipark Los Pradillos) 45220 Illescas, España",
+      href: "https://www.google.es/maps/place/Autosport+-+Concesionario+en+Illescas/@40.1242641,-3.8309203,17z/data=!3m1!4b1!4m6!3m5!1s0xd41f12a3e696ea9:0x4d8fa198dee41ae!8m2!3d40.12426!4d-3.82834!16s%2Fg%2F11g892r6tj?hl=es&entry=ttu&g_ep=EgoyMDI1MTAyMC4wIKXMDSoASAFQAw%3D%3D"
     }
   ];
 
@@ -342,8 +342,9 @@ const Contact = () => {
                       Dirección
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Calle Rio Tormes, 83<br />
-                      28110 Algete, Madrid<br />
+                      Avenida Los Trabajadores, 8 nave 4<br />
+                      (Minipark Los Pradillos)<br />
+                      45220 Illescas, Toledo<br />
                       España
                     </p>
                   </div>
@@ -369,14 +370,14 @@ const Contact = () => {
             <div className="w-full">
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12149.207471547842!2d-3.4993847!3d40.5969394!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd43ccc764e50acb%3A0x9f466d7bde5e0e58!2sAcierto%20Cars!5e0!3m2!1sen!2ses!4v1234567890123!5m2!1sen!2ses"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12149.207471547842!2d-3.8309203!3d40.1242641!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd41f12a3e696ea9%3A0x4d8fa198dee41ae!2sAutosport%20-%20Concesionario%20en%20Illescas!5e0!3m2!1ses!2ses!4v1234567890"
                   width="100%"
                   height="400"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Ubicación de Acierto Cars en Algete, Madrid"
+                  title="Ubicación de Autosport Illescas en Illescas, Toledo"
                 ></iframe>
               </div>
             </div>
@@ -398,10 +399,10 @@ const Contact = () => {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">2.1 Responsable del Tratamiento de Datos</h3>
               <div className="bg-muted/50 p-4 rounded-lg">
-                <p><strong>Nombre de la empresa:</strong> Acierto Cars Luxury S.L.U.</p>
-                <p><strong>Dirección:</strong> Calle Río Tormes, nº 83, 28110, Algete</p>
-                <p><strong>Correo electrónico:</strong> contacto@aciertocars.com</p>
-                <p><strong>Teléfono:</strong> 690715080</p>
+                <p><strong>Nombre de la empresa:</strong> Autosport Illescas S.L.</p>
+                <p><strong>Dirección:</strong> Avenida Los Trabajadores, 8 nave 4 (Minipark Los Pradillos) 45220 Illescas, España</p>
+                <p><strong>Correo electrónico:</strong> autosportillescas@gmail.com</p>
+                <p><strong>Teléfono:</strong> 925 501 794</p>
               </div>
               
               <h3 className="text-lg font-semibold">2.2 Datos que Recopilamos</h3>
@@ -423,7 +424,7 @@ const Contact = () => {
               </ul>
               
               <h3 className="text-lg font-semibold">2.4 Derechos del Usuario</h3>
-              <p>Tiene derecho a acceder, rectificar, suprimir o limitar el tratamiento de sus datos enviando un correo a: <strong>contacto@aciertocars.com</strong></p>
+              <p>Tiene derecho a acceder, rectificar, suprimir o limitar el tratamiento de sus datos enviando un correo a: <strong>autosportillescas@gmail.com</strong></p>
             </div>
           </div>
         </DialogContent>

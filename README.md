@@ -1,8 +1,8 @@
-# Acierto Cars
+# Autosport Illescas
 
-Dealer website for Acierto Cars, a trusted car dealership.
+Dealer website for Autosport Illescas, a trusted car dealership in Illescas, Toledo.
 
-**Website**: https://www.aciertocars.com/
+**Website**: https://www.autosportillescas.com/
 
 ## Development Setup
 
@@ -19,7 +19,7 @@ Follow these steps to run the project locally:
 git clone <YOUR_GIT_URL>
 
 # Step 2: Navigate to the project directory
-cd acierto-cars-original
+cd autosportillescas
 
 # Step 3: Install the necessary dependencies
 npm i
