@@ -9,6 +9,7 @@ import VehicleDetail from "./pages/VehicleDetail";
 import Sell from "./pages/Sell";
 import Financing from "./pages/Financing";
 import Services from "./pages/Services";
+import Store from "./pages/Store";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/sell" element={<Sell />} />
           <Route path="/financing" element={<Financing />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/store" element={<Store />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

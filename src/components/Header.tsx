@@ -34,6 +34,9 @@ const Header = () => {
             <a href="/services" className="text-white hover:text-primary transition-colors">
               Servicios
             </a>
+            <a href="/store" className="text-white hover:text-primary transition-colors">
+              Productos
+            </a>
             <a href="/contact" className="text-white hover:text-primary transition-colors">
               Contacto
             </a>
@@ -82,6 +85,13 @@ const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Servicios
+            </a>
+            <a
+              href="/store"
+              className="text-white hover:text-primary transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Productos
             </a>
             <a
               href="/contact"
