@@ -1,6 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const CARS_API_URL = 'https://multipost-public.app.infinit.cc/api/public/inventory/profiles/d3a25fa0-a0fd-4854-bf4f-ad7b773101ba';
+const PROFILE_ID = process.env.VITE_MULTIPOST_PROFILE_ID || 'd3a25fa0-a0fd-4854-bf4f-ad7b773101ba';
+const CARS_API_URL = `https://multipost-public.app.infinit.cc/api/public/inventory/profiles/${PROFILE_ID}`;
 
 interface Vehicle {
   id: string;
