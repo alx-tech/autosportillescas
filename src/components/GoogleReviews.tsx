@@ -55,7 +55,7 @@ const GoogleReviews = () => {
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="flex items-center gap-2">
               <a
-                href="https://www.google.com/maps?cid=5577598555223990958"
+                href="https://maps.app.goo.gl/EcNT8rcorQdzriyk7"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity"

@@ -28,9 +28,6 @@ const Header = () => {
             <a href="/buy" className="text-white hover:text-primary transition-colors">
               Vehículos de ocasión
             </a>
-            <a href="/sell" className="text-white hover:text-primary transition-colors">
-              Vende tu coche
-            </a>
             <a href="/financing" className="text-white hover:text-primary transition-colors">
               Financiación
             </a>
@@ -71,13 +68,6 @@ const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Vehículos de ocasión
-            </a>
-            <a
-              href="/sell"
-              className="text-white hover:text-primary transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Vende tu coche
             </a>
             <a
               href="/financing"

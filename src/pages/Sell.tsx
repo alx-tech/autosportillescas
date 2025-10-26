@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FAQ from "@/components/FAQ";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -793,8 +792,6 @@ Kilometraje: ${formData.kilometraje} km`;
           </div>
         </section>
       </main>
-
-      <FAQ />
 
       <Footer />
 

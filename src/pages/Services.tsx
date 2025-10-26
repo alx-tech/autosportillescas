@@ -1,128 +1,201 @@
-import { Car, Shield, CreditCard, Truck, HeadphonesIcon } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FAQ from "@/components/FAQ";
 import heroImage from "@/assets/servicios-hero.png";
-import servicios2Image from "@/assets/servicios-2.png";
+import bardahlImage from "@/assets/servicio-bardahl.jpg";
+import pulidoImage from "@/assets/servicio-pulido.jpg";
+import accesoriosImage from "@/assets/servicio-accesorios.png";
+import matriculasImage from "@/assets/servicio-matriculas.png";
+import compraventaImage from "@/assets/servicio-compraventa.jpg";
+import enviosImage from "@/assets/servicio-envios.jpg";
 
 const Services = () => {
-  const mainServices = [
-    {
-      icon: Car,
-      title: "Servicio VIP",
-      description: "Nos encargamos de todo: recogida, entrega, limpieza y otras gestiones que necesites. Solo tendrás que preocuparte por ponerte al volante de tu nuevo vehículo."
-    },
-    {
-      icon: Shield,
-      title: "Garantía Plus hasta 3 años",
-      description: "Tu vehículo de ocasión con garantía de 12 meses y hasta 3 años. Para vehículos de todo tipo como: berlinas, coupés, descapotables, deportivos, SUV, 4×4, etc."
-    },
-    {
-      icon: Truck,
-      title: "Envío a toda España",
-      description: "Si no puedes venir a recoger el vehículo, no te preocupes. Nos encargamos de todo lo necesario para que lo recibas en la puerta de tu casa."
-    },
-    {
-      icon: CreditCard,
-      title: "Financiación disponible",
-      description: "Trabajamos con los mejores bancos para ofrecerte opciones de financiación que se adapten a ti."
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
-      <section className="py-16 px-4 bg-muted">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-                Servicios en Autosport Illescas
-              </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Comercializamos e importamos vehículos premium a la carta, de ocasión, seminuevos y de KM 0 en Illescas, Toledo.
-              </p>
-            </div>
-            <div className="flex justify-center">
-              <img 
-                src={heroImage} 
-                alt="BMW blanco con logo de Acierto Cars Luxury"
-                className="w-full max-w-lg h-auto rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
+      <section
+        className="relative py-24 px-4 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${heroImage})`,
+        }}
+      >
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        <div className="relative z-10 container mx-auto max-w-4xl text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            Nuestros Servicios
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
+            En Autosport Illescas te ofrecemos una experiencia completa con servicios diseñados para tu comodidad y tranquilidad
+          </p>
         </div>
       </section>
 
-      {/* Main Services */}
-      <section className="py-16 px-4 bg-background">
+      {/* Service 1: Bardahl */}
+      <section className="py-8 px-4 bg-background">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {mainServices.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <Card key={index} className="text-center bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover-scale overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="bg-gray-100 p-6">
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                        <IconComponent className="w-8 h-8 text-primary" />
-                      </div>
-                      <h3 className="text-xl font-bold text-foreground mb-2">
-                        {service.title}
-                      </h3>
-                    </div>
-                    <div className="p-6">
-                      <p className="text-muted-foreground leading-relaxed text-sm">
-                        {service.description}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Sell Your Car Section */}
-      <section className="py-16 px-4 bg-muted">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Vende tu coche sin problemas
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Nuestra zona Bardahl y Detail con productos Top
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Asesoramos y acompañamos al cliente durante el proceso de compra/venta de su vehículo, 
-                informándolo del momento idóneo para cambiar antes de que se devalúe, elección de nuevo modelo, 
-                equipamiento y todo lo necesario para que su experiencia con nosotros sea un éxito.
+              <p className="text-base text-muted-foreground leading-relaxed">
+                Disponemos de lubricantes y aditivos de Bardahl y productos de Detail, ideales para un buen mantenimiento de los vehículos
               </p>
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg"
-                asChild
-              >
-                <a href="/sell">
-                  Tasar mi vehículo
-                </a>
-              </Button>
             </div>
             <div className="flex justify-center">
-              <img 
-                src={servicios2Image} 
-                alt="Porsche deportivo gris en pista - Servicios de tasación de vehículos premium"
-                className="w-full max-w-lg h-auto rounded-lg shadow-lg"
+              <img
+                src={bardahlImage}
+                alt="Productos Bardahl y Detail"
+                className="w-full max-w-xs h-auto rounded-lg shadow-lg"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <FAQ />
+      {/* Service 2: Pulido */}
+      <section className="py-8 px-4 bg-muted">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="flex justify-center md:order-1">
+              <img
+                src={pulidoImage}
+                alt="Pulido y abrillantado de carrocerías"
+                className="w-full max-w-xs h-auto rounded-lg shadow-lg"
+              />
+            </div>
+            <div className="space-y-4 md:order-2">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Pulido y abrillantado de carrocerías
+              </h2>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                Disponemos de servicio de limpieza, pulido y abrillantado de carrocerías, para que los vehículos queden como nuevos
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Service 3: Accesorios */}
+      <section className="py-8 px-4 bg-background">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Accesorios de máxima calidad
+              </h2>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                Venta por encargo de llantas AEZ, Momo, Ronal Dotz, de alfombrillas y protectores de maletero a medida, goma de altísima calidad. 100% europea.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={accesoriosImage}
+                alt="Llantas y accesorios de calidad"
+                className="w-full max-w-xs h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Service 4: Matrículas */}
+      <section className="py-8 px-4 bg-muted">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="flex justify-center md:order-1">
+              <img
+                src={matriculasImage}
+                alt="Matrículas acrílicas"
+                className="w-full max-w-xs h-auto rounded-lg shadow-lg"
+              />
+            </div>
+            <div className="space-y-4 md:order-2">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Matrículas de coche acrílicas
+              </h2>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                Una gran ventaja respecto a las antiguas matrículas, las acrílicas son mucho más duraderas, evitando así el desgaste y la ilegibilidad.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Service 5: Compraventa */}
+      <section className="py-8 px-4 bg-background">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Compraventa de vehículos
+              </h2>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                Concesionario de coches de segunda mano y premium con garantía, financiación 100% y kilómetros garantizados.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={compraventaImage}
+                alt="Compraventa de vehículos premium"
+                className="w-full max-w-xs h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Service 6: Envíos */}
+      <section className="py-8 px-4 bg-muted">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="flex justify-center md:order-1">
+              <img
+                src={enviosImage}
+                alt="Envíos a toda la península"
+                className="w-full max-w-xs h-auto rounded-lg shadow-lg"
+              />
+            </div>
+            <div className="space-y-4 md:order-2">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Envíos de vehículos a toda la península
+              </h2>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                Entregamos coches a domicilio en toda la Península. Un valor añadido que nos permite marcar la diferencia.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4 bg-background">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+            ¿Necesitas más información?
+          </h2>
+          <p className="text-xl mb-8 text-muted-foreground">
+            Nuestro equipo está disponible para resolver todas tus dudas y ayudarte a encontrar el vehículo perfecto
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 transition-colors"
+            >
+              Contactar
+            </a>
+            <a
+              href="/buy"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium border-2 border-primary text-primary hover:bg-primary hover:text-white h-11 px-8 transition-colors"
+            >
+              Ver vehículos
+            </a>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FAQ from "@/components/FAQ";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -510,7 +509,7 @@ Gastos hipoteca/alquiler mensual: ${formData.gastosHipotecaAlquiler || 'No espec
                             const vehiclePrice = selectedVehicle.price;
 
                             return (
-                              <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                              <div className="p-3 bg-red-50 rounded-lg border border-red-200">
                                 <div className="flex justify-between items-center text-sm">
                                   <span className="text-muted-foreground">
                                     {selectedVehicle.brand} {selectedVehicle.model} · {vehiclePrice.toLocaleString('es-ES')}€
@@ -629,7 +628,7 @@ Gastos hipoteca/alquiler mensual: ${formData.gastosHipotecaAlquiler || 'No espec
                             const loanAmount = Math.max(0, vehiclePrice - downPayment);
 
                             return (
-                              <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                              <div className="p-3 bg-red-50 rounded-lg border border-red-200">
                                 <div className="flex justify-between items-center text-sm">
                                   <span className="text-muted-foreground">
                                     {selectedVehicle.brand} {selectedVehicle.model} · {vehiclePrice.toLocaleString('es-ES')}€
@@ -790,7 +789,7 @@ Gastos hipoteca/alquiler mensual: ${formData.gastosHipotecaAlquiler || 'No espec
                             const loanAmount = Math.max(0, vehiclePrice - downPayment);
 
                             return (
-                              <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                              <div className="p-3 bg-red-50 rounded-lg border border-red-200">
                                 <div className="flex justify-between items-center text-sm">
                                   <span className="text-muted-foreground">
                                     {selectedVehicle.brand} {selectedVehicle.model} · {vehiclePrice.toLocaleString('es-ES')}€
@@ -916,7 +915,7 @@ Gastos hipoteca/alquiler mensual: ${formData.gastosHipotecaAlquiler || 'No espec
                             const loanAmount = Math.max(0, vehiclePrice - downPayment);
 
                             return (
-                              <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                              <div className="p-3 bg-red-50 rounded-lg border border-red-200">
                                 <div className="flex justify-between items-center text-sm">
                                   <span className="text-muted-foreground">
                                     {selectedVehicle.brand} {selectedVehicle.model} · {vehiclePrice.toLocaleString('es-ES')}€
@@ -1150,8 +1149,6 @@ Gastos hipoteca/alquiler mensual: ${formData.gastosHipotecaAlquiler || 'No espec
           </div>
         </section>
       </main>
-
-      <FAQ />
 
       <Footer />
 

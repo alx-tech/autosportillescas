@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Facebook, Instagram, MessageCircle } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -140,7 +140,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div>
+          <div className="md:pr-8">
             <div className="flex items-center mb-4">
               <img
                 src={autosportLogo}
@@ -159,46 +159,87 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Phone size={16} className="text-primary" />
-                <span className="text-gray-300">925 501 794</span>
+                <div className="flex flex-col text-gray-300">
+                  <span>925 501 794</span>
+                  <span>647 403 012</span>
+                  <span>925 501 794</span>
+                </div>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail size={16} className="text-primary" />
                 <span className="text-gray-300">autosportillescas@gmail.com</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <MapPin size={16} className="text-primary" />
-                <span className="text-gray-300">Avenida Los Trabajadores, 8 nave 4 (Minipark Los Pradillos) 45220 Illescas, España</span>
+            </div>
+          </div>
+
+          {/* Address */}
+          <div className="md:-ml-8">
+            <h3 className="text-lg font-semibold mb-4">Dirección</h3>
+            <div className="space-y-3">
+              <div className="flex items-start space-x-2">
+                <MapPin size={16} className="text-primary mt-1 flex-shrink-0" />
+                <div className="text-gray-300 leading-relaxed">
+                  <p>Avenida Los Trabajadores, 8 nave 4<br />
+                  (Minipark Los Pradillos)<br />
+                  45220 Illescas, España</p>
+                  <p className="mt-3">
+                    A tan sólo 35 km de Madrid y 35 km de Toledo, Salida 35 de la A-42, dirección Esquivias-Yeles, (junto a la gasolinera BP)
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Servicios</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li>Venta de vehículos</li>
-              <li>Compra de vehículos</li>
-              <li>Financiación</li>
-              <li>Seguros</li>
-              <li>Garantía extendida</li>
-            </ul>
-          </div>
-
           {/* Hours */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Horarios</h3>
-            <div className="space-y-2 text-gray-300">
-              <div className="flex items-center space-x-2">
-                <Clock size={16} className="text-primary" />
-                <span>Lun-Vie: 10:00-14:00, 16:00-19:00</span>
+          <div className="flex flex-col justify-between h-full">
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Horarios</h3>
+              <div className="space-y-2 text-gray-300">
+                <div className="flex items-center space-x-2">
+                  <Clock size={16} className="text-primary" />
+                  <span>Lun-Vie: 10:00-14:00, 17:00-20:30</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Clock size={16} className="text-primary" />
+                  <span>Sáb: 10:00-14:00</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Clock size={16} className="text-primary" />
+                  <span>Dom: Cerrado</span>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <Clock size={16} className="text-primary" />
-                <span>Sáb: Con cita previa</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Clock size={16} className="text-primary" />
-                <span>Dom: Cerrado</span>
+            </div>
+
+            {/* Social Media */}
+            <div className="mt-8">
+              <div className="flex items-center space-x-4">
+                <a
+                  href="https://www.facebook.com/autosportillescas"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-primary transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook size={24} />
+                </a>
+                <a
+                  href="https://www.instagram.com/autosport_illescas/?hl=es"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-primary transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={24} />
+                </a>
+                <a
+                  href="https://wa.me/+34647403012?text=Hola%20Autosport%20Illescas"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-primary transition-colors"
+                  aria-label="WhatsApp"
+                >
+                  <MessageCircle size={24} />
+                </a>
               </div>
             </div>
           </div>

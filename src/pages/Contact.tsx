@@ -14,8 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FAQ from "@/components/FAQ";
-import contactBackground from "@/assets/contact.png";
+import contactBackground from "@/assets/contact-background.png";
 import { useToast } from "@/hooks/use-toast";
 import { CONTACT_FORM_API_URL, PROFILE_ID } from "@/services/carsApi";
 
@@ -93,8 +92,8 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Llámanos",
-      description: "Estamos disponible en el siguiente teléfono:",
-      contact: "925 501 794",
+      description: "Estamos disponibles en los siguientes teléfonos:",
+      contact: ["925 501 794", "647 403 012", "925 501 794"],
       href: "tel:925501794"
     },
     {
@@ -118,8 +117,8 @@ const Contact = () => {
       <Header />
       
       {/* Hero Section with Form */}
-      <div 
-        className="bg-gray-700 pt-24"
+      <div
+        className="bg-gray-700 pt-24 relative"
         style={{
           backgroundImage: `url(${contactBackground})`,
           backgroundRepeat: 'no-repeat',
@@ -127,7 +126,10 @@ const Contact = () => {
           backgroundPosition: 'center center'
         }}
       >
-        <div className="px-4 lg:pt-12 pt-6 pb-32 lg:pb-40 mx-auto max-w-screen-sm text-center lg:px-6">
+        {/* Black overlay */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        <div className="relative z-10 px-4 lg:pt-12 pt-6 pb-32 lg:pb-40 mx-auto max-w-screen-sm text-center lg:px-6">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-white">
             Contacta con nosotros
           </h2>
@@ -307,14 +309,28 @@ const Contact = () => {
                       <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
                         {info.description}
                       </p>
-                      <a 
-                        href={info.href}
-                        className="text-primary hover:text-primary/80 font-semibold transition-colors text-lg"
-                        target={info.icon === MapPin ? "_blank" : undefined}
-                        rel={info.icon === MapPin ? "noopener noreferrer" : undefined}
-                      >
-                        {info.contact}
-                      </a>
+                      {Array.isArray(info.contact) ? (
+                        <div className="flex flex-col gap-2">
+                          {info.contact.map((phone, idx) => (
+                            <a
+                              key={idx}
+                              href={`tel:${phone.replace(/\s/g, '')}`}
+                              className="text-primary hover:text-primary/80 font-semibold transition-colors text-lg"
+                            >
+                              {phone}
+                            </a>
+                          ))}
+                        </div>
+                      ) : (
+                        <a
+                          href={info.href}
+                          className="text-primary hover:text-primary/80 font-semibold transition-colors text-lg"
+                          target={info.icon === MapPin ? "_blank" : undefined}
+                          rel={info.icon === MapPin ? "noopener noreferrer" : undefined}
+                        >
+                          {info.contact}
+                        </a>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -347,6 +363,9 @@ const Contact = () => {
                       45220 Illescas, Toledo<br />
                       España
                     </p>
+                    <p className="text-muted-foreground leading-relaxed mt-3">
+                      A tan sólo 35 km de Madrid y 35 km de Toledo, Salida 35 de la A-42, dirección Esquivias-Yeles, (junto a la gasolinera BP)
+                    </p>
                   </div>
                 </div>
 
@@ -357,8 +376,8 @@ const Contact = () => {
                       Horarios de atención
                     </h3>
                     <div className="space-y-1 text-muted-foreground">
-                      <p>Lunes a Viernes: 10:00 - 14:00, 16:00 - 19:00</p>
-                      <p>Sábado: Con cita previa</p>
+                      <p>Lunes a Viernes: 10:00 - 14:00, 17:00 - 20:30</p>
+                      <p>Sábado: 10:00 - 14:00</p>
                       <p>Domingo: Cerrado</p>
                     </div>
                   </div>
@@ -384,8 +403,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-
-      <FAQ />
 
       <Footer />
 

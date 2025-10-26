@@ -84,7 +84,7 @@ const SocialMedia = () => {
                   <p className="text-xs text-muted-foreground">Siguiendo</p>
                 </div>
               </div>
-              <div className="px-6 py-2 bg-gradient-to-tr from-purple-500 via-pink-500 to-orange-500 text-white rounded-full text-sm font-medium">
+              <div className="px-6 py-2 bg-gradient-to-tr from-purple-500 via-pink-500 to-red-500 text-white rounded-full text-sm font-medium">
                 Ver en Instagram
               </div>
             </div>
