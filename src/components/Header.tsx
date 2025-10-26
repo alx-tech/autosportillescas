@@ -11,36 +11,33 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-nav-background text-nav-foreground border-b border-border/10">
+    <header className="bg-black text-white border-b border-border/10">
       <div className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+          <a href="/" className="flex items-center hover:opacity-80 transition-opacity">
             <img
               src={autosportLogo}
               alt="Autosport Illescas Logo"
-              className="w-12 h-12 object-contain"
+              className="h-20 w-auto object-contain"
             />
-            <div>
-              <h1 className="text-xl font-bold">Autosport Illescas</h1>
-            </div>
           </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/buy" className="text-nav-foreground hover:text-primary transition-colors">
+            <a href="/buy" className="text-white hover:text-primary transition-colors">
               Vehículos de ocasión
             </a>
-            <a href="/sell" className="text-nav-foreground hover:text-primary transition-colors">
+            <a href="/sell" className="text-white hover:text-primary transition-colors">
               Vende tu coche
             </a>
-            <a href="/financing" className="text-nav-foreground hover:text-primary transition-colors">
+            <a href="/financing" className="text-white hover:text-primary transition-colors">
               Financiación
             </a>
-            <a href="/services" className="text-nav-foreground hover:text-primary transition-colors">
+            <a href="/services" className="text-white hover:text-primary transition-colors">
               Servicios
             </a>
-            <a href="/contact" className="text-nav-foreground hover:text-primary transition-colors">
+            <a href="/contact" className="text-white hover:text-primary transition-colors">
               Contacto
             </a>
           </nav>
@@ -70,35 +67,35 @@ const Header = () => {
           <nav className="md:hidden mt-4 pb-4 flex flex-col space-y-4">
             <a
               href="/buy"
-              className="text-nav-foreground hover:text-primary transition-colors py-2"
+              className="text-white hover:text-primary transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Vehículos de ocasión
             </a>
             <a
               href="/sell"
-              className="text-nav-foreground hover:text-primary transition-colors py-2"
+              className="text-white hover:text-primary transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Vende tu coche
             </a>
             <a
               href="/financing"
-              className="text-nav-foreground hover:text-primary transition-colors py-2"
+              className="text-white hover:text-primary transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Financiación
             </a>
             <a
               href="/services"
-              className="text-nav-foreground hover:text-primary transition-colors py-2"
+              className="text-white hover:text-primary transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Servicios
             </a>
             <a
               href="/contact"
-              className="text-nav-foreground hover:text-primary transition-colors py-2"
+              className="text-white hover:text-primary transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contacto

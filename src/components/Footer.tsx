@@ -136,20 +136,19 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-nav-background text-nav-foreground py-12">
+    <footer className="bg-black text-white py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-3 mb-4">
+            <div className="flex items-center mb-4">
               <img
                 src={autosportLogo}
                 alt="Autosport Illescas Logo"
-                className="w-10 h-10 object-contain"
+                className="h-20 w-auto object-contain"
               />
-              <span className="text-xl font-bold">Autosport Illescas</span>
             </div>
-            <p className="text-nav-muted mb-4">
+            <p className="text-gray-300 mb-4">
               Tu concesionario de confianza para vehículos premium de ocasión en Illescas, Toledo.
             </p>
           </div>
@@ -160,15 +159,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Phone size={16} className="text-primary" />
-                <span className="text-nav-muted">925 501 794</span>
+                <span className="text-gray-300">925 501 794</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail size={16} className="text-primary" />
-                <span className="text-nav-muted">autosportillescas@gmail.com</span>
+                <span className="text-gray-300">autosportillescas@gmail.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin size={16} className="text-primary" />
-                <span className="text-nav-muted">Avenida Los Trabajadores, 8 nave 4 (Minipark Los Pradillos) 45220 Illescas, España</span>
+                <span className="text-gray-300">Avenida Los Trabajadores, 8 nave 4 (Minipark Los Pradillos) 45220 Illescas, España</span>
               </div>
             </div>
           </div>
@@ -176,7 +175,7 @@ const Footer = () => {
           {/* Services */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Servicios</h3>
-            <ul className="space-y-2 text-nav-muted">
+            <ul className="space-y-2 text-gray-300">
               <li>Venta de vehículos</li>
               <li>Compra de vehículos</li>
               <li>Financiación</li>
@@ -188,7 +187,7 @@ const Footer = () => {
           {/* Hours */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Horarios</h3>
-            <div className="space-y-2 text-nav-muted">
+            <div className="space-y-2 text-gray-300">
               <div className="flex items-center space-x-2">
                 <Clock size={16} className="text-primary" />
                 <span>Lun-Vie: 10:00-14:00, 16:00-19:00</span>
@@ -207,12 +206,12 @@ const Footer = () => {
 
         <div className="border-t border-border/10 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-nav-muted">
+            <p className="text-gray-300">
               © 2025 Autosport Illescas. Powered by <a href="https://www.infinit.com/" target="_blank" rel="noopener noreferrer" className="underline">INFINIT</a>
             </p>
-            
+
             {/* Legal Links */}
-            <div className="flex flex-wrap gap-4 text-sm text-nav-muted">
+            <div className="flex flex-wrap gap-4 text-sm text-gray-300">
               <button 
                 onClick={() => setOpenModal('legal')}
                 className="hover:text-primary transition-colors"
