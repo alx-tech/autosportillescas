@@ -113,20 +113,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Build title parts, filtering out undefined/empty values
     const titleParts = [vehicle.brand, vehicle.model, vehicle.year].filter(Boolean);
-    const pageTitle = `${titleParts.join(' ')} - ${formattedPrice} | Acierto Cars`;
+    const pageTitle = `${titleParts.join(' ')} - ${formattedPrice} | Autosport Illescas`;
 
     // Build description parts
     const descParts = [vehicle.brand, vehicle.model, vehicle.year].filter(Boolean);
-    const pageDescription = `${descParts.join(' ')} - ${mileageText}, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Acierto Cars Madrid.`;
+    const pageDescription = `${descParts.join(' ')} - ${mileageText}, ${vehicle.fuel}, ${vehicle.transmission}. Vehículo de alta gama disponible en Autosport Illescas, Toledo.`;
 
-    const pageUrl = `https://www.aciertocars.com/buy/${id}`;
-    let carImage = vehicle.images && vehicle.images.length > 0 ? vehicle.images[0] : 'https://www.aciertocars.com/placeholder.svg';
+    const pageUrl = `https://autosportillescas.infinitsite.com/buy/${id}`;
+    let carImage = vehicle.images && vehicle.images.length > 0 ? vehicle.images[0] : 'https://autosportillescas.infinitsite.com/placeholder.svg';
 
     // Use Vercel Image Optimization to resize images for WhatsApp compatibility (max 600KB recommended)
     // Resize to 1600px width to ensure file size stays under 600KB
     if (carImage && carImage.includes('alxproduction.blob.core.windows.net')) {
       const encodedUrl = encodeURIComponent(carImage);
-      carImage = `https://www.aciertocars.com/_vercel/image?url=${encodedUrl}&w=1600&q=80`;
+      carImage = `https://autosportillescas.infinitsite.com/_vercel/image?url=${encodedUrl}&w=1600&q=80`;
     }
 
     // Serve static HTML with meta tags for previews (only bots reach this function now)
@@ -134,8 +134,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="https://www.aciertocars.com/favicon.png" />
-    <link rel="shortcut icon" type="image/png" href="https://www.aciertocars.com/favicon.png" />
+    <link rel="icon" type="image/png" href="https://autosportillescas.infinitsite.com/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="https://autosportillescas.infinitsite.com/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${pageTitle}</title>
     <meta name="description" content="${pageDescription}" />
@@ -151,7 +151,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="${titleParts.join(' ')}" />
-    <meta property="og:site_name" content="Acierto Cars" />
+    <meta property="og:site_name" content="Autosport Illescas" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
