@@ -29,12 +29,9 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-4">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight text-primary">
-          AutoSport Illescas
-        </h1>
+      <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-4 pt-64">
         <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-2xl mx-auto">
-          Vehículos de ocasión con kilometraje verificado
+          Coches seminuevos y de ocasion revisados con garantia
         </p>
         
         {/* Search Bar */}
