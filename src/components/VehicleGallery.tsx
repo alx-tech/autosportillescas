@@ -20,7 +20,7 @@ const VehicleGallery = () => {
   });
 
   const vehicles: Vehicle[] = carsResponse
-    ? carsResponse.map(transformApiCarToVehicle)
+    ? carsResponse.items.map(transformApiCarToVehicle)
     : [];
 
   // Sort by status (Published first), then by most recent (updatedAt), and take first 3

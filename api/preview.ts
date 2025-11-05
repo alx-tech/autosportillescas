@@ -28,8 +28,8 @@ async function fetchVehicleData(id: string): Promise<Vehicle | null> {
       return null;
     }
 
-    const cars = await response.json();
-    const apiCar = cars.find((car: any) => car.id === id);
+    const carsResponse = await response.json();
+    const apiCar = carsResponse.items.find((car: any) => car.id === id);
 
     if (!apiCar) {
       return null;

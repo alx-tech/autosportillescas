@@ -30,7 +30,13 @@ export interface CarApiResponse {
   };
 }
 
-export type CarsApiResponse = CarApiResponse[];
+export interface CarsApiResponse {
+  items: CarApiResponse[];
+  total: number;
+  page: number;
+  size: number;
+  pages: number;
+}
 
 export interface Vehicle {
   id: string;

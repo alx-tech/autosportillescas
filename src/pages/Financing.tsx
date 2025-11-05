@@ -56,7 +56,7 @@ const Financing = () => {
     const loadVehicles = async () => {
       try {
         const apiCars = await fetchCars();
-        const transformedVehicles = apiCars.map(transformApiCarToVehicle);
+        const transformedVehicles = apiCars.items.map(transformApiCarToVehicle);
 
         // If no vehicles available, add placeholder option with dummy data
         if (transformedVehicles.length === 0) {

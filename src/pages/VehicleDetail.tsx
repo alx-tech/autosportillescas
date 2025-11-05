@@ -75,7 +75,7 @@ const VehicleDetail = () => {
     staleTime: 5 * 60 * 1000,
     retry: 2
   });
-  const vehicle: Vehicle | undefined = carsData ? transformApiCarToVehicle(carsData.find(car => car.id === id)!) : undefined;
+  const vehicle: Vehicle | undefined = carsData ? transformApiCarToVehicle(carsData.items.find(car => car.id === id)!) : undefined;
 
   // Scroll to top when component mounts or vehicle changes
   useEffect(() => {
