@@ -117,19 +117,14 @@ const Footer = () => {
       title: "Política de Cookies",
       content: (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold">3.1 ¿Qué son las cookies?</h3>
-          <p>Las cookies son archivos que se almacenan en su dispositivo cuando visita nuestro sitio web. Nos permiten mejorar su experiencia y ofrecer publicidad relevante.</p>
-          
-          <h3 className="text-lg font-semibold">3.2 Tipos de cookies que usamos</h3>
-          <ul className="list-disc pl-6 space-y-1">
-            <li><strong>Estrictamente necesarias:</strong> Permiten el funcionamiento del sitio web.</li>
-            <li><strong>De personalización:</strong> Recuerdan sus preferencias.</li>
-            <li><strong>Analíticas:</strong> Nos ayudan a mejorar el sitio.</li>
-            <li><strong>Publicitarias:</strong> Muestran anuncios adaptados a sus intereses.</li>
-          </ul>
-          
-          <h3 className="text-lg font-semibold">3.3 Gestión de cookies</h3>
-          <p>Puede aceptar, rechazar o configurar las cookies desde el banner de cookies o desde la configuración de su navegador.</p>
+          <h3 className="text-lg font-semibold">3.1 ¿Usamos cookies?</h3>
+          <p>No. Este sitio web no utiliza cookies ni tecnologías similares (como píxeles, almacenamiento local o identificadores de seguimiento).</p>
+
+          <h3 className="text-lg font-semibold">3.2 Qué significa esto</h3>
+          <p>Su navegación en este sitio no genera ningún tipo de seguimiento ni se recopila información personal o de comportamiento mediante cookies.</p>
+
+          <h3 className="text-lg font-semibold">3.3 Transparencia y privacidad</h3>
+          <p>Nos comprometemos a ofrecerle una experiencia completamente transparente y respetuosa con su privacidad. En caso de que en el futuro implementemos cookies estrictamente necesarias o de otro tipo, actualizaremos esta política y solicitaremos su consentimiento conforme al Reglamento General de Protección de Datos (RGPD).</p>
         </div>
       )
     }
